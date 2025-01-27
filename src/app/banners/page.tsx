@@ -1,3 +1,4 @@
+import { deleteBanner, getBanners } from "@/actions/banner.action";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,12 +7,36 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Table, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { DatabaseIcon } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Separator } from "@/components/ui/separator";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { DatabaseIcon, MoreHorizontalIcon, Trash2 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import toast from "react-hot-toast";
 
-const BannerRoute = () => {
+const fetchBanners = async () => {
+  const data = await getBanners();
+  if (!data) return [];
+  return data;
+};
+
+const BannerRoute = async () => {
+  const banners = await fetchBanners();
   return (
     <>
       <div className="flex items-center justify-end">
@@ -35,6 +60,42 @@ const BannerRoute = () => {
                   <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
+              <TableBody>
+                {banners.map((banner) => (
+                  <TableRow key={banner.id}>
+                    <TableCell>
+                      <img
+                        src={banner.imageString}
+                        alt={banner.title}
+                        className="w-10 h-10 rounded-md object-cover"
+                      />
+                    </TableCell>
+                    <TableCell>{banner.title}</TableCell>
+                    <TableCell className="text-right">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant={"ghost"} size={"icon"}>
+                            <MoreHorizontalIcon className="w-5 h-5" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                          <Separator />
+                          <DropdownMenuItem>
+                            <Link
+                              href={`/banners/delete/${banner.id}`}
+                              className="flex items-center gap-3"
+                            >
+                              <Trash2 className="w-5 h-5 text-red-500" />
+                              Delete
+                            </Link>
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
             </Table>
           </CardContent>
         </CardHeader>

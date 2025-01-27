@@ -32,8 +32,6 @@ model User {
   posts Post[] // One-to-many
   comments Comment[] // One-to-many
   likes Like[] // One-to-many
-  trips Trip[] @relation("userAuthor")
-  driverTrip Trip[] @relation("userdriver")
 
   followers Follows[] @relation("following") // users who follow this user
   following Follows[] @relation("follower") // users this user follows
@@ -59,22 +57,15 @@ model Post{
 }
 
 model Trip {
-  id String @id @default(cuid())
-  name String
-  date DateTime
-  time DateTime
-  authorId String
-  driverId String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  //Relations
-  author      User     @relation("userAuthor", fields: [authorId], references: [id], onDelete: Cascade)
-  driver   User?     @relation("userdriver", fields: [driverId], references: [id], onDelete: Cascade)
-  notifications Notification[] // Notifications related to this trip
-  @@index([driverId, date]) // Index for quick query of trips by user and date
+  id                 String   @id @default(cuid())
+  name               String
+  startPoint         String
+  endPoint           String
+  priceSmallVehicle  Float
+  priceLargeVehicle  Float
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 }
-
 
 model Comment{
   id String @id @default(cuid())
@@ -134,8 +125,6 @@ model Notification {
   creator   User     @relation("notificationCreator", fields: [creatorId], references: [id], onDelete: Cascade)
   post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
   comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
-  trip      Trip?    @relation(fields: [tripId], references: [id], onDelete: Cascade)
-
   @@index([userId, createdAt])
 }
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { ComputerIcon } from "lucide-react";
 
-const HunkelCard = ({ title }: { title: string }) => {
+const CompanyCard = ({ title }: { title: string }) => {
   return (
     <Card>
       <CardHeader>
@@ -33,4 +33,4 @@ const HunkelCard = ({ title }: { title: string }) => {
   );
 };
 
-export default HunkelCard;
+export default CompanyCard;
