@@ -24,17 +24,25 @@ const Slider = ({ banners }: Props) => {
   return (
     <Carousel>
       <CarouselContent>
-        {banners.map((banner) => (
-          <CarouselItem key={banner.id}>
-            <div className="relative h-[60vh] lg:h-[80vh]">
-              <img
-                src={banner.imageString}
-                alt={banner.title}
-                className="w-full rounded-lg object-cover"
-              />
-            </div>
-          </CarouselItem>
-        ))}
+        {Array.isArray(banners) ? (
+          banners.map((banner) => (
+            <CarouselItem key={banner.id}>
+              <div className="relative h-[60vh] lg:h-[80vh]">
+                <img
+                  src={banner.imageString}
+                  alt={banner.title}
+                  className="w-full rounded-lg object-cover"
+                />
+              </div>
+            </CarouselItem>
+          ))
+        ) : (
+          <div className="text-center py-10">
+            <p className="text-red-500">
+              Error: {banners.error || "Failed to load banners."}
+            </p>
+          </div>
+        )}
       </CarouselContent>
       <CarouselPrevious className="mr-1" />
       <CarouselNext className="ml-1" />
