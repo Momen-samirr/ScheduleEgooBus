@@ -37,6 +37,7 @@ const fetchBanners = async () => {
 
 const BannerRoute = async () => {
   const banners = await fetchBanners();
+
   return (
     <>
       <div className="flex items-center justify-end">
@@ -61,40 +62,48 @@ const BannerRoute = async () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {banners.map((banner) => (
-                  <TableRow key={banner.id}>
-                    <TableCell>
-                      <img
-                        src={banner.imageString}
-                        alt={banner.title}
-                        className="w-10 h-10 rounded-md object-cover"
-                      />
-                    </TableCell>
-                    <TableCell>{banner.title}</TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant={"ghost"} size={"icon"}>
-                            <MoreHorizontalIcon className="w-5 h-5" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                          <Separator />
-                          <DropdownMenuItem>
-                            <Link
-                              href={`/banners/delete/${banner.id}`}
-                              className="flex items-center gap-3"
-                            >
-                              <Trash2 className="w-5 h-5 text-red-500" />
-                              Delete
-                            </Link>
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
+                {Array.isArray(banners) ? (
+                  banners.map((banner) => (
+                    <TableRow key={banner.id}>
+                      <TableCell>
+                        <img
+                          src={banner.imageString}
+                          alt={banner.title}
+                          className="w-10 h-10 rounded-md object-cover"
+                        />
+                      </TableCell>
+                      <TableCell>{banner.title}</TableCell>
+                      <TableCell className="text-right">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant={"ghost"} size={"icon"}>
+                              <MoreHorizontalIcon className="w-5 h-5" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent>
+                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                            <Separator />
+                            <DropdownMenuItem>
+                              <Link
+                                href={`/banners/delete/${banner.id}`}
+                                className="flex items-center gap-3"
+                              >
+                                <Trash2 className="w-5 h-5 text-red-500" />
+                                Delete
+                              </Link>
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={3} className="text-center">
+                      {banners.error || "Failed to fetch banners."}
                     </TableCell>
                   </TableRow>
-                ))}
+                )}
               </TableBody>
             </Table>
           </CardContent>
