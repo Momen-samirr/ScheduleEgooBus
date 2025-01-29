@@ -57,15 +57,19 @@ model Post{
 }
 
 model Trip {
-  id                 String   @id @default(cuid())
-  name               String
-  startPoint         String
-  endPoint           String
-  priceSmallVehicle  Float
-  priceLargeVehicle  Float
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  id               String   @id @default(cuid())
+  tableCode        String
+  tripsNum         Int
+  trips            String
+  haiisPrice       String
+  bigcarPrice      String
+  kelometr         Int
+  gapmetr          String
+  prices           String
+  currentCapacity  Int
+  createdAt        DateTime @default(now())
 }
+
 
 model Comment{
   id String @id @default(cuid())
