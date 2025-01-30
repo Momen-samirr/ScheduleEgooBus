@@ -23,7 +23,8 @@ export async function syncUser() {
       data: {
         clerkId: userId,
         name: `${user.firstName || ""} ${user.lastName || ""}`,
-        username: user.username ?? user.emailAddresses[0].emailAddress.split("@")[0],
+        username:
+          user.username ?? user.emailAddresses[0].emailAddress.split("@")[0],
         email: user.emailAddresses[0].emailAddress,
         image: user.imageUrl,
       },
@@ -58,7 +59,7 @@ export async function getDbUserId() {
 
   const user = await getUserByClerkId(clerkId);
 
-  if (!user) throw new Error("User not found");
+  if (!user) return null;
 
   return user.id;
 }

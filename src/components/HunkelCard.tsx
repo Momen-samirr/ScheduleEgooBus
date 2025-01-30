@@ -5,7 +5,13 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { ComputerIcon } from "lucide-react";
 
-const CompanyCard = ({ title }: { title: string }) => {
+const CompanyCard = ({
+  title,
+  href,
+}: {
+  title: string;
+  href: string | any;
+}) => {
   return (
     <Card>
       <CardHeader>
@@ -19,7 +25,7 @@ const CompanyCard = ({ title }: { title: string }) => {
               </Avatar>
             </div>
             <div>
-              <Link href={"/hunkel"}>
+              <Link href={href}>
                 <Button variant={"outline"}>
                   <ComputerIcon className="w-5 h-5 mr-3" />
                   {title}

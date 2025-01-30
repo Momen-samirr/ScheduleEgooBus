@@ -4,27 +4,27 @@ import prisma from "@/lib/prisma";
 import { getDbUserId } from "./user.action";
 import { revalidatePath } from "next/cache";
 
-export async function createPost(content: string, image: string) {
-  try {
-    const userId = await getDbUserId();
+// export async function createPost(content: string, image: string) {
+//   try {
+//     const userId = await getDbUserId();
 
-    if (!userId) return;
+//     if (!userId) return;
 
-    const post = await prisma.post.create({
-      data: {
-        content,
-        image,
-        authorId: userId,
-      },
-    });
+//     const post = await prisma.post.create({
+//       data: {
+//         content,
+//         image,
+//         authorId: userId,
+//       },
+//     });
 
-    revalidatePath("/"); // purge the cache for the home page
-    return { success: true, post };
-  } catch (error) {
-    console.error("Failed to create post:", error);
-    return { success: false, error: "Failed to create post" };
-  }
-}
+//     revalidatePath("/"); // purge the cache for the home page
+//     return { success: true, post };
+//   } catch (error) {
+//     console.error("Failed to create post:", error);
+//     return { success: false, error: "Failed to create post" };
+//   }
+// }
 
 export async function getPosts() {
   try {
@@ -200,7 +200,8 @@ export async function deletePost(postId: string) {
     });
 
     if (!post) throw new Error("Post not found");
-    if (post.authorId !== userId) throw new Error("Unauthorized - no delete permission");
+    if (post.authorId !== userId)
+      throw new Error("Unauthorized - no delete permission");
 
     await prisma.post.delete({
       where: { id: postId },

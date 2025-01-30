@@ -13,6 +13,7 @@ export async function getProfileByUsername(username: string) {
         id: true,
         name: true,
         username: true,
+        phone: true,
         bio: true,
         image: true,
         location: true,
@@ -153,17 +154,16 @@ export async function updateProfile(formData: FormData) {
     if (!clerkId) throw new Error("Unauthorized");
 
     const name = formData.get("name") as string;
+    const phone = formData.get("phone") as string;
     const bio = formData.get("bio") as string;
     const location = formData.get("location") as string;
-    const website = formData.get("website") as string;
-
     const user = await prisma.user.update({
       where: { clerkId },
       data: {
         name,
+        phone,
         bio,
         location,
-        website,
       },
     });
 

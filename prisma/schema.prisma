@@ -24,6 +24,7 @@ model User {
   location String?
   website String?
   phone String? @unique
+  workIn String?
   isAdmin Boolean @default(false)
   createdAt DateTime @default(now()) // member since 2020
   updatedAt DateTime @updatedAt
@@ -38,26 +39,14 @@ model User {
 
   notifications Notification[] @relation("userNotifications") // notifications received by a user
   notificationsCreated Notification[] @relation("notificationCreator") // notifications triggered by a user
+
+  // trips Trip[]
 }
 
 
 model Post{
   id        String    @id @default(cuid())
   authorId String
-  content String?
-  image String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-
-  // Relations
-  author User @relation(fields: [authorId],references: [id], onDelete: Cascade) // cascade delete means delete all posts if author is deleted
-  comments Comment[]
-  likes Like[]
-  notifications Notification[]
-}
-
-model Trip {
-  id               String   @id @default(cuid())
   tableCode        String
   tripsNum         Int
   trips            String
@@ -68,7 +57,34 @@ model Trip {
   prices           String
   currentCapacity  Int
   createdAt        DateTime @default(now())
+
+  // Relations
+  author User @relation(fields: [authorId],references: [id], onDelete: Cascade) // cascade delete means delete all posts if author is deleted
+  comments Comment[]
+  likes Like[]
+  notifications Notification[]
 }
+
+// model Trip {
+//   id               String   @id @default(cuid())
+//   authorId String
+//   tableCode        String
+//   tripsNum         Int
+//   trips            String
+//   haiisPrice       String
+//   bigcarPrice      String
+//   kelometr         Int
+//   gapmetr          String
+//   prices           String
+//   currentCapacity  Int
+//   createdAt        DateTime @default(now())
+
+//   //Relations
+//   author User @relation(fields: [authorId],references: [id], onDelete: Cascade) // cascade delete means delete all posts if author is deleted
+//   comments Comment[]
+//   likes Like[]
+//   notifications Notification[]
+// }
 
 
 model Comment{
@@ -76,11 +92,13 @@ model Comment{
   content String
   authorId String
   postId String
+  // tripId String?
   createdAt DateTime @default(now())
 
   // Relations
   author User @relation(fields: [authorId],references: [id],onDelete: Cascade)
   post Post @relation(fields: [postId],references: [id], onDelete: Cascade)
+  // trip Trip?  @relation(fields: [tripId],references: [id], onDelete: Cascade)
   notifications Notification[]
 
   @@index([authorId,postId]) // composite index for faster queries
@@ -89,15 +107,19 @@ model Comment{
 model Like {
   id        String   @id @default(cuid())
   postId    String                 
+  tripId    String?
   userId    String                 
   createdAt DateTime @default(now())
 
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  // trip      Trip?      @relation(fields: [tripId], references: [id], onDelete: Cascade)
 
   @@index([userId,postId]) // composite index for faster queries
   @@unique([userId,postId]) // this prevents same user liking post twice
+  @@index([userId,tripId]) // composite index for faster queries
+  @@unique([userId,tripId]) // this prevents same user liking post twice
 }
 
 model Follows{
@@ -119,15 +141,16 @@ model Notification {
   creatorId String                  
   type      NotificationType        
   read      Boolean  @default(false)
-  postId    String?                 
+  postId    String?
+  tripId    String?                 
   commentId String?                
-  tripId    String? // New field to associate notification with a trip
   createdAt DateTime @default(now())
   
   // Relations
   user      User     @relation("userNotifications", fields: [userId], references: [id], onDelete: Cascade)
   creator   User     @relation("notificationCreator", fields: [creatorId], references: [id], onDelete: Cascade)
   post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  // trip      Trip?    @relation(fields: [tripId], references: [id], onDelete: Cascade)
   comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
   @@index([userId, createdAt])
 }
