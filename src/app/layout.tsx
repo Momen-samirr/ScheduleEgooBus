@@ -19,8 +19,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Socially",
-  description: "A modern social media application powered by Next.js",
+  title: "EgooBus Scheduler",
+  description: "Developed by Momen Samir",
 };
 
 export default function RootLayout({

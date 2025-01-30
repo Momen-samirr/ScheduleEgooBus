@@ -24,8 +24,8 @@ export async function getNotifications() {
         post: {
           select: {
             id: true,
-            content: true,
-            image: true,
+            trips: true,
+            tableCode: true,
           },
         },
         comment: {
