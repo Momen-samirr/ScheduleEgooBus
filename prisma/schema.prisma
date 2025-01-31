@@ -25,7 +25,7 @@ model User {
   website String?
   phone String? @unique
   workIn String?
-  isAdmin Boolean @default(false)
+  role Role @default(user)
   createdAt DateTime @default(now()) // member since 2020
   updatedAt DateTime @updatedAt
 
@@ -159,9 +159,16 @@ model Banner {
   id              String @id @default(uuid())
   title           String
   imageString     String
+  isHero          Boolean @default(false)
   createdAt       DateTime @default(now())
 }
 
+
+enum Role {
+  admin
+  driver
+  user
+}
 
 enum NotificationType {
   LIKE     

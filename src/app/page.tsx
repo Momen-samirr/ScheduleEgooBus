@@ -1,8 +1,10 @@
+import { getBanners } from "@/actions/banner.action";
 import { getPosts } from "@/actions/post.action";
 import { getTrips } from "@/actions/trips.action";
 import { getDbUserId } from "@/actions/user.action";
 // import CreatePost from "@/components/CreatePost";
 import PostCard from "@/components/PostCard";
+import Slider from "@/components/Slider";
 // import TripCard from "@/components/TripCard";
 import WhoToFollow from "@/components/WhoToFollow";
 import { currentUser } from "@clerk/nextjs/server";
@@ -11,6 +13,7 @@ export default async function Home() {
   const user = await currentUser();
   const dbUserId = await getDbUserId();
   const trips = await getPosts();
+  const banners = await getBanners();
   console.log("trips:", trips);
 
   return (
@@ -18,7 +21,9 @@ export default async function Home() {
       <div className="lg:col-span-6">
         {/* {user ? <CreatePost /> : null */}
 
-        <div className="space-y-6"></div>
+        <div className="space-y-6">
+          <Slider banners={banners} />
+        </div>
       </div>
 
       <div className="hidden lg:block lg:col-span-4 sticky top-20">

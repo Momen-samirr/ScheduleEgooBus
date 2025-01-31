@@ -64,6 +64,20 @@ export async function getDbUserId() {
   return user.id;
 }
 
+export async function getDbUser() {
+  const userId = await getDbUserId();
+
+  if (!userId) return null;
+
+  const dbUser = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  return dbUser;
+}
+
 export async function getRandomUsers() {
   try {
     const userId = await getDbUserId();

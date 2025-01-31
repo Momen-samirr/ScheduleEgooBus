@@ -22,7 +22,6 @@ import { useState } from "react";
 import { useAuth, SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import { currentUser } from "@clerk/nextjs/server";
 
 function MobileNavbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -80,12 +79,12 @@ function MobileNavbar() {
                 </Button>
                 <Button
                   variant="ghost"
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-3 justify-start"
                   asChild
                 >
                   <Link href="/dashboard">
                     <LayoutDashboard className="w-5 h-5" />
-                    <span className="hidden lg:inline">Dashboard</span>
+                    Dashboard
                   </Link>
                 </Button>
                 <Button
@@ -99,7 +98,7 @@ function MobileNavbar() {
                       user.user?.emailAddresses[0].emailAddress.split("@")[0]
                     }`}
                   >
-                    <UserIcon className="w-4 h-4" />
+                    <UserIcon className="w-5 h-5" />
                     Profile
                   </Link>
                 </Button>
