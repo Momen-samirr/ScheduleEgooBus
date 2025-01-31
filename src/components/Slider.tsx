@@ -44,8 +44,8 @@ const Slider = ({ banners }: Props) => {
           </div>
         )}
       </CarouselContent>
-      <CarouselPrevious className="mr-1" />
-      <CarouselNext className="ml-1" />
+      <CarouselPrevious className="-mr-3" />
+      <CarouselNext className="-mr-3" />
     </Carousel>
   );
 };
