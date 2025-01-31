@@ -8,8 +8,10 @@ import { ComputerIcon } from "lucide-react";
 const CompanyCard = ({
   title,
   href,
+  veicle,
 }: {
   title: string;
+  veicle: string;
   href: string | any;
 }) => {
   return (
@@ -25,11 +27,15 @@ const CompanyCard = ({
               </Avatar>
             </div>
             <div>
-              <Link href={href}>
+              <Link
+                href={href}
+                className="flex flex-col items-center justify-center gap-3"
+              >
                 <Button variant={"outline"}>
                   <ComputerIcon className="w-5 h-5 mr-3" />
                   {title}
                 </Button>
+                <div>{veicle}</div>
               </Link>
             </div>
           </div>
