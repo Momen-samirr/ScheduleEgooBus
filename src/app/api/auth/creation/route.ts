@@ -5,20 +5,22 @@ export const GET = async () => {
   try {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
-
-    // const { userId } = await auth();
-    // const user = await currentUser();
     const userId = user?.id;
 
-    if (!userId || !user) return;
+    if (!userId || !user) {
+      return new Response("Unauthorized", { status: 401 });
+    }
 
     const existingUser = await prisma.user.findUnique({
-      where: {
-        clerkId: userId,
-      },
+      where: { clerkId: userId },
     });
 
-    if (existingUser) return existingUser;
+    if (existingUser) {
+      return new Response(JSON.stringify(existingUser), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
 
     const dbUser = await prisma.user.create({
       data: {
@@ -30,8 +32,12 @@ export const GET = async () => {
       },
     });
 
-    return dbUser;
+    return new Response(JSON.stringify(dbUser), {
+      status: 201,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (error) {
-    console.log("Error in syncUser", error);
+    console.error("Error in syncUser", error);
+    return new Response("Internal Server Error", { status: 500 });
   }
 };
