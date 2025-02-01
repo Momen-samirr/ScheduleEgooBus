@@ -6,7 +6,6 @@ import {
   getPosts,
   toggleLike,
 } from "@/actions/post.action";
-import { SignInButton, useUser } from "@clerk/nextjs";
 import {
   AwaitedReactNode,
   JSXElementConstructor,
@@ -31,12 +30,13 @@ import {
 } from "lucide-react";
 import { Textarea } from "./ui/textarea";
 import { getTrips } from "@/actions/trips.action";
+import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 type Posts = Awaited<ReturnType<typeof getPosts>>;
 type Post = Posts[number];
 
 function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
-  const { user } = useUser();
+  const { user, getUser } = useKindeBrowserClient();
   const [newComment, setNewComment] = useState("");
   const [isCommenting, setIsCommenting] = useState(false);
   const [isLiking, setIsLiking] = useState(false);
@@ -170,7 +170,7 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
                 <span>{optimisticLikes}</span>
               </Button>
             ) : (
-              <SignInButton mode="modal">
+              <LoginLink>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -179,7 +179,7 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
                   <HeartIcon className="size-5" />
                   <span>{optimisticLikes}</span>
                 </Button>
-              </SignInButton>
+              </LoginLink>
             )}
 
             <Button
@@ -275,7 +275,7 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
               {user ? (
                 <div className="flex space-x-3">
                   <Avatar className="size-8 flex-shrink-0">
-                    <AvatarImage src={user?.imageUrl || "/avatar.png"} />
+                    <AvatarImage src={user?.email || "/avatar.png"} />
                   </Avatar>
                   <div className="flex-1">
                     <Textarea
@@ -305,12 +305,12 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
                 </div>
               ) : (
                 <div className="flex justify-center p-4 border rounded-lg bg-muted/50">
-                  <SignInButton mode="modal">
+                  <LoginLink>
                     <Button variant="outline" className="gap-2">
                       <LogInIcon className="size-4" />
                       Sign in to comment
                     </Button>
-                  </SignInButton>
+                  </LoginLink>
                 </div>
               )}
             </div>

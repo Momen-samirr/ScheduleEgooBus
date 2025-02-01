@@ -40,7 +40,7 @@ model User {
   notifications Notification[] @relation("userNotifications") // notifications received by a user
   notificationsCreated Notification[] @relation("notificationCreator") // notifications triggered by a user
 
-  // trips Trip[]
+  trips Tripindividual[]
 }
 
 
@@ -65,26 +65,21 @@ model Post{
   notifications Notification[]
 }
 
-// model Trip {
-//   id               String   @id @default(cuid())
-//   authorId String
-//   tableCode        String
-//   tripsNum         Int
-//   trips            String
-//   haiisPrice       String
-//   bigcarPrice      String
-//   kelometr         Int
-//   gapmetr          String
-//   prices           String
-//   currentCapacity  Int
-//   createdAt        DateTime @default(now())
+model Tripindividual {
+  id              String   @id @default(cuid())
+  authorId        String
+  tripName        String
+  kelometr        Int
+  tableCode       String   @unique  // Ensure this isn't causing duplicates
+  currentCapacity Int      @default(0)  // Avoid null errors
+  createdAt       DateTime @default(now())
 
-//   //Relations
-//   author User @relation(fields: [authorId],references: [id], onDelete: Cascade) // cascade delete means delete all posts if author is deleted
-//   comments Comment[]
-//   likes Like[]
-//   notifications Notification[]
-// }
+  //Relations
+  author User @relation(fields: [authorId],references: [id], onDelete: Cascade) // cascade delete means delete all posts if author is deleted
+  comments Comment[]
+  likes Like[]
+  notifications Notification[]
+}
 
 
 model Comment{
@@ -92,13 +87,13 @@ model Comment{
   content String
   authorId String
   postId String
-  // tripId String?
+  tripId String?
   createdAt DateTime @default(now())
 
   // Relations
   author User @relation(fields: [authorId],references: [id],onDelete: Cascade)
   post Post @relation(fields: [postId],references: [id], onDelete: Cascade)
-  // trip Trip?  @relation(fields: [tripId],references: [id], onDelete: Cascade)
+  trip Tripindividual?  @relation(fields: [tripId],references: [id], onDelete: Cascade)
   notifications Notification[]
 
   @@index([authorId,postId]) // composite index for faster queries
@@ -114,7 +109,7 @@ model Like {
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  // trip      Trip?      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  trip      Tripindividual?      @relation(fields: [tripId], references: [id], onDelete: Cascade)
 
   @@index([userId,postId]) // composite index for faster queries
   @@unique([userId,postId]) // this prevents same user liking post twice
@@ -150,7 +145,7 @@ model Notification {
   user      User     @relation("userNotifications", fields: [userId], references: [id], onDelete: Cascade)
   creator   User     @relation("notificationCreator", fields: [creatorId], references: [id], onDelete: Cascade)
   post      Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
-  // trip      Trip?    @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  trip      Tripindividual?    @relation(fields: [tripId], references: [id], onDelete: Cascade)
   comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
   @@index([userId, createdAt])
 }

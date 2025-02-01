@@ -1,11 +1,15 @@
 import Link from "next/link";
 import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
-import { currentUser } from "@clerk/nextjs/server";
+// import { currentUser } from "@clerk/nextjs/server";
 import { syncUser } from "@/actions/user.action";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 async function Navbar() {
-  const user = await currentUser();
+  // const user = await currentUser();
+  const { getUser } = getKindeServerSession();
+
+  const user = await getUser();
   if (user) await syncUser(); // POST
 
   return (

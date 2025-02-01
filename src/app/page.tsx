@@ -9,9 +9,12 @@ import UnAuthenticatedmobileSidebar from "@/components/UnAuthenticatedmobileSide
 // import TripCard from "@/components/TripCard";
 import WhoToFollow from "@/components/WhoToFollow";
 import { currentUser } from "@clerk/nextjs/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default async function Home() {
-  const user = await currentUser();
+  // const user = await currentUser();
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
   const dbUserId = await getDbUserId();
   const trips = await getPosts();
   const banners = await getBanners();

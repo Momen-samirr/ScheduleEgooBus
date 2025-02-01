@@ -19,16 +19,20 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useState } from "react";
-import { useAuth, SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import {
+  LoginLink,
+  LogoutLink,
+  useKindeBrowserClient,
+} from "@kinde-oss/kinde-auth-nextjs";
 
 function MobileNavbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const { isSignedIn } = useAuth();
+  const { isAuthenticated } = useKindeBrowserClient();
   const { theme, setTheme } = useTheme();
 
-  const user = useUser();
+  const { user, getUser } = useKindeBrowserClient();
 
   return (
     <div className="flex md:hidden items-center space-x-2">
@@ -65,7 +69,7 @@ function MobileNavbar() {
               </Link>
             </Button>
 
-            {isSignedIn ? (
+            {isAuthenticated ? (
               <>
                 <Button
                   variant="ghost"
@@ -92,17 +96,12 @@ function MobileNavbar() {
                   className="flex items-center gap-3 justify-start"
                   asChild
                 >
-                  <Link
-                    href={`/profile/${
-                      user.user?.username ??
-                      user.user?.emailAddresses[0].emailAddress.split("@")[0]
-                    }`}
-                  >
+                  <Link href={`/profile/${user?.email?.split("@")[0] || ""}`}>
                     <UserIcon className="w-5 h-5" />
                     Profile
                   </Link>
                 </Button>
-                <SignOutButton>
+                <LogoutLink>
                   <Button
                     variant="ghost"
                     className="flex items-center gap-3 justify-start w-full"
@@ -110,14 +109,14 @@ function MobileNavbar() {
                     <LogOutIcon className="w-4 h-4" />
                     Logout
                   </Button>
-                </SignOutButton>
+                </LogoutLink>
               </>
             ) : (
-              <SignInButton mode="redirect">
+              <LoginLink>
                 <Button variant="default" className="w-full">
                   Sign In
                 </Button>
-              </SignInButton>
+              </LoginLink>
             )}
           </nav>
         </SheetContent>

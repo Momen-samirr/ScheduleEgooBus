@@ -1,8 +1,10 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { SignInButton, SignUpButton } from "@clerk/nextjs";
 import { Button } from "./ui/button";
-
+import {
+  LoginLink,
+  RegisterLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
 const UnAuthenticatedmobileSidebar = () => {
   return (
     <div className="sticky top-20">
@@ -16,16 +18,16 @@ const UnAuthenticatedmobileSidebar = () => {
           <p className="text-center text-muted-foreground mb-4">
             Login to access your profile and connect with others.
           </p>
-          <SignInButton mode="redirect">
+          <LoginLink>
             <Button className="w-full" variant="outline">
               Login
             </Button>
-          </SignInButton>
-          <SignUpButton mode="redirect">
+          </LoginLink>
+          <RegisterLink>
             <Button className="w-full mt-2" variant="default">
               Sign Up
             </Button>
-          </SignUpButton>
+          </RegisterLink>
         </CardContent>
       </Card>
     </div>

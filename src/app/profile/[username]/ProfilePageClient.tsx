@@ -29,7 +29,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { SignInButton, useUser } from "@clerk/nextjs";
+import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { format } from "date-fns";
 import {
   CalendarIcon,
@@ -69,7 +69,7 @@ function ProfilePageClient({
   posts,
   user,
 }: ProfilePageClientProps) {
-  const { user: currentUser } = useUser();
+  const { user: currentUser } = useKindeBrowserClient();
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [isFollowing, setIsFollowing] = useState(initialIsFollowing);
   const [isUpdatingFollow, setIsUpdatingFollow] = useState(false);
@@ -107,9 +107,9 @@ function ProfilePageClient({
     }
   };
 
-  const isOwnProfile =
-    currentUser?.username === user.username ||
-    currentUser?.emailAddresses[0].emailAddress.split("@")[0] === user.username;
+  const isOwnProfile = currentUser?.email?.split("@")[0] === user.username;
+  // currentUser?. === user.username ||
+  // currentUser?.emailAddresses[0].emailAddress.split("@")[0] === user.username;
 
   const formattedDate = format(new Date(user.createdAt), "MMMM yyyy");
 
@@ -163,9 +163,9 @@ function ProfilePageClient({
 
                 {/* "FOLLOW & EDIT PROFILE" BUTTONS */}
                 {!currentUser ? (
-                  <SignInButton mode="modal">
+                  <LoginLink>
                     <Button className="w-full mt-4">Follow</Button>
-                  </SignInButton>
+                  </LoginLink>
                 ) : isOwnProfile ? (
                   <Button
                     className="w-full mt-4"

@@ -7,13 +7,21 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { SignInButton, UserButton } from "@clerk/nextjs";
 import ModeToggle from "./ModeToggle";
 import { currentUser } from "@clerk/nextjs/server";
 import { getDbUser } from "@/actions/user.action";
+import {
+  getKindeServerSession,
+  LoginLink,
+  LogoutLink,
+} from "@kinde-oss/kinde-auth-nextjs/server";
 
 async function DesktopNavbar() {
-  const user = await currentUser();
+  // const user = await currentUser();
+
+  const { getUser } = getKindeServerSession();
+
+  const user = await getUser();
 
   const dbUser = await getDbUser();
   return (
@@ -50,20 +58,21 @@ async function DesktopNavbar() {
           <Button variant="ghost" className="flex items-center gap-2" asChild>
             <Link
               href={`/profile/${
-                user.username ??
-                user.emailAddresses[0].emailAddress.split("@")[0]
+                dbUser?.username || dbUser?.email.split("@")[0]
               }`}
             >
               <UserIcon className="w-5 h-5" />
               <span className="hidden lg:inline">Profile</span>
             </Link>
           </Button>
-          <UserButton />
+          <Button variant="default" className="flex items-center gap-2" asChild>
+            <LogoutLink>Log out</LogoutLink>
+          </Button>
         </>
       ) : (
-        <SignInButton mode="modal">
-          <Button variant="default">Sign In</Button>
-        </SignInButton>
+        <Button variant={"ghost"}>
+          <LoginLink>Login</LoginLink>
+        </Button>
       )}
       <ModeToggle />
     </div>

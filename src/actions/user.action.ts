@@ -2,12 +2,17 @@
 
 import prisma from "@/lib/prisma";
 import { auth, currentUser } from "@clerk/nextjs/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { revalidatePath } from "next/cache";
 
 export async function syncUser() {
   try {
-    const { userId } = await auth();
-    const user = await currentUser();
+    const { getUser } = getKindeServerSession();
+    const user = await getUser();
+
+    // const { userId } = await auth();
+    // const user = await currentUser();
+    const userId = user?.id;
 
     if (!userId || !user) return;
 
@@ -22,11 +27,10 @@ export async function syncUser() {
     const dbUser = await prisma.user.create({
       data: {
         clerkId: userId,
-        name: `${user.firstName || ""} ${user.lastName || ""}`,
-        username:
-          user.username ?? user.emailAddresses[0].emailAddress.split("@")[0],
-        email: user.emailAddresses[0].emailAddress,
-        image: user.imageUrl,
+        name: `${user.given_name || ""} ${user.family_name || ""}`,
+        username: user.email?.split("@")[0] || "",
+        email: user.email ?? "",
+        image: user.picture ?? "",
       },
     });
 
@@ -54,14 +58,20 @@ export async function getUserByClerkId(clerkId: string) {
 }
 
 export async function getDbUserId() {
-  const { userId: clerkId } = await auth();
+  // const { userId: clerkId } = await auth();
+
+  const { getUser } = getKindeServerSession();
+
+  const user = await getUser();
+
+  const clerkId = user?.id;
   if (!clerkId) return null;
 
-  const user = await getUserByClerkId(clerkId);
+  const authUser = await getUserByClerkId(clerkId);
 
   if (!user) return null;
 
-  return user.id;
+  return authUser?.id;
 }
 
 export async function getDbUser() {

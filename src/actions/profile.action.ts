@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs/server";
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { getDbUserId } from "./user.action";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export async function getProfileByUsername(username: string) {
   try {
@@ -150,7 +151,12 @@ export async function getUserLikedPosts(userId: string) {
 
 export async function updateProfile(formData: FormData) {
   try {
-    const { userId: clerkId } = await auth();
+    // const { userId: clerkId } = await auth();
+    const { getUser } = getKindeServerSession();
+    const authuser = await getUser();
+
+    const clerkId = authuser?.id;
+
     if (!clerkId) throw new Error("Unauthorized");
 
     const name = formData.get("name") as string;
