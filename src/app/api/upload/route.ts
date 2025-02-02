@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { currentUser } from "@clerk/nextjs/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
   try {
-    const user: string | any = await currentUser();
+    const { getUser } = getKindeServerSession();
+
+    const user = await getUser();
     const body = await req.json();
     const { tripsData } = body;
 
@@ -40,7 +43,7 @@ export async function POST(req: NextRequest) {
 
     const createdTrips = await prisma.post.createMany({
       data: newTrips.map((trip) => ({
-        authorId: "cm6jt8cjm00a0g5fsdemea62h",
+        authorId: "cm6n9yci10000ie03mjqn4hqo",
         tableCode: trip.tableCode,
         tripsNum: trip.tripsNum,
         trips: trip.trips,

@@ -9,9 +9,6 @@ export async function syncUser() {
   try {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
-
-    // const { userId } = await auth();
-    // const user = await currentUser();
     const userId = user?.id;
 
     if (!userId || !user) return;
