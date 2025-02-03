@@ -18,7 +18,11 @@ const DashboardRoute = async () => {
         <CompanyCard title="Hunkel" href="/dashboard/hunkel" veicle="ملاكي" />
       </div>
       <div className="lg:col-span-5">
-        <CompanyCard title="B2C" href="/dashboard/b2c" veicle="هاي اس" />
+        <CompanyCard
+          title="جداول شارع ورحلات فرديه"
+          href="/dashboard/b2c"
+          veicle="هاي اس"
+        />
       </div>
       <div className="lg:col-span-10">
         <Slider banners={banners} />
