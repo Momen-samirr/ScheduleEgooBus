@@ -44,25 +44,31 @@ model User {
 }
 
 
-model Post{
-  id        String    @id @default(cuid())
-  authorId String
+enum TripType {
+  SCHEDULED
+  SOLO
+}
+
+model Post {
+  id               String    @id @default(cuid())
+  authorId         String
   tableCode        String
-  tripsNum         Int
+  tripsNum         Int?      // Nullable for solo trips
   trips            String
-  haiisPrice       String
-  bigcarPrice      String
+  haiisPrice       String?   // Nullable for solo trips
+  bigcarPrice      String?   // Nullable for solo trips
   kelometr         Int
-  gapmetr          String
-  prices           String
+  gapmetr          String?   // Nullable for solo trips
+  prices           String?   // Nullable for solo trips
   currentCapacity  Int
-  createdAt        DateTime @default(now())
+  tripType         TripType  // Enum: SCHEDULED or SOLO
+  createdAt        DateTime  @default(now())
 
   // Relations
-  author User @relation(fields: [authorId],references: [id], onDelete: Cascade) // cascade delete means delete all posts if author is deleted
-  comments Comment[]
-  likes Like[]
-  notifications Notification[]
+  author          User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comments        Comment[]
+  likes          Like[]
+  notifications   Notification[]
 }
 
 model Tripindividual {

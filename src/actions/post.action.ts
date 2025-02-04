@@ -32,6 +32,63 @@ export async function getPosts() {
       orderBy: {
         createdAt: "desc",
       },
+      where: {
+        tripType: "SCHEDULED",
+      },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+            username: true,
+          },
+        },
+        comments: {
+          include: {
+            author: {
+              select: {
+                id: true,
+                username: true,
+                image: true,
+                name: true,
+              },
+            },
+          },
+          orderBy: {
+            createdAt: "asc",
+          },
+        },
+        likes: {
+          select: {
+            userId: true,
+          },
+        },
+        _count: {
+          select: {
+            likes: true,
+            comments: true,
+          },
+        },
+      },
+    });
+
+    return posts;
+  } catch (error) {
+    console.log("Error in getPosts", error);
+    throw new Error("Failed to fetch posts");
+  }
+}
+
+export async function getSoloPosts() {
+  try {
+    const posts = await prisma.post.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      where: {
+        tripType: "SOLO",
+      },
       include: {
         author: {
           select: {

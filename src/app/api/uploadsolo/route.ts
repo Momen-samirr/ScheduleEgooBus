@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient, TripType } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
+import { currentUser } from "@clerk/nextjs/server";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const prisma = new PrismaClient();
@@ -7,6 +8,7 @@ const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
   try {
     const { getUser } = getKindeServerSession();
+
     const user = await getUser();
     const body = await req.json();
     const { tripsData } = body;
@@ -18,10 +20,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Log input data for debugging
-    console.log("Received trips data:", JSON.stringify(tripsData, null, 2));
-
-    // Check existing trips to prevent duplication
     const existingTrips = await prisma.post.findMany({
       where: {
         tableCode: { in: tripsData.map((trip) => trip.tableCode) },
@@ -42,24 +40,18 @@ export async function POST(req: NextRequest) {
         { status: 200 }
       );
     }
-
-    // Log filtered new trips
-    console.log("New trips to be added:", JSON.stringify(newTrips, null, 2));
-
-    // Insert new trips into the database
     const createdTrips = await prisma.post.createMany({
       data: newTrips.map((trip) => ({
         authorId: "cm6n9yci10000ie03mjqn4hqo",
         tableCode: trip.tableCode,
-        tripsNum: trip.tripsNum || null, // Null for unique trips
-        trips: trip.trips || trip.tripName, // Use tripName for unique trips
-        haiisPrice: trip.haiisPrice || null,
-        bigcarPrice: trip.bigcarPrice || null,
+        tripsNum: trip.tripsNum,
+        trips: trip.trips,
+        haiisPrice: trip.haiisPrice,
+        bigcarPrice: trip.bigcarPrice,
         kelometr: trip.kelometr,
-        gapmetr: trip.gapmetr || null,
-        prices: trip.prices || null,
+        gapmetr: trip.gapmetr,
+        prices: trip.prices,
         currentCapacity: trip.current_capacity,
-        tripType: trip.tripName ? "SOLO" : "SCHEDULED", // Use enum values
       })),
     });
 
@@ -69,12 +61,8 @@ export async function POST(req: NextRequest) {
     );
   } catch (error) {
     console.error("Error uploading trips:", error);
-
     return NextResponse.json(
-      {
-        message: "Internal Server Error",
-        error: error instanceof Error ? error.message : String(error),
-      },
+      { message: "Internal Server Error" },
       { status: 500 }
     );
   }

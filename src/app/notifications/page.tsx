@@ -100,6 +100,9 @@ function NotificationsPage() {
                           : "commented on your post"}
                       </span>
                     </div>
+                    <div className="text-muted-foreground">
+                      <span>{notification?.creator?.phone || "No phone"}</span>
+                    </div>
 
                     {notification.post &&
                       (notification.type === "LIKE" ||
@@ -107,7 +110,9 @@ function NotificationsPage() {
                         <div className="pl-6 space-y-2">
                           <div className="text-sm text-muted-foreground rounded-md p-2 bg-muted/30 mt-2">
                             <p>{notification.post.trips}</p>
-                            <p>{notification.post.tableCode}</p>
+                            <p className="font-bold text-sky-500">
+                              {notification.post.tableCode}
+                            </p>
                           </div>
 
                           {notification.type === "COMMENT" &&

@@ -8,39 +8,80 @@ import { ComputerIcon } from "lucide-react";
 const CompanyCard = ({
   title,
   href,
+  subTitle,
+  subHref,
   veicle,
+  availability,
+  topic,
 }: {
   title: string;
+  subTitle?: string;
   veicle: string;
-  href: string | any;
+  href: string;
+  subHref?: string;
+  availability: "Available Soon" | "Now Available";
+  topic: string;
 }) => {
+  const isUnavailable = availability === "Available Soon";
+
   return (
-    <Card>
+    <Card className={isUnavailable ? "opacity-50 cursor-not-allowed" : ""}>
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        <CardContent>
-          <div className="flex flex-col items-center justify-center">
-            <div className="space-y-3 mb-3">
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>HC</AvatarFallback>
-              </Avatar>
-            </div>
-            <div>
-              <Link
-                href={href}
-                className="flex flex-col items-center justify-center gap-3"
-              >
-                <Button variant={"outline"}>
+        <div className="flex items-center justify-between gap-6">
+          <CardTitle>{topic}</CardTitle>
+          <div className="flex items-center justify-end">
+            <span
+              className={`text-sm font-semibold px-3 py-1 rounded-full items-center ${
+                isUnavailable ? "bg-red-200 text-red-600" : "text-green-600"
+              }`}
+            >
+              {isUnavailable ? "Coming Soon" : availability}
+            </span>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-col items-center justify-center">
+          <div className="space-y-3 mb-3">
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>HC</AvatarFallback>
+            </Avatar>
+          </div>
+          <div className="flex flex-col items-center gap-5">
+            {href &&
+              (isUnavailable ? (
+                <Button variant={"outline"} disabled>
                   <ComputerIcon className="w-5 h-5 mr-3" />
                   {title}
                 </Button>
-                <div>{veicle}</div>
-              </Link>
-            </div>
+              ) : (
+                <Link href={href}>
+                  <Button variant={"outline"}>
+                    <ComputerIcon className="w-5 h-5 mr-3" />
+                    {title}
+                  </Button>
+                </Link>
+              ))}
+            {subTitle &&
+              subHref &&
+              (isUnavailable ? (
+                <Button variant={"outline"} disabled>
+                  <ComputerIcon className="w-5 h-5 mr-3" />
+                  {subTitle}
+                </Button>
+              ) : (
+                <Link href={subHref}>
+                  <Button variant={"outline"}>
+                    <ComputerIcon className="w-5 h-5 mr-3" />
+                    {subTitle}
+                  </Button>
+                </Link>
+              ))}
+            <div>{veicle}</div>
           </div>
-        </CardContent>
-      </CardHeader>
+        </div>
+      </CardContent>
     </Card>
   );
 };

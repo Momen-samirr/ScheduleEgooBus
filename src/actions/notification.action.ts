@@ -18,6 +18,7 @@ export async function getNotifications() {
             id: true,
             name: true,
             username: true,
+            phone: true,
             image: true,
           },
         },

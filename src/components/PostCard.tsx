@@ -129,6 +129,13 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
                     </span>
                   </div>
                 </div>
+                <div className="ml-5">
+                  {trip.tripType === "SOLO" && (
+                    <span className="text-sky-500 text-sm">
+                      رحله فردية (مناقصة)
+                    </span>
+                  )}
+                </div>
                 {/* Check if current user is the post author */}
                 {dbUserId === trip?.author.id && (
                   <DeleteAlertDialog
