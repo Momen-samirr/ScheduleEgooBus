@@ -13,6 +13,7 @@ const CompanyCard = ({
   veicle,
   availability,
   topic,
+  src,
 }: {
   title: string;
   subTitle?: string;
@@ -21,6 +22,7 @@ const CompanyCard = ({
   subHref?: string;
   availability: "Available Soon" | "Now Available";
   topic: string;
+  src?: string;
 }) => {
   const isUnavailable = availability === "Available Soon";
 
@@ -44,7 +46,9 @@ const CompanyCard = ({
         <div className="flex flex-col items-center justify-center">
           <div className="space-y-3 mb-3">
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarImage
+                src={src ? "/ramdan.png" : "https://github.com/shadcn.png"}
+              />
               <AvatarFallback>HC</AvatarFallback>
             </Avatar>
           </div>

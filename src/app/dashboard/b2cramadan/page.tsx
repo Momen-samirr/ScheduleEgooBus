@@ -1,6 +1,7 @@
 import { getPosts } from "@/actions/post.action";
 import { getDbUserId } from "@/actions/user.action";
 import PostCard from "@/components/PostCard";
+import { HeartIcon, Moon } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -18,6 +19,12 @@ const UberRoute = async () => {
               No trips found for this time
             </p>
           )}
+          <div className="flex items-center justify-center gap-3">
+            <div className="flex items-center font-semibold">
+              <Moon />
+              <span>هذا اختبار وتدريب لتوزيعة رمضان، كل عام وحضراتكم بخير</span>
+            </div>
+          </div>
           {trips.map((trip) => (
             <PostCard key={trip.id} trip={trip} dbUserId={dbUserId} />
           ))}
