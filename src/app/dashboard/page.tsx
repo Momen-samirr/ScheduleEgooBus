@@ -19,7 +19,7 @@ const DashboardRoute = async () => {
             title="Hunkel"
             href="/dashboard/hunkel"
             veicle="ملاكي"
-            availability="Available Soon"
+            availability="Now Available"
             topic="شركات"
           />
         </div>

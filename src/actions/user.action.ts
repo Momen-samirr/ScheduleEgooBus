@@ -129,6 +129,44 @@ export async function getRandomUsers() {
   }
 }
 
+export async function getUsers() {
+  try {
+    const { getUser } = getKindeServerSession();
+
+    const user = await getUser();
+
+    if (!user) return [];
+
+    const users = await prisma.user.findMany({
+      where: {
+        NOT: {
+          id: user.id,
+        },
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        username: true,
+        image: true,
+        phone: true,
+        role: true,
+        _count: {
+          select: {
+            posts: true,
+            trips: true,
+          },
+        },
+      },
+    });
+
+    return users;
+  } catch (error) {
+    console.log("Error fetching users", error);
+    return [];
+  }
+}
+
 export async function toggleFollow(targetUserId: string) {
   try {
     const userId = await getDbUserId();
