@@ -8,18 +8,18 @@ import {
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import ModeToggle from "./ModeToggle";
-import { currentUser } from "@clerk/nextjs/server";
 import { getDbUser } from "@/actions/user.action";
 import {
   getKindeServerSession,
   LoginLink,
   LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
+import { getUnReadNotifications } from "@/actions/notification.action";
 
 async function DesktopNavbar() {
-  // const user = await currentUser();
-
   const { getUser } = getKindeServerSession();
+
+  const notifications = getUnReadNotifications();
 
   const user = await getUser();
 
@@ -36,9 +36,14 @@ async function DesktopNavbar() {
       {user ? (
         <>
           <Button variant="ghost" className="flex items-center gap-2" asChild>
-            <Link href="/notifications">
+            <Link className="relative" href="/notifications">
               <BellIcon className="w-5 h-5" />
-              <span className="hidden lg:inline">Notifications</span>
+              <span className="hidden lg:inline">
+                Notifications{" "}
+                <span className="absolute top-0 right-1 text-sky-500 font-semibold">
+                  {(await notifications).length}
+                </span>
+              </span>
             </Link>
           </Button>
           <Button variant="ghost" className="flex items-center gap-2" asChild>

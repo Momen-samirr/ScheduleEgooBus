@@ -27,7 +27,7 @@ import {
   useKindeBrowserClient,
 } from "@kinde-oss/kinde-auth-nextjs";
 
-function MobileNavbar() {
+function MobileNavbar({ notifications }: any) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { isAuthenticated } = useKindeBrowserClient();
   const { theme, setTheme } = useTheme();
@@ -76,9 +76,12 @@ function MobileNavbar() {
                   className="flex items-center gap-3 justify-start"
                   asChild
                 >
-                  <Link href="/notifications">
+                  <Link className="relative" href="/notifications">
                     <BellIcon className="w-4 h-4" />
-                    Notifications
+                    Notifications{" "}
+                    <span className="absolute top-0 left-8 font-semibold text-sky-500">
+                      {notifications}
+                    </span>
                   </Link>
                 </Button>
                 <Button

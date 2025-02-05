@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { getDbUserId } from "./user.action";
+import { getDbUser, getDbUserId } from "./user.action";
 
 export async function getNotifications() {
   try {
@@ -43,6 +43,38 @@ export async function getNotifications() {
     });
 
     return notifications;
+  } catch (error) {
+    console.error("Error fetching notifications:", error);
+    throw new Error("Failed to fetch notifications");
+  }
+}
+
+export async function getUnReadNotifications() {
+  try {
+    const userId = await getDbUserId();
+    if (!userId) return [];
+
+    const user = await getDbUser();
+
+    const userNotifications = await prisma.notification.findMany({
+      where: {
+        userId,
+        read: false,
+      },
+      include: {
+        creator: {
+          select: {
+            id: true,
+            name: true,
+            username: true,
+            phone: true,
+            image: true,
+          },
+        },
+      },
+    });
+
+    return userNotifications;
   } catch (error) {
     console.error("Error fetching notifications:", error);
     throw new Error("Failed to fetch notifications");
