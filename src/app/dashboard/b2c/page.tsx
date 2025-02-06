@@ -18,6 +18,10 @@ const UberRoute = async () => {
               No trips found for this time
             </p>
           )}
+          <p className="text-xl text-red-500">
+            تنويه هام: أي جدول تطلبه سيتم تنزيله تلقائيًا، ولا يمكن إلغاؤه إلا
+            بعد إبلاغ مستر هاني كارم.
+          </p>
           {trips.map((trip) => (
             <PostCard key={trip.id} trip={trip} dbUserId={dbUserId} />
           ))}

@@ -100,6 +100,11 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
 
   return (
     <Card className="overflow-hidden">
+      <CardHeader>
+        <CardTitle className="text-xs text-muted-foreground">
+          بعد 10 دقائق من طلبك برجاء التحقق من قائمه الاشعارات لمراجعة حاله طلبك
+        </CardTitle>
+      </CardHeader>
       <CardContent className="p-4 sm:p-6">
         <div className="space-y-4">
           <div className="flex space-x-3 sm:space-x-4">

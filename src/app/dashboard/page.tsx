@@ -25,7 +25,7 @@ const DashboardRoute = async () => {
             subTitle="رحلات فردية"
             subHref="/dashboard/soloramdan"
             veicle="هاي اس"
-            availability="Now Available"
+            availability="Available Soon"
             topic="تيست لتوزيعة رمضان"
             src="/ramdan.png"
           />
@@ -37,7 +37,7 @@ const DashboardRoute = async () => {
             subTitle="رحلات فردية"
             subHref="/dashboard/solo"
             veicle="هاي اس"
-            availability="Available Soon"
+            availability="Now Available"
             topic="شغل الشارع"
           />
         </div>

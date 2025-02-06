@@ -201,49 +201,73 @@ export async function toggleLike(postId: string) {
 export async function createComment(postId: string, content: string) {
   try {
     const userId = await getDbUserId();
-
-    if (!userId) return;
-    if (!content) throw new Error("Content is required");
+    if (!userId) return { success: false, error: "User not authenticated" };
+    if (!content) return { success: false, error: "Content is required" };
 
     const post = await prisma.post.findUnique({
       where: { id: postId },
       select: { authorId: true },
     });
 
-    if (!post) throw new Error("Post not found");
+    if (!post) return { success: false, error: "Post not found" };
 
-    // Create comment and notification in a transaction
-    const [comment] = await prisma.$transaction(async (tx) => {
-      // Create comment first
+    await prisma.$transaction(async (tx) => {
       const newComment = await tx.comment.create({
-        data: {
-          content,
-          authorId: userId,
-          postId,
-        },
+        data: { content, authorId: userId, postId },
       });
 
-      // Create notification if commenting on someone else's post
-      if (post.authorId !== userId) {
-        await tx.notification.create({
-          data: {
+      const notifications: any[] = [];
+
+      // Find previous commenters
+      const previousCommenters = await tx.comment.findMany({
+        where: { postId, authorId: { not: userId } },
+        select: { authorId: true },
+        distinct: ["authorId"],
+      });
+
+      if (userId === post.authorId) {
+        previousCommenters.forEach(({ authorId }) => {
+          notifications.push({
             type: "COMMENT",
-            userId: post.authorId,
+            userId: authorId,
             creatorId: userId,
             postId,
             commentId: newComment.id,
-          },
+          });
+        });
+      } else {
+        notifications.push({
+          type: "COMMENT",
+          userId: post.authorId,
+          creatorId: userId,
+          postId,
+          commentId: newComment.id,
+        });
+
+        previousCommenters.forEach(({ authorId }) => {
+          if (authorId !== post.authorId) {
+            notifications.push({
+              type: "COMMENT",
+              userId: authorId,
+              creatorId: userId,
+              postId,
+              commentId: newComment.id,
+            });
+          }
         });
       }
 
-      return [newComment];
+      if (notifications.length > 0) {
+        await tx.notification.createMany({ data: notifications });
+      }
     });
 
-    revalidatePath(`/`);
-    return { success: true, comment };
+    revalidatePath("/");
+
+    return { success: true };
   } catch (error) {
-    console.error("Failed to create comment:", error);
-    return { success: false, error: "Failed to create comment" };
+    console.error("Error creating comment:", error);
+    return { success: false, error: error };
   }
 }
 
