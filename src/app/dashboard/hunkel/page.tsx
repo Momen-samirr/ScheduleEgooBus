@@ -1,3 +1,4 @@
+import { getHunkelTrips } from "@/actions/hunkel.action";
 import TabelData from "@/components/TabelData";
 import {
   Card,
@@ -8,13 +9,14 @@ import {
 import { Table } from "@/components/ui/table";
 import React from "react";
 
-const HunkelRoute = () => {
+const HunkelRoute = async () => {
+  const trips = await getHunkelTrips();
   return (
-    <Card>
+    <Card className="p-6">
       <CardTitle>Hunkel</CardTitle>
       <CardDescription>Hunkel Trips</CardDescription>
       <CardContent>
-        <TabelData />
+        <TabelData trips={trips} />
       </CardContent>
     </Card>
   );

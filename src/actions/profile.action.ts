@@ -36,6 +36,20 @@ export async function getProfileByUsername(username: string) {
   }
 }
 
+export async function getUserById(userId: string) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+    if (!user) throw new Error("User not found");
+    return user;
+  } catch (error) {
+    console.error("Error fetching user:", error);
+  }
+}
+
 export async function getUserPosts(userId: string) {
   try {
     const posts = await prisma.post.findMany({

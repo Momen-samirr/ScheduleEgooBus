@@ -17,7 +17,6 @@ import { ArrowUpDown, MoreHorizontal, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
@@ -34,18 +33,33 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Calendar as DatePicker } from "@/components/ui/calendar";
 import DropDownMenuTrip from "./DropDownMenuTrip";
+import { removeDriverFromTrip } from "@/actions/hunkel.action";
+import toast from "react-hot-toast";
 
 interface Trip {
   id: string;
   time: string;
   date: Date;
-  driverId: string | null;
+  driver: {
+    name: string | null;
+    phone: string | null;
+    location: string | null;
+    image: string | null;
+  } | null;
   route: string;
 }
 
@@ -80,6 +94,44 @@ export const columns: ColumnDef<Trip>[] = [
     },
   },
   {
+    accessorKey: "driver",
+    header: "Driver",
+    cell: ({ row }) => {
+      const driver = row.getValue("driver") as Trip["driver"];
+      if (!driver || !driver.image) return <span>No driver assigned</span>;
+      return (
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline">View Driver</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Driver Details</DialogTitle>
+              <DialogDescription>
+                Information about the assigned driver.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="flex flex-col items-center gap-6">
+              <img
+                src={driver?.image}
+                alt={driver?.name || "Unknown Driver"}
+                className="w-16 h-16 rounded-full"
+              />
+              <h3 className="font-semibold">{driver?.name || "N/A"}</h3>
+              <p className="text-sm text-muted-foreground">
+                {driver?.phone || "No phone"}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {driver?.location || "No location"}
+              </p>
+            </div>
+          </DialogContent>
+        </Dialog>
+      );
+    },
+  },
+
+  {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
@@ -89,7 +141,7 @@ export const columns: ColumnDef<Trip>[] = [
   },
 ];
 
-export function TableData({ trips }: DataTableProps) {
+export default function TableData({ trips }: DataTableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -142,7 +194,6 @@ export function TableData({ trips }: DataTableProps) {
           }
           className="max-w-sm"
         />
-
         <Popover>
           <PopoverTrigger asChild>
             <Button variant="outline" size="sm">
@@ -163,53 +214,33 @@ export function TableData({ trips }: DataTableProps) {
           </PopoverContent>
         </Popover>
       </div>
-
-      <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
+      <Table>
+        <TableHeader>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <TableHead key={header.id}>
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
+                </TableHead>
+              ))}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {table.getRowModel().rows.map((row) => (
+            <TableRow key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <TableCell key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
-
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
       <div className="flex items-center justify-between space-x-2 py-4">
         <span className="text-sm text-muted-foreground">
           Page {table.getState().pagination.pageIndex + 1} of{" "}
@@ -237,5 +268,3 @@ export function TableData({ trips }: DataTableProps) {
     </div>
   );
 }
-
-export default TableData;

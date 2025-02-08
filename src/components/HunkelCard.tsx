@@ -4,8 +4,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { ComputerIcon } from "lucide-react";
+import { getDbUser } from "@/actions/user.action";
 
-const CompanyCard = ({
+const CompanyCard = async ({
   title,
   href,
   subTitle,
@@ -14,6 +15,8 @@ const CompanyCard = ({
   availability,
   topic,
   src,
+  adminTitle,
+  adminRoute,
 }: {
   title: string;
   subTitle?: string;
@@ -23,9 +26,12 @@ const CompanyCard = ({
   availability: "Available Soon" | "Now Available";
   topic: string;
   src?: string;
+  adminTitle?: string;
+  adminRoute?: string;
 }) => {
   const isUnavailable = availability === "Available Soon";
 
+  const dbUser = await getDbUser();
   return (
     <Card className={isUnavailable ? "opacity-50 cursor-not-allowed" : ""}>
       <CardHeader>
@@ -82,6 +88,14 @@ const CompanyCard = ({
                   </Button>
                 </Link>
               ))}
+            {dbUser?.role === "admin" && (
+              <Link href={`/dashboard/adminShow`}>
+                <Button variant={"outline"}>
+                  <ComputerIcon className="w-5 h-5 mr-3" />
+                  {adminTitle}
+                </Button>
+              </Link>
+            )}
             <div>{veicle}</div>
           </div>
         </div>

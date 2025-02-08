@@ -15,6 +15,8 @@ const UsersRoute = async () => {
 
   if (user?.role !== "admin") return null;
   const users = await getUsers();
+  console.log("users:", users);
+
   return (
     <Card className="p-6">
       <CardTitle className="mb-3">Users</CardTitle>
