@@ -162,6 +162,7 @@ enum Role {
   admin
   driver
   user
+  employee
 }
 
 enum HunkelStatus {
