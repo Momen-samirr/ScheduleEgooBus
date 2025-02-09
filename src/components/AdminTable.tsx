@@ -49,6 +49,7 @@ import { Calendar as DatePicker } from "@/components/ui/calendar";
 import DropDownMenuTrip from "./DropDownMenuTrip";
 import { removeDriverFromTrip } from "@/actions/hunkel.action";
 import toast from "react-hot-toast";
+import DropDownMenuEmployee from "./DropDownMenuEmployee";
 
 interface Trip {
   id: string;
@@ -136,7 +137,7 @@ export const columns: ColumnDef<Trip>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const trip = row.original;
-      return <DropDownMenuTrip trip={trip} />;
+      return <DropDownMenuEmployee trip={trip} />;
     },
   },
 ];

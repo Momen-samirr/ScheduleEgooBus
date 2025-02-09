@@ -14,7 +14,7 @@ import { cancleTrip, reserveTrip } from "@/actions/hunkel.action";
 import toast from "react-hot-toast";
 import { getUserById } from "@/actions/profile.action";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-const DropDownMenuTrip = ({ trip }: { trip: any }) => {
+const DropDownMenuEmployee = ({ trip }: { trip: any }) => {
   const handelReserveTripe = async (tripId: string) => {
     try {
       const result = await reserveTrip(tripId);
@@ -50,7 +50,7 @@ const DropDownMenuTrip = ({ trip }: { trip: any }) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          {user?.email !== "score.uber@gmail.com" ? (
+          {user?.email === "egoobus5@gmail.com" ? (
             <>
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               {trip.status === "available" ? (
@@ -75,4 +75,4 @@ const DropDownMenuTrip = ({ trip }: { trip: any }) => {
   );
 };
 
-export default DropDownMenuTrip;
+export default DropDownMenuEmployee;
