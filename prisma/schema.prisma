@@ -14,39 +14,86 @@ datasource db {
 }
 
 model User {
-  id String @id @default(cuid())
-  email String @unique
-  username String @unique
-  clerkId String @unique
-  name String?
-  bio String?
-  image String?
+  id       String  @id @default(cuid())
+  email    String  @unique
+  username String  @unique
+  clerkId  String  @unique
+  name     String?
+  bio      String?
+  image    String?
   location String?
-  website String?
-  phone String? @unique
-  workIn String?
-  role Role @default(user)
-  createdAt DateTime @default(now()) // member since 2020
+  website  String?
+  phone    String? @unique
+  workIn   String?
+  role     Role    @default(user)
+  createdAt DateTime @default(now()) 
   updatedAt DateTime @updatedAt
 
-  // Relations: 
-  posts Post[] // One-to-many
-  comments Comment[] // One-to-many
-  likes Like[] // One-to-many
+  // Relations:
+  posts Post[] 
+  comments Comment[] 
+  likes Like[] 
 
-  followers Follows[] @relation("following") // users who follow this user
-  following Follows[] @relation("follower") // users this user follows
+  followers Follows[] @relation("following") 
+  following Follows[] @relation("follower") 
 
-  notifications Notification[] @relation("userNotifications") // notifications received by a user
-  notificationsCreated Notification[] @relation("notificationCreator") // notifications triggered by a user
+  notifications Notification[] @relation("userNotifications") 
+  notificationsCreated Notification[] @relation("notificationCreator") 
 
   trips Tripindividual[]
+
+  // One-to-One with Route
+  route Route?
 }
+
+model Route {
+  id     String @id @default(uuid()) 
+  name   String
+  status HunkelTripEnum @default(available)
+  trips  HunkelTrip[]
+
+  // One-to-One with User (Only defining @relation here)
+  driver   User? @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  driverId String? @unique
+}
+
+model HunkelTrip {
+  id        String @id @default(uuid()) 
+  date      DateTime
+  routeId   String
+  route     Route @relation(fields: [routeId], references: [id], onDelete: Cascade)
+
+  // Outbound & ReturnTrip (Only defining @relation here)
+  outbound  Outbound?
+  returnTrip ReturnTrip?
+}
+
+model Outbound {
+  id        String @id @default(uuid()) 
+  tripId    String @unique
+  trip      HunkelTrip @relation(fields: [tripId], references: [id], onDelete: Cascade) // Only define @relation here
+  startTime String
+  endTime   String
+}
+
+model ReturnTrip {
+  id        String @id @default(uuid()) 
+  tripId    String @unique
+  trip      HunkelTrip @relation(fields: [tripId], references: [id], onDelete: Cascade) // Only define @relation here
+  startTime String
+  endTime   String
+}
+
 
 
 enum TripType {
   SCHEDULED
   SOLO
+}
+
+enum HunkelTripEnum {
+  available
+  reserved
 }
 
 model Post {
@@ -82,7 +129,6 @@ model Tripindividual {
 
   driver      User? @relation(fields: [driverId], references: [id], onDelete: Cascade)
 }
-
 
 model Comment{
   id String @id @default(cuid())
