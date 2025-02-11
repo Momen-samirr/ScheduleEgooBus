@@ -52,6 +52,7 @@ export async function getPosts() {
                 username: true,
                 image: true,
                 name: true,
+                phone: true,
               },
             },
           },

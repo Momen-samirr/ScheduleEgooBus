@@ -219,6 +219,13 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
                     id: Key | null | undefined;
                     author: {
                       image: any;
+                      phone:
+                        | string
+                        | number
+                        | bigint
+                        | boolean
+                        | null
+                        | undefined;
                       name:
                         | string
                         | number
@@ -269,6 +276,9 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
                           <span className="text-sm text-muted-foreground">
                             @{comment.author.username}
                           </span>
+                          <div className="text-sm text-muted-foreground">
+                            {comment?.author?.phone}
+                          </div>
                           <span className="text-sm text-muted-foreground">
                             ·
                           </span>
