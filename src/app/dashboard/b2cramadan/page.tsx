@@ -22,7 +22,7 @@ const UberRoute = async () => {
           <div className="flex items-center justify-center gap-3">
             <div className="flex items-center font-semibold">
               <Moon />
-              <span>هذا اختبار وتدريب لتوزيعة رمضان، كل عام وحضراتكم بخير</span>
+              <span>توزيعة رمضان، كل عام وحضراتكم بخير</span>
             </div>
           </div>
           {trips.map((trip) => (
