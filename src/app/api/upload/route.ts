@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
         kelometr: trip.kelometr,
         gapmetr: trip.gapmetr || null,
         prices: trip.prices || null,
-        currentCapacity: trip.current_capacity,
+        currentCapacity: trip.current_capacity || null,
         tripType: trip.tripName ? "SOLO" : "SCHEDULED", // Use enum values
       })),
     });

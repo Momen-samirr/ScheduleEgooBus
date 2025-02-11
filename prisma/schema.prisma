@@ -107,7 +107,7 @@ model Post {
   kelometr         Int
   gapmetr          String?   // Nullable for solo trips
   prices           String?   // Nullable for solo trips
-  currentCapacity  Int
+  currentCapacity  Int?
   tripType         TripType  // Enum: SCHEDULED or SOLO
   createdAt        DateTime  @default(now())
 
