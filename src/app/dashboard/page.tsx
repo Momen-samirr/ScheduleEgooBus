@@ -26,7 +26,7 @@ const DashboardRoute = async () => {
             subHref="/dashboard/soloramdan"
             veicle="هاي اس"
             availability="Now Available"
-            topic="تيست لتوزيعة رمضان"
+            topic="توزيعة رمضان"
             src="/ramdan.png"
           />
         </div>
