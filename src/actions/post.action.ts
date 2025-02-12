@@ -45,6 +45,10 @@ export async function getPosts() {
           },
         },
         comments: {
+          take: 1, // Fetch only the first comment
+          orderBy: {
+            createdAt: "asc",
+          },
           include: {
             author: {
               select: {
@@ -55,9 +59,6 @@ export async function getPosts() {
                 phone: true,
               },
             },
-          },
-          orderBy: {
-            createdAt: "asc",
           },
         },
         likes: {
