@@ -50,17 +50,18 @@ export async function POST(req: NextRequest) {
     const createdTrips = await prisma.post.createMany({
       data: newTrips.map((trip) => ({
         authorId: "cm6n9yci10000ie03mjqn4hqo",
-        tripsNum: trip.tripsNum || null, // Null for unique trips
-        trips: trip.trips || trip.tripName, // Use tripName for unique trips
+        tripsNum: trip.tripsNum ?? undefined,
+        trips: trip.trips ?? trip.tripName ?? "",
         kelometr: trip.kelometr,
-        gapmetr: trip.gapmetr || null,
-        haiisPrice: trip.haiisPrice || null,
-        bigcarPrice: trip.bigcarPrice || null,
+        gapmetr: trip.gapmetr !== undefined ? String(trip.gapmetr) : undefined, // Convert number to string
+        haiisPrice: trip.haiisPrice ?? undefined,
+        bigcarPrice: trip.bigcarPrice ?? undefined,
         tableCode: trip.tableCode,
-        prices: trip.prices || null,
-        currentCapacity: trip.current_capacity || null,
-        tripType: trip.tripName ? "SOLO" : "SCHEDULED", // Use enum values
+        prices: trip.prices ?? undefined,
+        currentCapacity: trip.current_capacity ?? undefined,
+        tripType: trip.tripName ? "SOLO" : "SCHEDULED",
       })),
+      skipDuplicates: true,
     });
 
     return NextResponse.json(

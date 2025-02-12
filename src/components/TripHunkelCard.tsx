@@ -4,6 +4,17 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Link from "next/link";
 import { Separator } from "./ui/separator";
+import { Button } from "./ui/button";
+import { DatabaseBackupIcon, MoveLeft, MoveRight } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
+import SheetTrip from "./SheetTrip";
 
 const TripHunkelCard = ({ routeInfo }: any) => {
   console.log("routeInfo:", routeInfo);
@@ -22,29 +33,17 @@ const TripHunkelCard = ({ routeInfo }: any) => {
             <div className="flex space-x-3 sm:space-x-4">
               {/* POST HEADER & TEXT CONTENT */}
               <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between"></div>
-                <div className="mt-1 text-sky-500 font-bold">
-                  {routeInfo?.trips?.map((trip: any) => (
-                    <>
-                      <div
-                        key={trip.id}
-                        className="flex items-center justify-between gap-3 p-6"
-                      >
-                        <p>
-                          {trip?.outbound?.startTime} -{" "}
-                          {trip?.outbound?.endTime}
-                        </p>
-                        <span>{trip?.date.toDateString()}</span>
-                      </div>
-                      <Separator />
-                    </>
-                  ))}
-                </div>
-                <p className="mt-2 text-sm text-foreground break-words">
+                <p className="mt-2 text-sm text-foreground break-words mb-1">
                   {routeInfo?.name}
                 </p>
-                <div className="mt-3 text-sm text-red-500">
-                  <p></p>
+                <div className="flex items-center justify-between pt-2 space-x-5">
+                  <Button variant={"ghost"} size={"sm"}>
+                    <DatabaseBackupIcon />
+                    <span>Reserve</span>
+                  </Button>
+                  <div>
+                    <SheetTrip routeInfo={routeInfo} />
+                  </div>
                 </div>
               </div>
             </div>
