@@ -264,7 +264,12 @@ export async function createComment(postId: string, content: string) {
 
     // Check if the user has already made a comment on any post
     const existingComment = await prisma.comment.findFirst({
-      where: { authorId: userId },
+      where: {
+        authorId: userId,
+        post: {
+          tripMode: "normal",
+        },
+      },
       select: { id: true },
     });
 
