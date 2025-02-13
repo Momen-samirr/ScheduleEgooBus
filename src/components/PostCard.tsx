@@ -35,15 +35,7 @@ import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 type Posts = Awaited<ReturnType<typeof getPosts>>;
 type Post = Posts[number];
 
-function PostCard({
-  trip,
-  dbUserId,
-  dbuser,
-}: {
-  trip: Post;
-  dbUserId: string | null;
-  dbuser: any;
-}) {
+function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
   const { user, getUser } = useKindeBrowserClient();
   const [newComment, setNewComment] = useState("");
   const [isCommenting, setIsCommenting] = useState(false);

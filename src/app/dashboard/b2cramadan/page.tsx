@@ -26,12 +26,7 @@ const UberRoute = async () => {
             </div>
           </div>
           {trips.map((trip) => (
-            <PostCard
-              key={trip.id}
-              trip={trip}
-              dbUserId={dbUserId}
-              dbuser={dpuser}
-            />
+            <PostCard key={trip.id} trip={trip} dbUserId={dbUserId} />
           ))}
         </div>
       </div>
