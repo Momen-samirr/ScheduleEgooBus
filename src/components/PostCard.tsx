@@ -163,7 +163,7 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
 
           {/* LIKE & COMMENT BUTTONS */}
           <div className="flex items-center pt-2 space-x-4">
-            {user ? (
+            {/* {user ? (
               <Button
                 variant="ghost"
                 size="sm"
@@ -192,7 +192,7 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
                   <span>{optimisticLikes}</span>
                 </Button>
               </LoginLink>
-            )}
+            )} */}
 
             <Button
               variant="ghost"

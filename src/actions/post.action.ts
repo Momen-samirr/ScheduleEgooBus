@@ -45,7 +45,6 @@ export async function getPosts() {
           },
         },
         comments: {
-          take: 1, // Fetch only the first comment
           orderBy: {
             createdAt: "asc",
           },
@@ -205,6 +204,16 @@ export async function createComment(postId: string, content: string) {
     const userId = await getDbUserId();
     if (!userId) return { success: false, error: "User not authenticated" };
     if (!content) return { success: false, error: "Content is required" };
+
+    // Check if the user has already made a comment on any post
+    const existingComment = await prisma.comment.findFirst({
+      where: { authorId: userId },
+      select: { id: true },
+    });
+
+    if (existingComment) {
+      return { success: false, error: "You can only comment on one post." };
+    }
 
     const post = await prisma.post.findUnique({
       where: { id: postId },
