@@ -205,14 +205,14 @@ export async function createComment(postId: string, content: string) {
     if (!userId) return { success: false, error: "User not authenticated" };
     if (!content) return { success: false, error: "Content is required" };
 
-    // Check if the post already has a comment
+    // Check if the user has already made a comment on any post
     const existingComment = await prisma.comment.findFirst({
-      where: { postId },
+      where: { authorId: userId },
       select: { id: true },
     });
 
     if (existingComment) {
-      return { success: false, error: "This post already has a comment." };
+      return { success: false, error: "You can only comment on one post." };
     }
 
     const post = await prisma.post.findUnique({
@@ -229,13 +229,42 @@ export async function createComment(postId: string, content: string) {
 
       const notifications: any[] = [];
 
-      if (userId !== post.authorId) {
+      // Find previous commenters
+      const previousCommenters = await tx.comment.findMany({
+        where: { postId, authorId: { not: userId } },
+        select: { authorId: true },
+        distinct: ["authorId"],
+      });
+
+      if (userId === post.authorId) {
+        previousCommenters.forEach(({ authorId }) => {
+          notifications.push({
+            type: "COMMENT",
+            userId: authorId,
+            creatorId: userId,
+            postId,
+            commentId: newComment.id,
+          });
+        });
+      } else {
         notifications.push({
           type: "COMMENT",
           userId: post.authorId,
           creatorId: userId,
           postId,
           commentId: newComment.id,
+        });
+
+        previousCommenters.forEach(({ authorId }) => {
+          if (authorId !== post.authorId) {
+            notifications.push({
+              type: "COMMENT",
+              userId: authorId,
+              creatorId: userId,
+              postId,
+              commentId: newComment.id,
+            });
+          }
         });
       }
 
