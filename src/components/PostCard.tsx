@@ -35,7 +35,15 @@ import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 type Posts = Awaited<ReturnType<typeof getPosts>>;
 type Post = Posts[number];
 
-function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
+function PostCard({
+  trip,
+  dbUserId,
+  dbuser,
+}: {
+  trip: Post;
+  dbUserId: string | null;
+  dbuser: any;
+}) {
   const { user, getUser } = useKindeBrowserClient();
   const [newComment, setNewComment] = useState("");
   const [isCommenting, setIsCommenting] = useState(false);
@@ -100,6 +108,9 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
 
   const haveAcomment = trip?.comments?.some(
     (comment: { authorId: string | null }) => comment?.authorId !== dbUserId
+  );
+  const haveAcommentme = trip?.comments?.some(
+    (comment: { authorId: string | null }) => comment?.authorId === dbUserId
   );
   return (
     <Card className={`${haveAcomment ? "border-2 border-sky-500" : ""}`}>
@@ -167,40 +178,40 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
           {/* LIKE & COMMENT BUTTONS */}
           <div className="flex items-center pt-2 space-x-4">
             {/* {user ? (
+            <Button
+              variant="ghost"
+              size="sm"
+              className={`text-muted-foreground gap-2 ${
+                hasLiked
+                  ? "text-red-500 hover:text-red-600"
+                  : "hover:text-red-500"
+              }`}
+              onClick={handleLike}
+            >
+              {hasLiked ? (
+                <HeartIcon className="size-5 fill-current" />
+              ) : (
+                <HeartIcon className="size-5" />
+              )}
+              <span>{optimisticLikes}</span>
+            </Button>
+          ) : (
+            <LoginLink>
               <Button
                 variant="ghost"
                 size="sm"
-                className={`text-muted-foreground gap-2 ${
-                  hasLiked
-                    ? "text-red-500 hover:text-red-600"
-                    : "hover:text-red-500"
-                }`}
-                onClick={handleLike}
+                className="text-muted-foreground gap-2"
               >
-                {hasLiked ? (
-                  <HeartIcon className="size-5 fill-current" />
-                ) : (
-                  <HeartIcon className="size-5" />
-                )}
+                <HeartIcon className="size-5" />
                 <span>{optimisticLikes}</span>
               </Button>
-            ) : (
-              <LoginLink>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-muted-foreground gap-2"
-                >
-                  <HeartIcon className="size-5" />
-                  <span>{optimisticLikes}</span>
-                </Button>
-              </LoginLink>
-            )} */}
+            </LoginLink>
+          )} */}
 
             <Button
               variant="ghost"
               size="sm"
-              className={`${haveAcomment ? "hidden" : ""} gap-2`}
+              className="text-muted-foreground gap-2 hover:text-blue-500"
               onClick={() => setShowComments((prev) => !prev)}
             >
               <MessageCircleIcon
@@ -302,7 +313,7 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
                   <Avatar className="size-8 flex-shrink-0">
                     <AvatarImage src={user?.email || "/avatar.png"} />
                   </Avatar>
-                  <div className="flex-1">
+                  <div className={`${haveAcomment ? "hidden" : "flex-1"}`}>
                     <Textarea
                       placeholder="Write a comment..."
                       value={newComment}

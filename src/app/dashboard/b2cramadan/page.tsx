@@ -1,5 +1,5 @@
 import { getPosts } from "@/actions/post.action";
-import { getDbUserId } from "@/actions/user.action";
+import { getDbUser, getDbUserId } from "@/actions/user.action";
 import PostCard from "@/components/PostCard";
 import { HeartIcon, Moon } from "lucide-react";
 import { redirect } from "next/navigation";
@@ -8,7 +8,7 @@ import React from "react";
 const UberRoute = async () => {
   const trips = await getPosts();
   const dbUserId = await getDbUserId();
-
+  const dpuser = await getDbUser();
   if (!dbUserId) return redirect("/");
   return (
     <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
@@ -26,7 +26,12 @@ const UberRoute = async () => {
             </div>
           </div>
           {trips.map((trip) => (
-            <PostCard key={trip.id} trip={trip} dbUserId={dbUserId} />
+            <PostCard
+              key={trip.id}
+              trip={trip}
+              dbUserId={dbUserId}
+              dbuser={dpuser}
+            />
           ))}
         </div>
       </div>
