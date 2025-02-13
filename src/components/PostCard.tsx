@@ -98,8 +98,11 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
     }
   };
 
+  const haveAcomment = trip?.comments?.some(
+    (comment: { authorId: string | null }) => comment?.authorId !== dbUserId
+  );
   return (
-    <Card className="overflow-hidden">
+    <Card className={`${haveAcomment ? "border-2 border-sky-500" : ""}`}>
       <CardHeader>
         <CardTitle className="text-xs text-muted-foreground">
           بعد 10 دقائق من طلبك برجاء التحقق من قائمه الاشعارات لمراجعة حاله طلبك
@@ -197,7 +200,7 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
             <Button
               variant="ghost"
               size="sm"
-              className="text-muted-foreground gap-2 hover:text-blue-500"
+              className={`${haveAcomment ? "hidden" : ""} gap-2`}
               onClick={() => setShowComments((prev) => !prev)}
             >
               <MessageCircleIcon
