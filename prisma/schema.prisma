@@ -109,6 +109,7 @@ model Post {
   prices           String?   // Nullable for solo trips
   currentCapacity  Int?
   tripType         TripType  // Enum: SCHEDULED or SOLO
+  tripMode         TripMode   @default(ramdan)
   createdAt        DateTime  @default(now())
 
   // Relations
@@ -214,6 +215,11 @@ enum Role {
 enum HunkelStatus {
   available
   reserved
+}
+
+enum TripMode {
+  ramdan
+  normal
 }
 
 enum NotificationType {

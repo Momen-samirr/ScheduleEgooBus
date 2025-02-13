@@ -29,7 +29,6 @@ import {
   SendIcon,
 } from "lucide-react";
 import { Textarea } from "./ui/textarea";
-import { getTrips } from "@/actions/trips.action";
 import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 type Posts = Awaited<ReturnType<typeof getPosts>>;

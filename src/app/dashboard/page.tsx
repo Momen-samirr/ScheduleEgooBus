@@ -37,7 +37,7 @@ const DashboardRoute = async () => {
             subTitle="رحلات فردية"
             subHref="/dashboard/solo"
             veicle="هاي اس"
-            availability="Available Soon"
+            availability="Now Available"
             topic="شغل الشارع"
           />
         </div>

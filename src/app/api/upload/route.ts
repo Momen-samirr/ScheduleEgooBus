@@ -54,9 +54,10 @@ export async function POST(req: NextRequest) {
         trips: trip.trips ?? trip.tripName ?? "",
         kelometr: trip.kelometr,
         gapmetr: trip.gapmetr !== undefined ? String(trip.gapmetr) : undefined, // Convert number to string
-        haiisPrice: trip.haiisPrice ?? undefined,
+        haiisPrice: trip.haiisPrice ?? trip.haiss ?? undefined,
         bigcarPrice: trip.bigcarPrice ?? undefined,
         tableCode: trip.tableCode,
+        tripMode: trip.haiss ? "normal" : "ramdan",
         prices: trip.prices ?? undefined,
         currentCapacity: trip.current_capacity ?? undefined,
         tripType: trip.tripName ? "SOLO" : "SCHEDULED",

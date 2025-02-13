@@ -1,4 +1,4 @@
-import { getPosts } from "@/actions/post.action";
+import { getPosts, getRamdanPosts } from "@/actions/post.action";
 import { getDbUser, getDbUserId } from "@/actions/user.action";
 import PostCard from "@/components/PostCard";
 import { HeartIcon, Moon } from "lucide-react";
@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 const UberRoute = async () => {
-  const trips = await getPosts();
+  const trips = await getRamdanPosts();
   const dbUserId = await getDbUserId();
   const dpuser = await getDbUser();
   if (!dbUserId) return redirect("/");
