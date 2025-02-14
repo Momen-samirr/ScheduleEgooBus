@@ -80,6 +80,22 @@ export async function getDbUser() {
     where: {
       id: userId,
     },
+    include: {
+      comments: {
+        select: {
+          id: true,
+          content: true,
+          author: {
+            select: {
+              id: true,
+              name: true,
+              username: true,
+              image: true,
+            },
+          },
+        },
+      },
+    },
   });
 
   return dbUser;
@@ -132,10 +148,9 @@ export async function getRandomUsers() {
 export async function getUsers() {
   try {
     const { getUser } = getKindeServerSession();
-
     const user = await getUser();
 
-    if (!user) return [];
+    if (!user || !user.id) return [];
 
     const users = await prisma.user.findMany({
       where: {
@@ -151,6 +166,28 @@ export async function getUsers() {
         image: true,
         phone: true,
         role: true,
+        comments: {
+          select: {
+            id: true,
+            content: true,
+            post: {
+              select: {
+                id: true,
+                trips: true,
+                tableCode: true,
+              },
+            },
+            author: {
+              select: {
+                id: true,
+                name: true,
+                phone: true,
+                image: true,
+              },
+            },
+          },
+          take: 5, // Limit the number of comments if necessary
+        },
         _count: {
           select: {
             posts: true,
@@ -162,8 +199,8 @@ export async function getUsers() {
 
     return users;
   } catch (error) {
-    console.log("Error fetching users", error);
-    return [];
+    console.error("Error fetching users:", error);
+    throw new Error("Failed to fetch users"); // Throwing an error can be useful for debugging
   }
 }
 

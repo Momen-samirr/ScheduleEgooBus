@@ -262,7 +262,6 @@ export async function createComment(postId: string, content: string) {
     if (!userId) return { success: false, error: "User not authenticated" };
     if (!content) return { success: false, error: "Content is required" };
 
-    // Check if the user has already made a comment on any post
     const existingComment = await prisma.comment.findFirst({
       where: {
         authorId: userId,

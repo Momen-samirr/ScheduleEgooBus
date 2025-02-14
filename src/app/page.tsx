@@ -5,11 +5,13 @@ import { getDbUserId } from "@/actions/user.action";
 // import CreatePost from "@/components/CreatePost";
 import PostCard from "@/components/PostCard";
 import Slider from "@/components/Slider";
+import { Button } from "@/components/ui/button";
 import UnAuthenticatedmobileSidebar from "@/components/UnAuthenticatedmobileSidebar";
 // import TripCard from "@/components/TripCard";
 import WhoToFollow from "@/components/WhoToFollow";
 import { currentUser } from "@clerk/nextjs/server";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import Link from "next/link";
 
 export default async function Home() {
   // const user = await currentUser();
@@ -33,6 +35,17 @@ export default async function Home() {
           </div>
         )}
       </div>
+
+      {user && (
+        <Button>
+          <Link
+            href={`https://docs.google.com/spreadsheets/d/1JZqk69d44KdQav82dRBiBFaCRBUxtubZ/edit?gid=2001275883#gid=2001275883`}
+            target="_blank"
+          >
+            شيته بالجداول التي تمت اختيارها
+          </Link>
+        </Button>
+      )}
 
       <div className="hidden lg:block lg:col-span-4 sticky top-20">
         <WhoToFollow />
