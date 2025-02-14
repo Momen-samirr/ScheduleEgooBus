@@ -108,9 +108,9 @@ export async function getUserLikedPosts(userId: string) {
   try {
     const likedPosts = await prisma.post.findMany({
       where: {
-        likes: {
+        comments: {
           some: {
-            userId,
+            authorId: userId,
           },
         },
       },

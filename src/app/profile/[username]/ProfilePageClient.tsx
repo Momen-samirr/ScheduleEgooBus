@@ -33,6 +33,8 @@ import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { format } from "date-fns";
 import {
   CalendarIcon,
+  ChartBar,
+  CommandIcon,
   EditIcon,
   FileTextIcon,
   HeartIcon,
@@ -235,8 +237,8 @@ function ProfilePageClient({
               className="flex items-center gap-2 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-primary
               data-[state=active]:bg-transparent px-6 font-semibold"
             >
-              <HeartIcon className="size-4" />
-              Likes
+              <ChartBar className="size-4" />
+              Comment
             </TabsTrigger>
           </TabsList>
 
