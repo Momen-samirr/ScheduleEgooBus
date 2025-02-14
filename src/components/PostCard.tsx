@@ -312,7 +312,7 @@ function PostCard({
                   <Avatar className="size-8 flex-shrink-0">
                     <AvatarImage src={user?.email || "/avatar.png"} />
                   </Avatar>
-                  {dbUser?.role === "driver" ? (
+                  {user.email !== "egoobus5@gmail.com" ? (
                     <div className={`${haveAcomment ? "hidden" : "flex-1"}`}>
                       <Textarea
                         placeholder="Write a comment..."
