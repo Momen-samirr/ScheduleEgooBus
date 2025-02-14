@@ -1,5 +1,5 @@
 import { getPosts } from "@/actions/post.action";
-import { getDbUserId } from "@/actions/user.action";
+import { getDbUser, getDbUserId } from "@/actions/user.action";
 import PostCard from "@/components/PostCard";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -7,6 +7,9 @@ import React from "react";
 const UberRoute = async () => {
   const trips = await getPosts();
   const dbUserId = await getDbUserId();
+
+  const dbUser = await getDbUser();
+  if (!dbUser) return redirect("/");
 
   if (!dbUserId) return redirect("/");
   return (
@@ -24,7 +27,12 @@ const UberRoute = async () => {
           </p>
           <p className="text-xl text-sky-500">جداول شغل من يوم 16 الي يوم 20</p>
           {trips.map((trip) => (
-            <PostCard key={trip.id} trip={trip} dbUserId={dbUserId} />
+            <PostCard
+              key={trip.id}
+              trip={trip}
+              dbUserId={dbUserId}
+              dbUser={dbUser}
+            />
           ))}
         </div>
       </div>

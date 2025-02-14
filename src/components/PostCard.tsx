@@ -34,7 +34,15 @@ import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 type Posts = Awaited<ReturnType<typeof getPosts>>;
 type Post = Posts[number];
 
-function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
+function PostCard({
+  trip,
+  dbUserId,
+  dbUser,
+}: {
+  trip: Post;
+  dbUserId: string | null;
+  dbUser?: any;
+}) {
   const { user, getUser } = useKindeBrowserClient();
   const [newComment, setNewComment] = useState("");
   const [isCommenting, setIsCommenting] = useState(false);
@@ -304,31 +312,61 @@ function PostCard({ trip, dbUserId }: { trip: Post; dbUserId: string | null }) {
                   <Avatar className="size-8 flex-shrink-0">
                     <AvatarImage src={user?.email || "/avatar.png"} />
                   </Avatar>
-                  <div className={`${haveAcomment ? "hidden" : "flex-1"}`}>
-                    <Textarea
-                      placeholder="Write a comment..."
-                      value={newComment}
-                      onChange={(e) => setNewComment(e.target.value)}
-                      className="min-h-[80px] resize-none"
-                    />
-                    <div className="flex justify-end mt-2">
-                      <Button
-                        size="sm"
-                        onClick={handleAddComment}
-                        className="flex items-center gap-2"
-                        disabled={!newComment.trim() || isCommenting}
-                      >
-                        {isCommenting ? (
-                          "Posting..."
-                        ) : (
-                          <>
-                            <SendIcon className="size-4" />
-                            Comment
-                          </>
-                        )}
-                      </Button>
+                  {dbUser?.role === "driver" ? (
+                    <div className={`${haveAcomment ? "hidden" : "flex-1"}`}>
+                      <Textarea
+                        placeholder="Write a comment..."
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                        className="min-h-[80px] resize-none"
+                      />
+                      <div className="flex justify-end mt-2">
+                        <Button
+                          size="sm"
+                          onClick={handleAddComment}
+                          className="flex items-center gap-2"
+                          disabled={!newComment.trim() || isCommenting}
+                        >
+                          {isCommenting ? (
+                            "Posting..."
+                          ) : (
+                            <>
+                              <SendIcon className="size-4" />
+                              Comment
+                            </>
+                          )}
+                        </Button>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <>
+                      <div className="flex-1">
+                        <Textarea
+                          placeholder="Write a comment..."
+                          value={newComment}
+                          onChange={(e) => setNewComment(e.target.value)}
+                          className="min-h-[80px] resize-none"
+                        />
+                        <div className="flex justify-end mt-2">
+                          <Button
+                            size="sm"
+                            onClick={handleAddComment}
+                            className="flex items-center gap-2"
+                            disabled={!newComment.trim() || isCommenting}
+                          >
+                            {isCommenting ? (
+                              "Posting..."
+                            ) : (
+                              <>
+                                <SendIcon className="size-4" />
+                                Comment
+                              </>
+                            )}
+                          </Button>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               ) : (
                 <div className="flex justify-center p-4 border rounded-lg bg-muted/50">
