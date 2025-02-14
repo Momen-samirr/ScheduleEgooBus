@@ -2,6 +2,7 @@
 
 import {
   createComment,
+  deleteComment,
   deletePost,
   getPosts,
   toggleLike,
@@ -27,6 +28,7 @@ import {
   LogInIcon,
   MessageCircleIcon,
   SendIcon,
+  Trash2,
 } from "lucide-react";
 import { Textarea } from "./ui/textarea";
 import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
@@ -100,6 +102,20 @@ function PostCard({
       else throw new Error(result.error);
     } catch (error) {
       toast.error("Failed to delete post");
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
+  const handleDeleteComment = async (commentId: string) => {
+    if (isDeleting) return;
+
+    try {
+      const result = await deleteComment(commentId);
+      if (result?.success) toast.success("Comment deleted successfully");
+      else throw new Error(result?.error);
+    } catch (error) {
+      toast.error("Failed to delete comment");
     } finally {
       setIsDeleting(false);
     }
@@ -299,6 +315,18 @@ function PostCard({
                             {formatDistanceToNow(new Date(comment?.createdAt))}{" "}
                             ago
                           </span>
+                          {user?.email === "egoobus5@gmail.com" && (
+                            <div className="flex items-center justify-end gap-3">
+                              <DeleteAlertDialog
+                                isDeleting={isDeleting}
+                                onDelete={() =>
+                                  handleDeleteComment(comment?.id as string)
+                                }
+                                title="Delete comment"
+                                description="This action cannot be undone."
+                              />
+                            </div>
+                          )}
                         </div>
                         <p className="text-sm break-words">{comment.content}</p>
                       </div>

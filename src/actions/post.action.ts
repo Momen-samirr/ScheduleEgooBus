@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { getDbUserId } from "./user.action";
+import { getDbUser, getDbUserId } from "./user.action";
 import { revalidatePath } from "next/cache";
 
 // export async function createPost(content: string, image: string) {
@@ -367,3 +367,23 @@ export async function deletePost(postId: string) {
     return { success: false, error: "Failed to delete post" };
   }
 }
+
+export const deleteComment = async (commentId: string) => {
+  try {
+    const dbUser = await getDbUser();
+    if (!dbUser) return null;
+
+    await prisma.comment.delete({
+      where: {
+        id: commentId,
+      },
+    });
+
+    revalidatePath("/");
+
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to delete comment:", error);
+    return { success: false, error: "Failed to delete comment" };
+  }
+};
