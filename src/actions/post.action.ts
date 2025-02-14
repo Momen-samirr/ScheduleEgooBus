@@ -262,19 +262,19 @@ export async function createComment(postId: string, content: string) {
     if (!userId) return { success: false, error: "User not authenticated" };
     if (!content) return { success: false, error: "Content is required" };
 
-    const existingComment = await prisma.comment.findFirst({
-      where: {
-        authorId: userId,
-        post: {
-          tripMode: "normal",
-        },
-      },
-      select: { id: true },
-    });
+    // const existingComment = await prisma.comment.findFirst({
+    //   where: {
+    //     authorId: userId,
+    //     post: {
+    //       tripMode: "normal",
+    //     },
+    //   },
+    //   select: { id: true },
+    // });
 
-    if (existingComment) {
-      return { success: false, error: "You can only comment on one post." };
-    }
+    // if (existingComment) {
+    //   return { success: false, error: "You can only comment on one post." };
+    // }
 
     const post = await prisma.post.findUnique({
       where: { id: postId },
