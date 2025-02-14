@@ -266,7 +266,7 @@ export async function createComment(postId: string, content: string) {
       where: {
         authorId: userId,
         post: {
-          tripMode: "normal",
+          tripMode: "ramdan",
         },
       },
       select: { id: true },
