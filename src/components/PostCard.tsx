@@ -27,6 +27,7 @@ import {
   HeartIcon,
   LogInIcon,
   MessageCircleIcon,
+  Moon,
   SendIcon,
   Trash2,
 } from "lucide-react";
@@ -160,6 +161,14 @@ function PostCard({
                     <span>•</span>
                     <span>
                       {formatDistanceToNow(new Date(trip?.createdAt))} ago
+                    </span>
+                    <span className="flex items-center justify-between gap-3">
+                      {trip?.tripMode === "normal" && (
+                        <>
+                          <Moon className="size-5 text-sky-500" />
+                          <span className="text-sky-500">جدول رمضان</span>
+                        </>
+                      )}
                     </span>
                   </div>
                 </div>
