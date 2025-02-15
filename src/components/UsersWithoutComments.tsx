@@ -1,14 +1,11 @@
-import { getDbUser, getRandomUsers } from "@/actions/user.action";
+import { getUsersWithNoComments } from "@/actions/user.action";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Link from "next/link";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import FollowButton from "./FollowButton";
 
-async function WhoToFollow() {
-  const users = await getRandomUsers();
-
-  const dbUser = await getDbUser();
-  if (users.length === 0) return null;
+export default async function UsersWithoutComments() {
+  const users = await getUsersWithNoComments();
 
   return (
     <Card>
@@ -16,8 +13,8 @@ async function WhoToFollow() {
         <CardTitle>Who to Follow</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          {users.map((user) => (
+        <div className="space-y-5">
+          {users?.map((user) => (
             <div
               key={user.id}
               className="flex gap-2 items-center justify-between "
@@ -53,4 +50,3 @@ async function WhoToFollow() {
     </Card>
   );
 }
-export default WhoToFollow;

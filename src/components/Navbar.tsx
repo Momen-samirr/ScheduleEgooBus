@@ -2,7 +2,7 @@ import Link from "next/link";
 import DesktopNavbar from "./DesktopNavbar";
 import MobileNavbar from "./MobileNavbar";
 // import { currentUser } from "@clerk/nextjs/server";
-import { syncUser } from "@/actions/user.action";
+import { getDbUser, syncUser } from "@/actions/user.action";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { getUnReadNotifications } from "@/actions/notification.action";
 
@@ -14,6 +14,8 @@ async function Navbar() {
   if (user) await syncUser();
 
   const notifications = await getUnReadNotifications();
+
+  const dbUser = await getDbUser();
 
   return (
     <nav className="sticky top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
@@ -29,7 +31,7 @@ async function Navbar() {
           </div>
 
           <DesktopNavbar />
-          <MobileNavbar notifications={notifications.length} />
+          <MobileNavbar notifications={notifications.length} dbUser={dbUser} />
         </div>
       </div>
     </nav>

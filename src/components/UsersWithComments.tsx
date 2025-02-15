@@ -1,22 +1,19 @@
-import { getDbUser, getRandomUsers } from "@/actions/user.action";
+import { getRandomUsers } from "@/actions/user.action";
+import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Link from "next/link";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import FollowButton from "./FollowButton";
 
-async function WhoToFollow() {
+const UsersWithComments = async () => {
   const users = await getRandomUsers();
-
-  const dbUser = await getDbUser();
-  if (users.length === 0) return null;
-
   return (
     <Card>
       <CardHeader>
         <CardTitle>Who to Follow</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-5">
           {users.map((user) => (
             <div
               key={user.id}
@@ -52,5 +49,6 @@ async function WhoToFollow() {
       </CardContent>
     </Card>
   );
-}
-export default WhoToFollow;
+};
+
+export default UsersWithComments;

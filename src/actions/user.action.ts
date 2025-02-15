@@ -110,18 +110,12 @@ export async function getRandomUsers() {
     // get 3 random users exclude ourselves & users that we already follow
     const randomUsers = await prisma.user.findMany({
       where: {
-        AND: [
-          { NOT: { id: userId } },
-          {
-            NOT: {
-              followers: {
-                some: {
-                  followerId: userId,
-                },
-              },
-            },
+        AND: [{ NOT: { id: userId } }],
+        NOT: {
+          comments: {
+            none: {},
           },
-        ],
+        },
       },
       select: {
         id: true,
@@ -132,10 +126,44 @@ export async function getRandomUsers() {
         _count: {
           select: {
             followers: true,
+            comments: true,
           },
         },
       },
-      take: 3,
+    });
+
+    return randomUsers;
+  } catch (error) {
+    console.log("Error fetching random users", error);
+    return [];
+  }
+}
+export async function getUsersWithNoComments() {
+  try {
+    const userId = await getDbUserId();
+
+    if (!userId) return [];
+
+    const randomUsers = await prisma.user.findMany({
+      where: {
+        AND: [{ NOT: { id: userId } }],
+        comments: {
+          none: {},
+        },
+      },
+      select: {
+        id: true,
+        name: true,
+        username: true,
+        image: true,
+        phone: true,
+        _count: {
+          select: {
+            followers: true,
+            comments: true,
+          },
+        },
+      },
     });
 
     return randomUsers;

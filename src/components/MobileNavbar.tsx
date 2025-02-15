@@ -9,6 +9,7 @@ import {
   MoonIcon,
   SunIcon,
   UserIcon,
+  Users2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,7 +28,7 @@ import {
   useKindeBrowserClient,
 } from "@kinde-oss/kinde-auth-nextjs";
 
-function MobileNavbar({ notifications }: any) {
+function MobileNavbar({ notifications }: any, { dbUser }: any) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { isAuthenticated } = useKindeBrowserClient();
   const { theme, setTheme } = useTheme();
@@ -92,6 +93,16 @@ function MobileNavbar({ notifications }: any) {
                   <Link href="/dashboard">
                     <LayoutDashboard className="w-5 h-5" />
                     Dashboard
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="flex items-center gap-3 justify-start"
+                  asChild
+                >
+                  <Link href="/usersinfo">
+                    <Users2 className="w-5 h-5" />
+                    UsersInfo
                   </Link>
                 </Button>
                 <Button

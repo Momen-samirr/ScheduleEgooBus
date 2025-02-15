@@ -4,6 +4,7 @@ import {
   HomeIcon,
   LayoutDashboard,
   UserIcon,
+  Users2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -65,6 +66,30 @@ async function DesktopNavbar() {
               <Link href="/banners">
                 <DatabaseIcon className="w-5 h-5" />
                 <span className="hidden lg:inline">Banner</span>
+              </Link>
+            </Button>
+          )}
+          {dbUser?.role === "employee" && (
+            <Button
+              variant={"ghost"}
+              className="flex items-center gap-3"
+              asChild
+            >
+              <Link href={"/usersinfo"}>
+                <Users2 className="size-5" />
+                <span className="hidden lg:inline">Users Info</span>
+              </Link>
+            </Button>
+          )}
+          {dbUser?.role === "admin" && (
+            <Button
+              variant={"ghost"}
+              className="flex items-center gap-3"
+              asChild
+            >
+              <Link href={"/usersinfo"}>
+                <Users2 className="size-5" />
+                <span className="hidden lg:inline">Users Info</span>
               </Link>
             </Button>
           )}

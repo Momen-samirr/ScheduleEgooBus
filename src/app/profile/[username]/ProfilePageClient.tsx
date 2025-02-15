@@ -229,7 +229,7 @@ function ProfilePageClient({
               className="flex items-center gap-2 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-primary
               data-[state=active]:bg-transparent px-6 font-semibold"
             >
-              <FileTextIcon className="size-4" />
+              <FileTextIcon className="size-5" />
               Posts
             </TabsTrigger>
             <TabsTrigger
