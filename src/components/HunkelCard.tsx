@@ -20,11 +20,11 @@ const CompanyCard = async ({
 }: {
   title: string;
   subTitle?: string;
-  veicle: string;
-  href: string;
+  veicle?: string;
+  href?: string;
   subHref?: string;
-  availability: "Available Soon" | "Now Available";
-  topic: string;
+  availability?: "Available Soon" | "Now Available";
+  topic?: string;
   src?: string;
   adminTitle?: string;
   adminRoute?: string;

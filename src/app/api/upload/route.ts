@@ -50,16 +50,21 @@ export async function POST(req: NextRequest) {
     const createdTrips = await prisma.post.createMany({
       data: newTrips.map((trip) => ({
         authorId: "cm6n9yci10000ie03mjqn4hqo",
-        tripsNum: trip.tripsNum ?? undefined,
-        trips: trip.trips ?? trip.tripName ?? "",
+        tripsNum: trip.tripsNum ?? null, // Use null instead of undefined
+        trips: trip.trips ?? trip.tripName ?? "", // Ensure a string is always set
         kelometr: trip.kelometr,
-        gapmetr: trip.gapmetr !== undefined ? String(trip.gapmetr) : undefined, // Convert number to string
-        haiisPrice: trip.haiisPrice ?? trip.haiss ?? undefined,
-        bigcarPrice: trip.bigcarPrice ?? undefined,
-        tableCode: trip.tableCode,
+        gapmetr: trip.gapmetr !== undefined ? String(trip.gapmetr) : null, // Convert to string if present
+        haiisPrice: trip.haiisPrice
+          ? String(trip.haiisPrice)
+          : trip.haiss
+          ? String(trip.haiss)
+          : null, // Ensure string
+        bigcarPrice:
+          trip.bigcarPrice !== undefined ? String(trip.bigcarPrice) : null, // Convert to string if needed
+        tableCode: trip.tableCode ?? "UNKNOWN", // Ensure tableCode is always set
         tripMode: trip.haiss ? "normal" : "ramdan",
-        prices: trip.prices ?? undefined,
-        currentCapacity: trip.current_capacity ?? undefined,
+        prices: trip.prices !== undefined ? String(trip.prices) : null, // Convert to string if needed
+        currentCapacity: trip.current_capacity ?? null,
         tripType: trip.tripName ? "SOLO" : "SCHEDULED",
       })),
       skipDuplicates: true,
