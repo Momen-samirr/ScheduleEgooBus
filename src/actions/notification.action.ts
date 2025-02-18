@@ -27,6 +27,7 @@ export async function getNotifications() {
             id: true,
             trips: true,
             tableCode: true,
+            tripMode: true,
           },
         },
         comment: {

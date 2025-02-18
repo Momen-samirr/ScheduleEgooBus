@@ -113,6 +113,13 @@ function NotificationsPage() {
                             <p className="font-bold text-sky-500">
                               {notification.post.tableCode}
                             </p>
+                            <div className="flex items-center justify-end gap-3">
+                              <p className="font-bold text-sky-500">
+                                {notification?.post?.tripMode === "normal"
+                                  ? "Ramdan"
+                                  : "Normal"}
+                              </p>
+                            </div>
                           </div>
 
                           {notification.type === "COMMENT" &&
