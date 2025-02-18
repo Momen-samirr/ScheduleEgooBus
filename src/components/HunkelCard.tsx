@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { ComputerIcon } from "lucide-react";
 import { getDbUser } from "@/actions/user.action";
-import { getServerTime } from "@/actions/time.action";
 
 const CompanyCard = async ({
   title,
@@ -13,6 +12,7 @@ const CompanyCard = async ({
   subTitle,
   subHref,
   veicle,
+  availability,
   topic,
   src,
   adminTitle,
@@ -29,18 +29,9 @@ const CompanyCard = async ({
   adminTitle?: string;
   adminRoute?: string;
 }) => {
+  const isUnavailable = availability === "Available Soon";
+
   const dbUser = await getDbUser();
-  const serverHour = await getServerTime();
-
-  const isAdmin = dbUser?.role === "admin";
-  const availability = isAdmin
-    ? "Now Available"
-    : serverHour >= 9 && serverHour < 21
-    ? "Now Available"
-    : "Available Soon";
-
-  const isUnavailable = !isAdmin && availability === "Available Soon";
-
   return (
     <Card className={isUnavailable ? "opacity-50 cursor-not-allowed" : ""}>
       <CardHeader>
@@ -48,13 +39,11 @@ const CompanyCard = async ({
           <CardTitle>{topic}</CardTitle>
           <div className="flex items-center justify-end">
             <span
-              className={`text-sm font-semibold px-3 py-1 rounded-full ${
-                isUnavailable
-                  ? "bg-red-200 text-red-600"
-                  : "bg-green-200 text-green-600"
+              className={`text-sm font-semibold px-3 py-1 rounded-full items-center ${
+                isUnavailable ? "bg-red-200 text-red-600" : "text-green-600"
               }`}
             >
-              {availability}
+              {isUnavailable ? "Coming Soon" : availability}
             </span>
           </div>
         </div>
@@ -63,7 +52,9 @@ const CompanyCard = async ({
         <div className="flex flex-col items-center justify-center">
           <div className="space-y-3 mb-3">
             <Avatar>
-              <AvatarImage src={src ? src : "https://github.com/shadcn.png"} />
+              <AvatarImage
+                src={src ? "/ramdan.png" : "https://github.com/shadcn.png"}
+              />
               <AvatarFallback>HC</AvatarFallback>
             </Avatar>
           </div>
