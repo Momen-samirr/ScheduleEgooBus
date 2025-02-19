@@ -13,7 +13,7 @@ const DialogComponet = ({ routeInfo }: any) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Details</Button>
+        <Button variant="outline">View Driver</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

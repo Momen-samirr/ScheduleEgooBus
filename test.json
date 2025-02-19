@@ -298,5 +298,305 @@
         }
       }
     ]
+  },
+  {
+    "route": "El Shorouk ↔ New Cairo",
+    "trips": [
+      {
+        "date": "2025-02-02",
+        "outbound": {
+          "start": "7:40",
+          "end": "8:41"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:42"
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "outbound": {
+          "start": "7:40",
+          "end": "8:41"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:42"
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "outbound": {
+          "start": "7:40",
+          "end": "8:41"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:42"
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "outbound": {
+          "start": "7:40",
+          "end": "8:41"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:42"
+        }
+      },
+      {
+        "date": "2025-02-06",
+        "outbound": {
+          "start": "7:40",
+          "end": "8:41"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:42"
+        }
+      }
+    ]
+  },
+  {
+    "route": "Heliopolis ↔ New Cairo",
+    "trips": [
+      {
+        "date": "2025-02-02",
+        "outbound": {
+          "start": "7:50",
+          "end": "9:11"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:44"
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "outbound": {
+          "start": "7:50",
+          "end": "9:11"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:44"
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "outbound": {
+          "start": "7:50",
+          "end": "9:11"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:44"
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "outbound": {
+          "start": "7:50",
+          "end": "9:11"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:44"
+        }
+      },
+      {
+        "date": "2025-02-06",
+        "outbound": {
+          "start": "7:50",
+          "end": "9:11"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:44"
+        }
+      }
+    ]
+  },
+  {
+    "route": "Saft El Laban ↔ New Cairo",
+    "trips": [
+      {
+        "date": "2025-02-02",
+        "outbound": {
+          "start": "7:20",
+          "end": "8:46"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "18:36"
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "outbound": {
+          "start": "7:20",
+          "end": "8:46"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "18:36"
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "outbound": {
+          "start": "7:20",
+          "end": "8:46"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "18:36"
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "outbound": {
+          "start": "7:20",
+          "end": "8:46"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "18:36"
+        }
+      },
+      {
+        "date": "2025-02-06",
+        "outbound": {
+          "start": "7:20",
+          "end": "8:46"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "18:36"
+        }
+      }
+    ]
+  },
+  {
+    "route": "Obour City ↔ New Cairo",
+    "trips": [
+      {
+        "date": "2025-02-02",
+        "outbound": {
+          "start": "7:40",
+          "end": "9:13"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "18:02"
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "outbound": {
+          "start": "7:40",
+          "end": "9:13"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "18:02"
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "outbound": {
+          "start": "7:40",
+          "end": "9:13"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "18:02"
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "outbound": {
+          "start": "7:40",
+          "end": "9:13"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "18:02"
+        }
+      },
+      {
+        "date": "2025-02-06",
+        "outbound": {
+          "start": "7:40",
+          "end": "9:13"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "18:02"
+        }
+      }
+    ]
+  },
+  {
+    "route": "Sheraton ↔ New Cairo",
+    "trips": [
+      {
+        "date": "2025-02-02",
+        "outbound": {
+          "start": "8:40",
+          "end": "9:46"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:47"
+        }
+      },
+      {
+        "date": "2025-02-03",
+        "outbound": {
+          "start": "8:40",
+          "end": "9:46"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:47"
+        }
+      },
+      {
+        "date": "2025-02-04",
+        "outbound": {
+          "start": "8:40",
+          "end": "9:46"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:47"
+        }
+      },
+      {
+        "date": "2025-02-05",
+        "outbound": {
+          "start": "8:40",
+          "end": "9:46"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:47"
+        }
+      },
+      {
+        "date": "2025-02-06",
+        "outbound": {
+          "start": "8:40",
+          "end": "9:46"
+        },
+        "return": {
+          "start": "16:40",
+          "end": "17:47"
+        }
+      }
+    ]
   }
 ]

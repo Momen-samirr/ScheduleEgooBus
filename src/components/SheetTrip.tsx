@@ -10,19 +10,21 @@ import {
   SheetTrigger,
 } from "./ui/sheet";
 import { Separator } from "./ui/separator";
-import { Check, DatabaseBackupIcon, Loader2 } from "lucide-react";
+import { Check, DatabaseBackupIcon, Loader2, Logs } from "lucide-react";
 import { Button } from "./ui/button";
 import { ScrollArea } from "./ui/scroll-area";
 import { useTransition } from "react";
 import { cancleReserveRoute, markTripAsCompleted } from "@/actions/hunkelroute";
 import toast from "react-hot-toast";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 interface Props {
   routeInfo: any;
+  dbUser?: any;
   onClick?: () => void;
 }
 
-const SheetTrip = ({ routeInfo, onClick }: Props) => {
+const SheetTrip = ({ routeInfo, onClick, dbUser }: Props) => {
   const [isPending, startTransition] = useTransition();
   const handelCancleReserveRoute = async (routeId: string) => {
     startTransition(async () => {
@@ -46,10 +48,16 @@ const SheetTrip = ({ routeInfo, onClick }: Props) => {
     });
   };
 
+  console.log("dbUser:", dbUser);
+
+  const { user } = useKindeBrowserClient();
+
   return (
     <>
       <Sheet>
-        <SheetTrigger>Details</SheetTrigger>
+        <SheetTrigger>
+          <Logs />
+        </SheetTrigger>
         <SheetContent>
           <SheetHeader>
             <SheetTitle>{routeInfo?.name}</SheetTitle>
@@ -116,18 +124,22 @@ const SheetTrip = ({ routeInfo, onClick }: Props) => {
                   )}
                   {routeInfo?.status === "reserved" ? (
                     <>
-                      <Button
-                        variant={"destructive"}
-                        size={"sm"}
-                        className="flex items-center gap-3"
-                        onClick={() => handelCancleReserveRoute(routeInfo?.id)}
-                      >
-                        {isPending ? (
-                          <Loader2 className="size-5 animate-spin" />
-                        ) : (
-                          "Cancle"
-                        )}
-                      </Button>
+                      {user?.email === "egoobus5@gmail.com" && (
+                        <Button
+                          variant={"destructive"}
+                          size={"sm"}
+                          className="flex items-center gap-3"
+                          onClick={() =>
+                            handelCancleReserveRoute(routeInfo?.id)
+                          }
+                        >
+                          {isPending ? (
+                            <Loader2 className="size-5 animate-spin" />
+                          ) : (
+                            "Cancle"
+                          )}
+                        </Button>
+                      )}
                     </>
                   ) : (
                     <SheetClose asChild>

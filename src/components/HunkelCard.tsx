@@ -88,22 +88,15 @@ const CompanyCard = async ({
                   </Button>
                 </Link>
               ))}
-            {dbUser?.role === "admin" && (
-              <Link href={`/dashboard/adminShow`}>
-                <Button variant={"outline"}>
-                  <ComputerIcon className="w-5 h-5 mr-3" />
-                  {adminTitle}
-                </Button>
-              </Link>
-            )}
-            {dbUser?.role === "employee" && (
-              <Link href={`/dashboard/adminShow`}>
-                <Button variant={"outline"}>
-                  <ComputerIcon className="w-5 h-5 mr-3" />
-                  {adminTitle}
-                </Button>
-              </Link>
-            )}
+            {adminRoute &&
+              (dbUser?.role === "admin" ? (
+                <Link href={adminRoute}>
+                  <Button variant={"outline"}>
+                    <ComputerIcon className="w-5 h-5 mr-3" />
+                    {adminTitle}
+                  </Button>
+                </Link>
+              ) : null)}
             <div>{veicle}</div>
           </div>
         </div>

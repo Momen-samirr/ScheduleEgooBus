@@ -52,8 +52,18 @@ const DashboardRoute = async () => {
             adminRoute="/dashboard/adminShow"
           />
         </div>
-        <div className="lg:col-span-10">
-          <Slider banners={banners} />
+        <div className="lg:col-span-5">
+          <CompanyCard
+            title="Henkel schedule"
+            href="/dashboard/testCard"
+            veicle="ملاكي"
+            availability="Now Available"
+            topic="شركات"
+            subTitle="My Reserved Schedule"
+            subHref="/dashboard/myRoute"
+            adminTitle="Admin Show"
+            adminRoute="/dashboard/hunkelAdminShow"
+          />
         </div>
       </div>
       <VoiceflowChat />

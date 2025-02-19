@@ -9,7 +9,7 @@ import { reserveRoute } from "@/actions/hunkelroute"; // Import the server actio
 import toast from "react-hot-toast";
 import DialogComponet from "./DialogComponet";
 
-const TripHunkelCard = ({ routeInfo }: any) => {
+const TripHunkelCard = ({ routeInfo }: any, dbUser?: any) => {
   console.log("routeInfo:", routeInfo);
 
   const [isPending, startTransition] = useTransition();
@@ -52,6 +52,7 @@ const TripHunkelCard = ({ routeInfo }: any) => {
                 )}
                 <SheetTrip
                   routeInfo={routeInfo}
+                  dbUser={dbUser}
                   onClick={() => handleReserveRoute(routeInfo?.id)}
                 />
               </div>

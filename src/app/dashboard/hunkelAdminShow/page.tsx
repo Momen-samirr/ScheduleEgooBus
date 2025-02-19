@@ -23,7 +23,7 @@ const HunkelAdminShow = async () => {
               <ScrollArea className="h-[calc(100vh-12rem)]">
                 <div className="space-y-6">
                   {reservedRoutes?.map((route) => (
-                    <TripHunkelCard routeInfo={route} />
+                    <TripHunkelCard routeInfo={route} dbUser={dbUser} />
                   ))}
                 </div>
               </ScrollArea>
