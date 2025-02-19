@@ -1,11 +1,16 @@
-import { getRoutesWithTrips } from "@/actions/hunkelroute";
+import { getReservedRoutes, getRoutesWithTrips } from "@/actions/hunkelroute";
+import { getDbUser } from "@/actions/user.action";
 import TripHunkelCard from "@/components/TripHunkelCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { redirect } from "next/navigation";
 import React from "react";
 
-const TestCard = async () => {
-  const routes = await getRoutesWithTrips();
+const HunkelAdminShow = async () => {
+  const reservedRoutes = await getReservedRoutes();
+  const dbUser = await getDbUser();
+
+  if (dbUser?.role === "driver") return redirect("/");
   return (
     <>
       <Card>
@@ -13,11 +18,11 @@ const TestCard = async () => {
           <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
             <div className="lg:col-span-7">
               <div className="space-y-6 p-6">
-                <h1> Available Hunkel Trips</h1>
+                <h1> Admin Show</h1>
               </div>
               <ScrollArea className="h-[calc(100vh-12rem)]">
                 <div className="space-y-6">
-                  {routes.map((route) => (
+                  {reservedRoutes?.map((route) => (
                     <TripHunkelCard routeInfo={route} />
                   ))}
                 </div>
@@ -30,4 +35,4 @@ const TestCard = async () => {
   );
 };
 
-export default TestCard;
+export default HunkelAdminShow;

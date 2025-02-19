@@ -36,17 +36,6 @@ export default async function Home() {
         )}
       </div>
 
-      {user && (
-        <Button>
-          <Link
-            href={`https://docs.google.com/spreadsheets/d/1JZqk69d44KdQav82dRBiBFaCRBUxtubZ/edit?gid=2001275883#gid=2001275883`}
-            target="_blank"
-          >
-            شيته بالجداول التي تمت اختيارها
-          </Link>
-        </Button>
-      )}
-
       <div className="hidden lg:block lg:col-span-4 sticky top-20">
         <WhoToFollow />
       </div>

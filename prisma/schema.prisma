@@ -60,6 +60,7 @@ model Route {
 model HunkelTrip {
   id        String @id @default(uuid()) 
   date      DateTime
+  status    hunkelStatus @default(notdone)
   routeId   String
   route     Route @relation(fields: [routeId], references: [id], onDelete: Cascade)
 
@@ -94,6 +95,11 @@ enum TripType {
 enum HunkelTripEnum {
   available
   reserved
+}
+
+enum hunkelStatus {
+  done
+  notdone
 }
 
 model Post {
