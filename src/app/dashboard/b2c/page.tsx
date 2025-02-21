@@ -25,7 +25,7 @@ const UberRoute = async () => {
             تنويه هام: أي جدول تطلبه سيتم تنزيله تلقائيًا، ولا يمكن إلغاؤه إلا
             بعد إبلاغ مستر هاني كارم.
           </p>
-          <p className="text-xl text-sky-500">جداول شغل من يوم 16 الي يوم 20</p>
+          <p className="text-xl text-sky-500">جداول شغل من يوم 23 الي يوم 27</p>
           {trips.map((trip) => (
             <PostCard
               key={trip.id}
