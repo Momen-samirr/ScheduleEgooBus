@@ -74,6 +74,7 @@ export async function getMyRouteWithTrips() {
             email: true,
             phone: true,
             image: true,
+            location: true,
           },
         },
         trips: {
@@ -125,6 +126,7 @@ export async function getReservedRoutes() {
             email: true,
             phone: true,
             image: true,
+            location: true,
           },
         },
         trips: {
