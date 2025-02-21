@@ -184,7 +184,6 @@ export async function cancleReserveRoute(routeId: string) {
     await prisma.route.update({
       where: {
         id: routeId,
-        driverId: dbUser?.id,
         status: "reserved",
       },
       data: {
