@@ -54,7 +54,7 @@ const DashboardRoute = async () => {
         </div>
         <div className="lg:col-span-5">
           <CompanyCard
-            title="Henkel schedule"
+            title="New Henkel schedule"
             href="/dashboard/testCard"
             veicle="ملاكي"
             availability="Available Soon"
