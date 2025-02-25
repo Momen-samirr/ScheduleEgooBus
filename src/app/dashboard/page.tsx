@@ -22,6 +22,8 @@ const DashboardRoute = async () => {
           <CompanyCard
             title="جداول"
             href="/dashboard/b2cramadan"
+            subTitle="رحلات رمضان الفردية"
+            subHref="/dashboard/soloramdan"
             veicle="هاي اس"
             availability="Now Available"
             topic="توزيعة رمضان"
@@ -57,7 +59,7 @@ const DashboardRoute = async () => {
             title="New Henkel schedule"
             href="/dashboard/testCard"
             veicle="ملاكي"
-            availability="Available Soon"
+            availability="Now Available"
             topic="شركات"
             subTitle="My Reserved Schedule"
             subHref="/dashboard/myRoute"

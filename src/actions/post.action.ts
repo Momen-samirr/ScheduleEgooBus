@@ -146,6 +146,7 @@ export async function getSoloPosts() {
       },
       where: {
         tripType: "SOLO",
+        tripMode: "ramdan",
       },
       include: {
         author: {
@@ -189,6 +190,79 @@ export async function getSoloPosts() {
   } catch (error) {
     console.log("Error in getPosts", error);
     throw new Error("Failed to fetch posts");
+  }
+}
+export async function getSoloRamdanTrips() {
+  try {
+    const posts = await prisma.post.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      where: {
+        tripType: "SOLO",
+        tripMode: "normal",
+      },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+            username: true,
+          },
+        },
+        comments: {
+          include: {
+            author: {
+              select: {
+                id: true,
+                username: true,
+                image: true,
+                name: true,
+              },
+            },
+          },
+          orderBy: {
+            createdAt: "asc",
+          },
+        },
+        likes: {
+          select: {
+            userId: true,
+          },
+        },
+        _count: {
+          select: {
+            likes: true,
+            comments: true,
+          },
+        },
+      },
+    });
+
+    return posts;
+  } catch (error) {
+    console.log("Error in getPosts", error);
+    throw new Error("Failed to fetch posts");
+  }
+}
+
+export async function deleteAllSoloTrips() {
+  try {
+    const dbUser = await getDbUser();
+    if (!dbUser) return;
+
+    await prisma.post.deleteMany({
+      where: {
+        tripType: "SOLO",
+      },
+    });
+
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to delete post:", error);
+    return { success: false, error: "Failed to delete post" };
   }
 }
 
@@ -261,27 +335,36 @@ export async function createComment(postId: string, content: string) {
     const userId = await getDbUserId();
     if (!userId) return { success: false, error: "User not authenticated" };
     if (!content) return { success: false, error: "Content is required" };
+    const dbUser = await getDbUser();
+    // Get user role
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { role: true },
+    });
 
-    // const existingComment = await prisma.comment.findFirst({
-    //   where: {
-    //     authorId: userId,
-    //     post: {
-    //       tripMode: "normal",
-    //     },
-    //   },
-    //   select: { id: true },
-    // });
+    if (!user) return { success: false, error: "User not found" };
 
-    // if (existingComment) {
-    //   return { success: false, error: "You can only comment on one post." };
-    // }
-
+    // Get post and check if it has comments
     const post = await prisma.post.findUnique({
       where: { id: postId },
       select: { authorId: true },
     });
 
     if (!post) return { success: false, error: "Post not found" };
+
+    const existingComment = await prisma.comment.findFirst({
+      where: {
+        postId,
+        authorId: { not: userId },
+      },
+    });
+
+    if (existingComment && dbUser?.role !== "admin") {
+      return {
+        success: false,
+        error: "You cannot comment on a post that already has a comment.",
+      };
+    }
 
     await prisma.$transaction(async (tx) => {
       const newComment = await tx.comment.create({

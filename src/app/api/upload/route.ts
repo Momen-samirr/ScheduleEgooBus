@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
         authorId: "cm6n9yci10000ie03mjqn4hqo",
         tripsNum: trip.tripsNum ?? null, // Use null instead of undefined
         trips: trip.trips ?? trip.tripName ?? "", // Ensure a string is always set
-        kelometr: trip.kelometr,
+        kelometr: trip.kelometr ?? null,
         gapmetr: trip.gapmetr !== undefined ? String(trip.gapmetr) : null, // Convert to string if present
         haiisPrice: trip.haiisPrice
           ? String(trip.haiisPrice)
