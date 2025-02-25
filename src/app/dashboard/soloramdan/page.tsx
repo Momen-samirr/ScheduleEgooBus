@@ -3,7 +3,7 @@ import {
   getSoloPosts,
   getSoloRamdanTrips,
 } from "@/actions/post.action";
-import { getDbUserId } from "@/actions/user.action";
+import { getDbUser, getDbUserId } from "@/actions/user.action";
 import { DeleteAlertDialog } from "@/components/DeleteAlertDialog";
 import DeleteSoloTrips from "@/components/DeleteSoloTrips";
 import PostCard from "@/components/PostCard";
@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 const RamdanTripsRoute = async () => {
   const trips = await getSoloRamdanTrips();
   const dbUserId = await getDbUserId();
+  const dbUser = await getDbUser();
 
   if (!dbUserId) return redirect("/");
   return (
@@ -27,9 +28,11 @@ const RamdanTripsRoute = async () => {
               No trips found for this time
             </p>
           )}
-          <div>
-            <DeleteSoloTrips />
-          </div>
+          {dbUser?.role === "admin" && (
+            <div>
+              <DeleteSoloTrips />
+            </div>
+          )}
           <div className="flex items-center justify-center gap-3">
             <div className="flex items-center font-semibold">
               <Moon />
