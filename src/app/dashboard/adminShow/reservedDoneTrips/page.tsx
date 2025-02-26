@@ -1,15 +1,15 @@
-import { getAllReservedTrips } from "@/actions/hunkel.action";
+import { getAllReservedDoneTrips } from "@/actions/hunkel.action";
 import { getDbUser } from "@/actions/user.action";
-import AdminTable from "@/components/AdminTable";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
 import { redirect } from "next/navigation";
+import AdminTable from "@/components/AdminTable";
 import React from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const AdminShowRoute = async () => {
-  const reservedTrips = await getAllReservedTrips();
+const ReservedTripDone = async () => {
+  const reservedDoneTrips = await getAllReservedDoneTrips();
   const user = await getDbUser();
 
   if (user?.role === "user") return redirect("/");
@@ -18,26 +18,26 @@ const AdminShowRoute = async () => {
       {user?.role !== "driver" && (
         <Button variant={"outline"} size={"sm"} className="mb-3" asChild>
           <Link
-            href={`/dashboard/adminShow/reservedDoneTrips`}
+            href={`/dashboard/adminShow`}
             className="flex items-center gap-3"
           >
             <div className="flex items-center">
-              <ChevronRight />
-              <span>Go to Reserved Done Trips</span>
+              <ChevronLeft />
+              <span>Go to Admin Show</span>
             </div>
           </Link>
         </Button>
       )}
       <Card>
-        <CardHeader>
-          <CardTitle>Admin Show</CardTitle>
+        <CardHeader className="text-green-600">
+          <CardTitle>Reserved Done Trips</CardTitle>
         </CardHeader>
         <CardContent>
-          {user?.role !== "driver" && <AdminTable trips={reservedTrips} />}
+          {user?.role !== "driver" && <AdminTable trips={reservedDoneTrips} />}
         </CardContent>
       </Card>
     </>
   );
 };
 
-export default AdminShowRoute;
+export default ReservedTripDone;

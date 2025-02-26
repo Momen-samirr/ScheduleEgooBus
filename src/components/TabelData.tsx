@@ -47,6 +47,7 @@ interface Trip {
   date: Date;
   driverId: string | null;
   route: string;
+  reservedTripStatus: string | null;
 }
 
 interface DataTableProps {
@@ -187,12 +188,28 @@ export function TableData({ trips }: DataTableProps) {
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
+                    <>
+                      {row?.original?.reservedTripStatus === "done" ? (
+                        <TableCell
+                          key={cell.id}
+                          className="opacity-30 cursor-not-allowed"
+                        >
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </TableCell>
+                      ) : (
+                        <>
+                          <TableCell key={cell.id}>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </TableCell>
+                        </>
                       )}
-                    </TableCell>
+                    </>
                   ))}
                 </TableRow>
               ))

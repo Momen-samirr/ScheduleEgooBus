@@ -55,6 +55,7 @@ interface Trip {
   id: string;
   time: string;
   date: Date;
+  reservedTripStatus: string | null;
   driver: {
     name: string | null;
     phone: string | null;
@@ -234,9 +235,23 @@ export default function TableData({ trips }: DataTableProps) {
           {table.getRowModel().rows.map((row) => (
             <TableRow key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <TableCell key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </TableCell>
+                <>
+                  {row?.original?.reservedTripStatus === "done" ? (
+                    <TableCell key={cell.id} className="opacity-30">
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ) : (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  )}
+                </>
               ))}
             </TableRow>
           ))}

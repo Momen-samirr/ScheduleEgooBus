@@ -132,9 +132,15 @@ model Tripindividual {
   time        String
   date        DateTime
   status      HunkelStatus    @default(available)
+  reservedTripStatus TripIndividualStatus   @default(notDone)
   createdAt   DateTime    @default(now())
 
   driver      User? @relation(fields: [driverId], references: [id], onDelete: Cascade)
+}
+
+enum TripIndividualStatus {
+  done
+  notDone
 }
 
 model Comment{

@@ -88,7 +88,11 @@ export async function reserveTrip(tripId: string) {
 
       const timeDifference = differenceInMinutes(tripTime, userTripTime);
       if (Math.abs(timeDifference) < 40) {
-        throw new Error("Cannot book trips with less than a 40-minute gap.");
+        return {
+          success: false,
+          error:
+            "You cannot reserve two trips within 40 minutes of each other.",
+        };
       }
     }
 
@@ -102,7 +106,7 @@ export async function reserveTrip(tripId: string) {
         id: tripId,
       },
       data: {
-        driverId: dbUser.id,
+        driverId: dbUser?.id,
         status: "reserved",
       },
     });
@@ -163,6 +167,7 @@ export async function getAllReservedTrips() {
     const reservedTrips = await prisma.tripindividual.findMany({
       where: {
         status: "reserved",
+        reservedTripStatus: "notDone",
       },
       include: {
         driver: {
@@ -186,14 +191,50 @@ export async function getAllReservedTrips() {
   }
 }
 
+export async function getAllReservedDoneTrips() {
+  try {
+    const dbUser = await getDbUser();
+    if (!dbUser) return [];
+    const reservedDoneTrips = await prisma.tripindividual.findMany({
+      where: {
+        status: "reserved",
+        reservedTripStatus: "done",
+      },
+      include: {
+        driver: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+            username: true,
+            phone: true,
+            bio: true,
+            location: true,
+          },
+        },
+      },
+    });
+
+    return reservedDoneTrips;
+  } catch (error) {
+    console.error("Failed to get reserved done trips:", error);
+    return [];
+  }
+}
+
 export async function cancleTrip(tripId: string) {
   try {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
     if (!user) return;
+    const dbUser = await getDbUser();
+    if (!dbUser) return;
     await prisma.tripindividual.update({
       where: {
         id: tripId,
+        driverId: dbUser?.id,
+        status: "reserved",
+        reservedTripStatus: "notDone",
       },
       data: {
         driverId: null,
@@ -236,6 +277,36 @@ export async function removeDriverFromTrip(tripId: string) {
     return {
       success: false,
       error: "Failed to remove driver from trip",
+    };
+  }
+}
+
+export async function makeTripAsDone(tripId: string) {
+  try {
+    const dbUser = await getDbUser();
+    if (!dbUser) return;
+    const { getUser } = getKindeServerSession();
+    const user = await getUser();
+    if (!user) return;
+    await prisma.tripindividual.update({
+      where: {
+        id: tripId,
+        driverId: dbUser?.id,
+        status: "reserved",
+      },
+      data: {
+        reservedTripStatus: "done",
+      },
+    });
+    revalidatePath("/");
+    return {
+      success: true,
+    };
+  } catch (error) {
+    console.error("Failed to make trip as done:", error);
+    return {
+      success: false,
+      error: "Failed to make trip as done",
     };
   }
 }
