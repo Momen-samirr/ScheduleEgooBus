@@ -470,3 +470,22 @@ export const deleteComment = async (commentId: string) => {
     return { success: false, error: "Failed to delete comment" };
   }
 };
+
+export const deleteNormalPosts = async () => {
+  try {
+    const dbUser = await getDbUser();
+    if (!dbUser) return;
+
+    await prisma.post.deleteMany({
+      where: {
+        tripType: "SCHEDULED",
+        tripMode: "ramdan",
+      },
+    });
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to delete post:", error);
+    return { success: false, error: "Failed to delete post" };
+  }
+};

@@ -1,5 +1,6 @@
 import { getPosts } from "@/actions/post.action";
 import { getDbUser, getDbUserId } from "@/actions/user.action";
+import DeleteNormalTrips from "@/components/DeleteNormalTrips";
 import PostCard from "@/components/PostCard";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -21,11 +22,15 @@ const UberRoute = async () => {
               No trips found for this time
             </p>
           )}
+          <div>
+            <DeleteNormalTrips />
+          </div>
           <p className="text-xl text-red-500">
             تنويه هام: أي جدول تطلبه سيتم تنزيله تلقائيًا، ولا يمكن إلغاؤه إلا
             بعد إبلاغ مستر هاني كارم.
           </p>
-          <p className="text-xl text-sky-500">جداول شغل من يوم 23 الي يوم 27</p>
+          <p className="text-xl text-sky-500">جداول شغل من يوم 2 الي يوم 6</p>
+          <p className="text-xl text-red-500">جداول شغل شهر رمضان</p>
           {trips.map((trip) => (
             <PostCard
               key={trip.id}
