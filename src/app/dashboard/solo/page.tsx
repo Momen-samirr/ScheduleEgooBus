@@ -1,11 +1,11 @@
-import { getSoloPosts } from "@/actions/post.action";
+import { getSoloPosts, getSoloRamdanTrips } from "@/actions/post.action";
 import { getDbUserId } from "@/actions/user.action";
 import PostCard from "@/components/PostCard";
 import { redirect } from "next/navigation";
 import React from "react";
 
 const SoloTripRoute = async () => {
-  const trips = await getSoloPosts();
+  const trips = await getSoloRamdanTrips();
   const dbUserId = await getDbUserId();
 
   if (!dbUserId) return redirect("/");
