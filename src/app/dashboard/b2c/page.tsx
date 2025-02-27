@@ -22,9 +22,11 @@ const UberRoute = async () => {
               No trips found for this time
             </p>
           )}
-          <div>
-            <DeleteNormalTrips />
-          </div>
+          {dbUser?.role === "admin" && (
+            <div>
+              <DeleteNormalTrips />
+            </div>
+          )}
           <p className="text-xl text-red-500">
             تنويه هام: أي جدول تطلبه سيتم تنزيله تلقائيًا، ولا يمكن إلغاؤه إلا
             بعد إبلاغ مستر هاني كارم.
