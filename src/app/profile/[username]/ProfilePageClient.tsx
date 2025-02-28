@@ -7,6 +7,7 @@ import {
 } from "@/actions/profile.action";
 import { toggleFollow } from "@/actions/user.action";
 import PostCard from "@/components/PostCard";
+import PostProfileCard from "@/components/PostProfileCard";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -260,7 +261,11 @@ function ProfilePageClient({
             <div className="space-y-6">
               {likedPosts.length > 0 ? (
                 likedPosts.map((post) => (
-                  <PostCard key={post.id} trip={post} dbUserId={user.id} />
+                  <PostProfileCard
+                    key={post.id}
+                    trip={post}
+                    dbUserId={user.id}
+                  />
                 ))
               ) : (
                 <div className="text-center py-8 text-muted-foreground">
