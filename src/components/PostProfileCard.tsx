@@ -46,7 +46,7 @@ function PostProfileCard({
   dbUserId: string | null;
   dbUser?: any;
 }) {
-  const { user, getUser } = useKindeBrowserClient();
+  const { user } = useKindeBrowserClient();
   const [newComment, setNewComment] = useState("");
   const [isCommenting, setIsCommenting] = useState(false);
   const [isLiking, setIsLiking] = useState(false);
