@@ -125,9 +125,9 @@ function PostProfileCard({
   const haveAcomment = trip?.comments?.some(
     (comment: { authorId: string | null }) => comment?.authorId !== dbUserId
   );
-  const haveAcommentme = trip?.comments?.some(
-    (comment: { authorId: string | null }) => comment?.authorId === dbUserId
-  );
+  // const haveAcommentme = trip?.comments?.some(
+  //   (comment: { authorId: string | null }) => comment?.authorId === dbUserId
+  // );
   return (
     <Card className={`${haveAcomment ? "border-2 border-sky-500" : ""}`}>
       <CardHeader>
