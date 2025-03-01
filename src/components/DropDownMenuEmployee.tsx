@@ -10,7 +10,11 @@ import {
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
 import { MoreHorizontal } from "lucide-react";
-import { cancleTrip, reserveTrip } from "@/actions/hunkel.action";
+import {
+  cancleTrip,
+  removeDriverFromTrip,
+  reserveTrip,
+} from "@/actions/hunkel.action";
 import toast from "react-hot-toast";
 import { getUserById } from "@/actions/profile.action";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
@@ -28,7 +32,7 @@ const DropDownMenuEmployee = ({ trip }: { trip: any }) => {
   };
   const handleCancleTrip = async (tripId: string) => {
     try {
-      const result = await cancleTrip(tripId);
+      const result = await removeDriverFromTrip(tripId);
       if (result?.success) {
         toast.success("Trip cancled successfully");
       }
