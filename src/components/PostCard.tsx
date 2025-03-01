@@ -163,10 +163,10 @@ function PostCard({
                       {formatDistanceToNow(new Date(trip?.createdAt))} ago
                     </span>
                     <span className="flex items-center justify-between gap-3">
-                      {trip?.tripMode === "normal" && (
+                      {trip?.tripMode && (
                         <>
                           <Moon className="size-5 text-sky-500" />
-                          <span className="text-sky-500">جدول رمضان</span>
+                          <span className="text-sky-500"> رمضان كريم</span>
                         </>
                       )}
                     </span>
@@ -343,14 +343,39 @@ function PostCard({
                   )
                 )}
               </div>
-
-              {user ? (
-                <div className="flex space-x-3">
-                  <Avatar className="size-8 flex-shrink-0">
-                    <AvatarImage src={user?.email || "/avatar.png"} />
-                  </Avatar>
-                  {user.email !== "egoobus5@gmail.com" ? (
-                    <div className={`${haveAcomment ? "hidden" : "flex-1"}`}>
+              <div className="flex space-x-3">
+                <Avatar className="size-8 flex-shrink-0">
+                  <AvatarImage src={user?.email || "/avatar.png"} />
+                </Avatar>
+                {user?.email !== "egoobus5@gmail.com" ? (
+                  <div className={`${haveAcomment ? "hidden" : "flex-1"}`}>
+                    <Textarea
+                      placeholder="Write a comment..."
+                      value={newComment}
+                      onChange={(e) => setNewComment(e.target.value)}
+                      className="min-h-[80px] resize-none"
+                    />
+                    <div className="flex justify-end mt-2">
+                      <Button
+                        size="sm"
+                        onClick={handleAddComment}
+                        className="flex items-center gap-2"
+                        disabled={!newComment.trim() || isCommenting}
+                      >
+                        {isCommenting ? (
+                          "Posting..."
+                        ) : (
+                          <>
+                            <SendIcon className="size-4" />
+                            Comment
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div className="flex-1">
                       <Textarea
                         placeholder="Write a comment..."
                         value={newComment}
@@ -375,46 +400,9 @@ function PostCard({
                         </Button>
                       </div>
                     </div>
-                  ) : (
-                    <>
-                      <div className="flex-1">
-                        <Textarea
-                          placeholder="Write a comment..."
-                          value={newComment}
-                          onChange={(e) => setNewComment(e.target.value)}
-                          className="min-h-[80px] resize-none"
-                        />
-                        <div className="flex justify-end mt-2">
-                          <Button
-                            size="sm"
-                            onClick={handleAddComment}
-                            className="flex items-center gap-2"
-                            disabled={!newComment.trim() || isCommenting}
-                          >
-                            {isCommenting ? (
-                              "Posting..."
-                            ) : (
-                              <>
-                                <SendIcon className="size-4" />
-                                Comment
-                              </>
-                            )}
-                          </Button>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-              ) : (
-                <div className="flex justify-center p-4 border rounded-lg bg-muted/50">
-                  <LoginLink>
-                    <Button variant="outline" className="gap-2">
-                      <LogInIcon className="size-4" />
-                      Sign in to comment
-                    </Button>
-                  </LoginLink>
-                </div>
-              )}
+                  </>
+                )}
+              </div>
             </div>
           )}
         </div>

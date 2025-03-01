@@ -1,6 +1,9 @@
 "use client";
 
-import { deleteNormalPosts } from "@/actions/post.action";
+import {
+  deleteNormalPosts,
+  deletePostsThatHaveNoComments,
+} from "@/actions/post.action";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { DeleteAlertDialog } from "./DeleteAlertDialog";
@@ -8,12 +11,13 @@ import { DeleteAlertDialog } from "./DeleteAlertDialog";
 const DeleteNormalTrips = () => {
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const handelDeleteNormalPosts = async () => {
+  const handelDeletePostsWithNoComments = async () => {
     if (isDeleting) return;
     try {
       setIsDeleting(true);
-      const result = await deleteNormalPosts();
-      if (result?.success) toast.success("All trips deleted successfully");
+      const result = await deletePostsThatHaveNoComments();
+      if (result?.success)
+        toast.success("All trips with no comments deleted successfully");
     } catch (error) {
       toast.error("Failed to delete all trips");
     } finally {
@@ -26,7 +30,7 @@ const DeleteNormalTrips = () => {
         title="Delete Normal Post"
         description="This action cannot be undone."
         isDeleting={isDeleting}
-        onDelete={handelDeleteNormalPosts}
+        onDelete={handelDeletePostsWithNoComments}
       />
     </div>
   );

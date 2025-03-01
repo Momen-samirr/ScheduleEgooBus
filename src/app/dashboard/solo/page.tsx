@@ -1,5 +1,6 @@
 import { getSoloPosts, getSoloRamdanTrips } from "@/actions/post.action";
-import { getDbUserId } from "@/actions/user.action";
+import { getDbUser, getDbUserId } from "@/actions/user.action";
+import DeleteSoloTrips from "@/components/DeleteSoloTrips";
 import PostCard from "@/components/PostCard";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -7,6 +8,7 @@ import React from "react";
 const SoloTripRoute = async () => {
   const trips = await getSoloRamdanTrips();
   const dbUserId = await getDbUserId();
+  const dbUser = await getDbUser();
 
   if (!dbUserId) return redirect("/");
   return (
@@ -17,6 +19,11 @@ const SoloTripRoute = async () => {
             <p className="text-center text-sm text-gray-500">
               No trips found for this time
             </p>
+          )}
+          {dbUser?.role === "admin" && (
+            <div>
+              <DeleteSoloTrips />
+            </div>
           )}
           {trips.map((trip) => (
             <PostCard key={trip.id} trip={trip} dbUserId={dbUserId} />

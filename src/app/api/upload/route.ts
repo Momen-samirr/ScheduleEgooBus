@@ -18,9 +18,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Log input data for debugging
-    console.log("Received trips data:", JSON.stringify(tripsData, null, 2));
-
     // Check existing trips to prevent duplication
     const existingTrips = await prisma.post.findMany({
       where: {

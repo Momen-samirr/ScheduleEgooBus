@@ -355,7 +355,7 @@ export async function createComment(postId: string, content: string) {
     const existingComment = await prisma.comment.findFirst({
       where: {
         postId,
-        authorId: { not: userId },
+        authorId: { notIn: [userId, post.authorId] },
       },
     });
 
@@ -489,3 +489,43 @@ export const deleteNormalPosts = async () => {
     return { success: false, error: "Failed to delete post" };
   }
 };
+
+export async function deletePostsThatHaveNoComments() {
+  try {
+    const dbUser = await getDbUser();
+    if (!dbUser) return;
+    await prisma.post.deleteMany({
+      where: {
+        tripType: "SCHEDULED",
+        comments: {
+          none: {},
+        },
+      },
+    });
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to delete post:", error);
+    return { success: false, error: "Failed to delete post" };
+  }
+}
+
+export async function deleteSoloPostsThatHaveNoComments() {
+  try {
+    const dbUser = await getDbUser();
+    if (!dbUser) return;
+    await prisma.post.deleteMany({
+      where: {
+        tripType: "SOLO",
+        comments: {
+          none: {},
+        },
+      },
+    });
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to delete post:", error);
+    return { success: false, error: "Failed to delete post" };
+  }
+}
