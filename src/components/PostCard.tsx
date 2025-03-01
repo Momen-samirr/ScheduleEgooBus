@@ -155,9 +155,9 @@ function PostCard({
                     {trip?.author.name}
                   </Link>
                   <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                    <Link href={`/profile/${trip?.author.username}`}>
+                    {/* <Link href={`/profile/${trip?.author.username}`}>
                       @{trip?.author.username}
-                    </Link>
+                    </Link> */}
                     <span>•</span>
                     <span>
                       {formatDistanceToNow(new Date(trip?.createdAt))} ago
@@ -174,9 +174,7 @@ function PostCard({
                 </div>
                 <div className="ml-5">
                   {trip.tripType === "SOLO" && (
-                    <span className="text-sky-500 text-sm">
-                      رحله فردية (مناقصة)
-                    </span>
+                    <span className="text-sky-500 text-sm">(مناقصة)</span>
                   )}
                 </div>
                 {/* Check if current user is the post author */}
