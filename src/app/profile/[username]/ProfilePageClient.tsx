@@ -223,16 +223,16 @@ function ProfilePageClient({
           </Card>
         </div>
 
-        <Tabs defaultValue="posts" className="w-full">
+        <Tabs defaultValue="likes" className="w-full">
           <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent">
-            <TabsTrigger
+            {/* <TabsTrigger
               value="posts"
               className="flex items-center gap-2 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-primary
               data-[state=active]:bg-transparent px-6 font-semibold"
             >
               <FileTextIcon className="size-5" />
               Posts
-            </TabsTrigger>
+            </TabsTrigger> */}
             <TabsTrigger
               value="likes"
               className="flex items-center gap-2 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-primary
@@ -243,7 +243,7 @@ function ProfilePageClient({
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="posts" className="mt-6">
+          {/* <TabsContent value="posts" className="mt-6">
             <div className="space-y-6">
               {posts.length > 0 ? (
                 posts.map((post) => (
@@ -255,7 +255,7 @@ function ProfilePageClient({
                 </div>
               )}
             </div>
-          </TabsContent>
+          </TabsContent> */}
 
           <TabsContent value="likes" className="mt-6">
             <div className="space-y-6">
