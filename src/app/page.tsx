@@ -1,5 +1,5 @@
 import { getBanners } from "@/actions/banner.action";
-import { getPosts } from "@/actions/post.action";
+import { getPostsAdminView } from "@/actions/post.action";
 import { getTrips } from "@/actions/trips.action";
 import { getDbUserId } from "@/actions/user.action";
 // import CreatePost from "@/components/CreatePost";
@@ -18,7 +18,7 @@ export default async function Home() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   const dbUserId = await getDbUserId();
-  const trips = await getPosts();
+  const trips = await getPostsAdminView();
   const banners = await getBanners();
   console.log("trips:", trips);
 

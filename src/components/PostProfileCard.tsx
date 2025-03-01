@@ -4,7 +4,7 @@ import {
   createComment,
   deleteComment,
   deletePost,
-  getPosts,
+  getPostsAdminView,
   toggleLike,
 } from "@/actions/post.action";
 import {
@@ -34,7 +34,7 @@ import {
 import { Textarea } from "./ui/textarea";
 import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
-type Posts = Awaited<ReturnType<typeof getPosts>>;
+type Posts = Awaited<ReturnType<typeof getPostsAdminView>>;
 type Post = Posts[number];
 
 function PostProfileCard({

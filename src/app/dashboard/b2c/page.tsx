@@ -1,14 +1,15 @@
-import { getPosts } from "@/actions/post.action";
+import { getPostsAdminView, getPostsDriverView } from "@/actions/post.action";
 import { getDbUser, getDbUserId } from "@/actions/user.action";
 import DeleteNormalTrips from "@/components/DeleteNormalTrips";
 import PostCard from "@/components/PostCard";
+import PostCardAdminView from "@/components/PostCardAdminView";
 import { redirect } from "next/navigation";
 import React from "react";
 
 const UberRoute = async () => {
-  const trips = await getPosts();
+  const trips = await getPostsDriverView();
   const dbUserId = await getDbUserId();
-
+  const tripsAdminView = await getPostsAdminView();
   const dbUser = await getDbUser();
   if (!dbUser) return redirect("/");
 
@@ -33,14 +34,29 @@ const UberRoute = async () => {
           </p>
           <p className="text-xl text-sky-500">جداول شغل من يوم 2 الي يوم 6</p>
           <p className="text-xl text-red-500">جداول شغل شهر رمضان</p>
-          {trips.map((trip) => (
-            <PostCard
-              key={trip.id}
-              trip={trip}
-              dbUserId={dbUserId}
-              dbUser={dbUser}
-            />
-          ))}
+          {dbUser?.role !== "admin" ? (
+            <>
+              {trips.map((trip) => (
+                <PostCard
+                  key={trip.id}
+                  trip={trip}
+                  dbUserId={dbUserId}
+                  dbUser={dbUser}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              {tripsAdminView.map((trip) => (
+                <PostCardAdminView
+                  key={trip.id}
+                  trip={trip}
+                  dbUserId={dbUserId}
+                  dbUser={dbUser}
+                />
+              ))}
+            </>
+          )}
         </div>
       </div>
     </div>

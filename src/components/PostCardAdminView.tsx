@@ -4,7 +4,7 @@ import {
   createComment,
   deleteComment,
   deletePost,
-  getPostsDriverView,
+  getPostsAdminView,
   toggleLike,
 } from "@/actions/post.action";
 import {
@@ -34,10 +34,10 @@ import {
 import { Textarea } from "./ui/textarea";
 import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
-type Posts = Awaited<ReturnType<typeof getPostsDriverView>>;
+type Posts = Awaited<ReturnType<typeof getPostsAdminView>>;
 type Post = Posts[number];
 
-function PostCard({
+function PostCardAdminView({
   trip,
   dbUserId,
   dbUser,
@@ -408,4 +408,4 @@ function PostCard({
     </Card>
   );
 }
-export default PostCard;
+export default PostCardAdminView;

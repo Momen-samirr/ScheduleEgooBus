@@ -40,9 +40,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Log filtered new trips
-    console.log("New trips to be added:", JSON.stringify(newTrips, null, 2));
-
     // Insert new trips into the database
     const createdTrips = await prisma.post.createMany({
       data: newTrips.map((trip) => ({
