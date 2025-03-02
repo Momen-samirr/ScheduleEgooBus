@@ -5,7 +5,7 @@ import { getDbUser, getDbUserId } from "./user.action";
 import { revalidatePath } from "next/cache";
 import { parseISO } from "date-fns";
 import { addMinutes, differenceInMinutes } from "date-fns";
-import { isBefore, isAfter, setHours, setMinutes, setSeconds } from "date-fns";
+import { isBefore } from "date-fns";
 
 export async function getHunkelTrips() {
   try {
@@ -309,14 +309,13 @@ export async function makeTripAsDone(tripId: string) {
       };
     }
 
-    // Define the allowed time range (8 PM - 10 PM)
-    const startTime = setSeconds(setMinutes(setHours(now, 20), 0), 0);
-    const endTime = setSeconds(setMinutes(setHours(now, 22), 0), 0);
-
-    if (isBefore(now, startTime) || isAfter(now, endTime)) {
+    // Check if at least one minute has passed since the trip time
+    const allowedTime = addMinutes(tripDate, 1);
+    if (isBefore(now, allowedTime)) {
       return {
         success: false,
-        error: "Trip can only be marked as done between 8 PM and 10 PM",
+        error:
+          "Trip can only be marked as done after at least one minute has passed",
       };
     }
 
@@ -338,3 +337,60 @@ export async function makeTripAsDone(tripId: string) {
     return { success: false, error: "Failed to mark trip as done" };
   }
 }
+
+// export async function makeTripAsDone(tripId: string) {
+//   try {
+//     const dbUser = await getDbUser();
+//     if (!dbUser) return;
+//     const { getUser } = getKindeServerSession();
+//     const user = await getUser();
+//     if (!user) return;
+
+//     const trip = await prisma.tripindividual.findUnique({
+//       where: { id: tripId },
+//     });
+
+//     if (!trip) {
+//       return { success: false, error: "Trip not found" };
+//     }
+
+//     const now = new Date();
+//     const tripDate = new Date(trip.date); // Convert Prisma DateTime to JS Date
+
+//     // Ensure the trip date is today or earlier
+//     if (isBefore(now, tripDate)) {
+//       return {
+//         success: false,
+//         error: "Trip cannot be marked as done before its scheduled date",
+//       };
+//     }
+
+//     // Define the allowed time range (8 PM - 10 PM)
+//     const startTime = setSeconds(setMinutes(setHours(now, 20), 0), 0);
+//     const endTime = setSeconds(setMinutes(setHours(now, 22), 0), 0);
+
+//     if (isBefore(now, startTime) || isAfter(now, endTime)) {
+//       return {
+//         success: false,
+//         error: "Trip can only be marked as done between 8 PM and 10 PM",
+//       };
+//     }
+
+//     await prisma.tripindividual.update({
+//       where: {
+//         id: tripId,
+//         driverId: dbUser.id,
+//         status: "reserved",
+//       },
+//       data: {
+//         reservedTripStatus: "done",
+//       },
+//     });
+
+//     revalidatePath("/");
+//     return { success: true };
+//   } catch (error) {
+//     console.error("Failed to mark trip as done:", error);
+//     return { success: false, error: "Failed to mark trip as done" };
+//   }
+// }
