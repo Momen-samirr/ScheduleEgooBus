@@ -310,7 +310,7 @@ export async function makeTripAsDone(tripId: string) {
     }
 
     // Define the allowed time range (8 PM - 10 PM)
-    const startTime = setSeconds(setMinutes(setHours(now, 10), 0), 0);
+    const startTime = setSeconds(setMinutes(setHours(now, 8), 0), 0);
     const endTime = setSeconds(setMinutes(setHours(now, 22), 0), 0);
 
     if (isBefore(now, startTime) || isAfter(now, endTime)) {
