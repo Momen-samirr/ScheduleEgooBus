@@ -24,14 +24,40 @@ const DeleteSoloTrips = () => {
       setIsDeleting(false);
     }
   };
+
+  const handelDeleteAllSoloTrips = async () => {
+    if (isDeleting) return;
+
+    try {
+      setIsDeleting(true);
+      const result = await deleteAllSoloTrips();
+      if (result?.success) toast.success("All posts deleted successfully");
+    } catch (error) {
+      toast.error("Failed to delete all posts");
+    } finally {
+      setIsDeleting(false);
+    }
+  };
   return (
-    <div>
-      <DeleteAlertDialog
-        title="Delete Post"
-        description="This action cannot be undone."
-        isDeleting={isDeleting}
-        onDelete={handelDeleteSoloTripsWithNoComments}
-      />
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-3">
+        <span>Delete all solo trips tat have no comments</span>
+        <DeleteAlertDialog
+          title="Delete All solo trips with no comments"
+          description="This action cannot be undone."
+          isDeleting={isDeleting}
+          onDelete={handelDeleteSoloTripsWithNoComments}
+        />
+      </div>
+      <div className="flex items-center gap-3">
+        <span>Delete all solo trips</span>
+        <DeleteAlertDialog
+          title="Delete all Solo Trips"
+          description="This action cannot be undone."
+          isDeleting={isDeleting}
+          onDelete={handelDeleteAllSoloTrips}
+        />
+      </div>
     </div>
   );
 };

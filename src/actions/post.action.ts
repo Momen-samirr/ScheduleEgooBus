@@ -530,15 +530,13 @@ export const deleteComment = async (commentId: string) => {
   }
 };
 
-export const deleteNormalPosts = async () => {
+export const deleteAllPosts = async () => {
   try {
     const dbUser = await getDbUser();
-    if (!dbUser) return;
-
+    if (!dbUser) return null;
     await prisma.post.deleteMany({
       where: {
         tripType: "SCHEDULED",
-        tripMode: "ramdan",
       },
     });
     revalidatePath("/");
