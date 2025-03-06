@@ -10,6 +10,10 @@ const DashboardRoute = async () => {
   const banners = await getBanners();
   const dbUser = await getDbUser();
 
+  const { getUser } = getKindeServerSession();
+
+  const user = await getUser();
+
   if (!dbUser) return redirect("/");
 
   if (dbUser?.role === "user") {
@@ -41,32 +45,36 @@ const DashboardRoute = async () => {
             topic=" شغل الشارع"
           />
         </div>
-        <div className="lg:col-span-5">
-          <CompanyCard
-            title="Hunkel"
-            href="/dashboard/hunkel"
-            veicle="ملاكي"
-            availability="Now Available"
-            topic="شركات"
-            subTitle="Reserved Trips"
-            subHref="/dashboard/reservedTrips"
-            adminTitle="Admin Show"
-            adminRoute="/dashboard/adminShow"
-          />
-        </div>
-        <div className="lg:col-span-5">
-          <CompanyCard
-            title="New Henkel schedule"
-            href="/dashboard/testCard"
-            veicle="ملاكي"
-            availability="Available Soon"
-            topic="شركات"
-            subTitle="My Reserved Schedule"
-            subHref="/dashboard/myRoute"
-            adminTitle="Admin Show"
-            adminRoute="/dashboard/hunkelAdminShow"
-          />
-        </div>
+        {user?.email !== "tareqmohamed604@gmail.com" ? (
+          <>
+            <div className="lg:col-span-5">
+              <CompanyCard
+                title="Hunkel"
+                href="/dashboard/hunkel"
+                veicle="ملاكي"
+                availability="Now Available"
+                topic="شركات"
+                subTitle="Reserved Trips"
+                subHref="/dashboard/reservedTrips"
+                adminTitle="Admin Show"
+                adminRoute="/dashboard/adminShow"
+              />
+            </div>
+            <div className="lg:col-span-5">
+              <CompanyCard
+                title="New Henkel schedule"
+                href="/dashboard/testCard"
+                veicle="ملاكي"
+                availability="Available Soon"
+                topic="شركات"
+                subTitle="My Reserved Schedule"
+                subHref="/dashboard/myRoute"
+                adminTitle="Admin Show"
+                adminRoute="/dashboard/hunkelAdminShow"
+              />
+            </div>
+          </>
+        ) : null}
       </div>
       <VoiceflowChat />
     </>
