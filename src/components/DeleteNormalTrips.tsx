@@ -7,6 +7,7 @@ import {
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { DeleteAlertDialog } from "./DeleteAlertDialog";
+import RefreshButton from "./RefreshButtuon";
 
 const DeleteNormalTrips = () => {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -56,6 +57,9 @@ const DeleteNormalTrips = () => {
           isDeleting={isDeleting}
           onDelete={handelDeleteAllPosts}
         />
+      </div>
+      <div>
+        <RefreshButton />
       </div>
     </div>
   );
