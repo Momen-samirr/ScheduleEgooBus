@@ -3,6 +3,7 @@
 import prisma from "@/lib/prisma";
 import { getDbUser, getDbUserId } from "./user.action";
 import { revalidatePath } from "next/cache";
+import { SquareDashed } from "lucide-react";
 
 // export async function createPost(content: string, image: string) {
 //   try {
