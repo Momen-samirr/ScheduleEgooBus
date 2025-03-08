@@ -14,8 +14,14 @@ const RefreshButton = () => {
   };
   return (
     <div className="flex items-center gap-3">
-      <Button variant={"outline"} onClick={handelRefresh} disabled={loading}>
+      <Button
+        variant={"outline"}
+        onClick={handelRefresh}
+        disabled={loading}
+        className="justify-end"
+      >
         <RefreshCcwIcon className={`${loading ? "animate-spin" : ""} size-5`} />
+        {loading ? "جاري التحديث" : null}
       </Button>
     </div>
   );

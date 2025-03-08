@@ -1,4 +1,4 @@
-import { getDbUser, getUsers } from "@/actions/user.action";
+import { getDbUser, getHunkelDrivers, getUsers } from "@/actions/user.action";
 import {
   Card,
   CardContent,
@@ -14,7 +14,7 @@ const UsersRoute = async () => {
   const user = await getDbUser();
 
   if (user?.role !== "admin") return null;
-  const users = await getUsers();
+  const users = await getHunkelDrivers();
   console.log("users:", users);
 
   return (

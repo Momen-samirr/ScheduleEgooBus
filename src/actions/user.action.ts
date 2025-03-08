@@ -232,6 +232,39 @@ export async function getUsers() {
   }
 }
 
+export async function getHunkelDrivers() {
+  try {
+    const users = await prisma.user.findMany({
+      where: {
+        NOT: {
+          trips: {
+            none: {},
+          },
+        },
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        username: true,
+        image: true,
+        phone: true,
+        role: true,
+        _count: {
+          select: {
+            trips: true,
+          },
+        },
+      },
+    });
+
+    return users;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw new Error("Failed to fetch users"); // Throwing an error can be useful for debugging
+  }
+}
+
 export async function toggleFollow(targetUserId: string) {
   try {
     const userId = await getDbUserId();

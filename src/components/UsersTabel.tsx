@@ -32,7 +32,6 @@ type User = {
   phone: string | null;
   role: string;
   _count: {
-    posts: number;
     trips: number;
   };
 };
@@ -67,6 +66,11 @@ const UsersTable = ({ users }: { users: User[] }) => {
       accessorKey: "role",
       header: "Role",
       cell: ({ row }) => <div>{row.getValue("role")}</div>,
+    },
+    {
+      accessorKey: "_count.trips",
+      header: "Trips",
+      cell: ({ row }) => <div>{row.original._count.trips}</div>,
     },
   ];
 
