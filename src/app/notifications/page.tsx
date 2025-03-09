@@ -4,10 +4,12 @@ import {
   getNotifications,
   markNotificationsAsRead,
 } from "@/actions/notification.action";
+import CommentComponent from "@/components/CommentComponent";
 import { NotificationsSkeleton } from "@/components/NotificationSkeleton";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { formatDistanceToNow } from "date-fns";
 import { HeartIcon, MessageCircleIcon, UserPlusIcon } from "lucide-react";
 
@@ -33,6 +35,7 @@ const getNotificationIcon = (type: string) => {
 function NotificationsPage() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useKindeBrowserClient();
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -137,6 +140,9 @@ function NotificationsPage() {
                       })}
                     </p>
                   </div>
+                  {user?.email === "egoobus5@gmail.com" && (
+                    <CommentComponent trip={notification?.post} />
+                  )}
                 </div>
               ))
             )}

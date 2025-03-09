@@ -28,12 +28,37 @@ export async function getNotifications() {
             trips: true,
             tableCode: true,
             tripMode: true,
+            comments: {
+              select: {
+                id: true,
+                authorId: true,
+                createdAt: true,
+                content: true,
+                author: {
+                  select: {
+                    id: true,
+                    name: true,
+                    username: true,
+                    image: true,
+                  },
+                },
+              },
+            },
           },
         },
         comment: {
           select: {
             id: true,
             content: true,
+            authorId: true,
+            author: {
+              select: {
+                id: true,
+                name: true,
+                username: true,
+                image: true,
+              },
+            },
             createdAt: true,
           },
         },
