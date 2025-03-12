@@ -166,7 +166,7 @@ function PostProfileCard({
                       {trip?.tripMode === "normal" && (
                         <>
                           <Moon className="size-5 text-sky-500" />
-                          <span className="text-sky-500">جدول رمضان</span>
+                          <span className="text-sky-500">جدول بعد رمضان</span>
                         </>
                       )}
                     </span>
