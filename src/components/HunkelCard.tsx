@@ -53,7 +53,7 @@ const CompanyCard = async ({
           <div className="space-y-3 mb-3">
             <Avatar>
               <AvatarImage
-                src={src ? "/ramdan.png" : "https://github.com/shadcn.png"}
+                src={src ? "/uber.png" : "https://github.com/shadcn.png"}
               />
               <AvatarFallback>HC</AvatarFallback>
             </Avatar>

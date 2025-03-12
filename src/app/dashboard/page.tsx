@@ -36,13 +36,14 @@ const DashboardRoute = async () => {
         </div> */}
         <div className="lg:col-span-5">
           <CompanyCard
-            title="جداول"
+            title=" جداول ما بعد شهر رمضان"
             href="/dashboard/b2c"
-            subTitle="رحلات فردية"
-            subHref="/dashboard/solo"
+            // subTitle="رحلات فردية"
+            // subHref="/dashboard/solo"
             veicle="هاي اس"
             availability="Now Available"
-            topic=" شغل الشارع"
+            topic=" توزيعة ما بعد رمضان"
+            src="/uber.png"
           />
         </div>
         {user?.email !== "tareqmohamed604@gmail.com" ? (
