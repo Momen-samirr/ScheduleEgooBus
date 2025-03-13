@@ -69,18 +69,6 @@ async function DesktopNavbar() {
               </Link>
             </Button>
           )}
-          {dbUser?.role === "employee" && (
-            <Button
-              variant={"ghost"}
-              className="flex items-center gap-3"
-              asChild
-            >
-              <Link href={"/usersinfo"}>
-                <Users2 className="size-5" />
-                <span className="hidden lg:inline">Users Info</span>
-              </Link>
-            </Button>
-          )}
           {dbUser?.role === "admin" && (
             <Button
               variant={"ghost"}

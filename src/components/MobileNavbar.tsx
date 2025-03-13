@@ -95,7 +95,7 @@ function MobileNavbar({ notifications }: any, { dbUser }: any) {
                     Dashboard
                   </Link>
                 </Button>
-                <Button
+                {/* <Button
                   variant="ghost"
                   className="flex items-center gap-3 justify-start"
                   asChild
@@ -104,7 +104,7 @@ function MobileNavbar({ notifications }: any, { dbUser }: any) {
                     <Users2 className="w-5 h-5" />
                     UsersInfo
                   </Link>
-                </Button>
+                </Button> */}
                 <Button
                   variant="ghost"
                   className="flex items-center gap-3 justify-start"
