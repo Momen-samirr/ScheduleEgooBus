@@ -163,12 +163,20 @@ function PostProfileCard({
                       {formatDistanceToNow(new Date(trip?.createdAt))} ago
                     </span>
                     <span className="flex items-center justify-between gap-3">
-                      {trip?.tripMode === "normal" && (
+                      {trip?.tripMode === "ramdan" &&
+                      trip?.tripType === "SCHEDULED" ? (
                         <>
                           <Moon className="size-5 text-sky-500" />
                           <span className="text-sky-500">جدول بعد رمضان</span>
                         </>
-                      )}
+                      ) : null}
+                      {trip?.tripMode === "normal" &&
+                      trip?.tripType === "SCHEDULED" ? (
+                        <>
+                          <Moon className="size-5 text-sky-500" />
+                          <span className="text-sky-500">جدول شغل</span>
+                        </>
+                      ) : null}
                     </span>
                   </div>
                 </div>

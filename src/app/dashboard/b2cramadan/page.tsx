@@ -1,14 +1,21 @@
-import { getRamdanPosts } from "@/actions/post.action";
+import {
+  getRamdanPostsAdminView,
+  getRamdanPostsDriverView,
+} from "@/actions/post.action";
 import { getDbUser, getDbUserId } from "@/actions/user.action";
+import AdminVwPost from "@/components/AdminVwPost";
+import NormalPostDriverView from "@/components/NormalPostDriverView";
 import PostCard from "@/components/PostCard";
-import { HeartIcon, Moon } from "lucide-react";
+import RefreshButton from "@/components/RefreshButtuon";
+import { HeartIcon, Moon, Settings } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
 
 const UberRoute = async () => {
-  const trips = await getRamdanPosts();
+  const trips = await getRamdanPostsDriverView();
   const dbUserId = await getDbUserId();
-  const dpuser = await getDbUser();
+  const tripsAdminView = await getRamdanPostsAdminView();
+  const dbUser = await getDbUser();
   if (!dbUserId) return redirect("/");
   return (
     <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
@@ -19,15 +26,39 @@ const UberRoute = async () => {
               No trips found for this time
             </p>
           )}
+          <div className="flex items-center justify-end">
+            <RefreshButton />
+          </div>
           <div className="flex items-center justify-center gap-3">
             <div className="flex items-center font-semibold">
-              <Moon />
-              <span>توزيعة رمضان، كل عام وحضراتكم بخير</span>
+              <Settings />
+              <span>جداول شغل</span>
             </div>
           </div>
-          {trips.map((trip) => (
-            <PostCard key={trip.id} trip={trip} dbUserId={dbUserId} />
-          ))}
+          {dbUser?.role !== "admin" ? (
+            <>
+              {trips.map((trip) => (
+                <NormalPostDriverView
+                  key={trip?.id}
+                  trip={trip}
+                  dbUserId={dbUserId}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              {tripsAdminView?.map((trip) => (
+                <>
+                  <AdminVwPost
+                    key={trip.id}
+                    trip={trip}
+                    dbUserId={dbUserId}
+                    dbUser={dbUser}
+                  />
+                </>
+              ))}
+            </>
+          )}
         </div>
       </div>
     </div>

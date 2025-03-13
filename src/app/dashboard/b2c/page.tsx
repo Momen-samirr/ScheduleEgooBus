@@ -3,6 +3,7 @@ import { getDbUser, getDbUserId } from "@/actions/user.action";
 import DeleteNormalTrips from "@/components/DeleteNormalTrips";
 import PostCard from "@/components/PostCard";
 import PostCardAdminView from "@/components/PostCardAdminView";
+import RefreshButton from "@/components/RefreshButtuon";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -28,6 +29,9 @@ const UberRoute = async () => {
               <DeleteNormalTrips />
             </div>
           )}
+          <div className="flex items-center justify-end">
+            <RefreshButton />
+          </div>
           <p className="text-xl text-red-500">
             تنويه هام: أي جدول تطلبه سيتم تنزيله تلقائيًا، ولا يمكن إلغاؤه إلا
             بعد إبلاغ مستر هاني كارم.

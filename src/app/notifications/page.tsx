@@ -118,9 +118,9 @@ function NotificationsPage() {
                             </p>
                             <div className="flex items-center justify-end gap-3">
                               <p className="font-bold text-sky-500">
-                                {notification?.post?.tripMode === "normal"
-                                  ? "Ramdan"
-                                  : "Normal"}
+                                {notification?.post?.tripMode === "ramdan"
+                                  ? "After Radman"
+                                  : "Gadwl Sho8l"}
                               </p>
                             </div>
                           </div>

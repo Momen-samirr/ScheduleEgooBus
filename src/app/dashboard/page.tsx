@@ -22,18 +22,6 @@ const DashboardRoute = async () => {
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-10 gap-10">
-        {/* <div className="lg:col-span-5">
-          <CompanyCard
-            title="جداول"
-            href="/dashboard/b2cramadan"
-            subTitle="رحلات رمضان الفردية"
-            subHref="/dashboard/soloramdan"
-            veicle="هاي اس"
-            availability="Now Available"
-            topic="توزيعة رمضان"
-            src="/ramdan.png"
-          />
-        </div> */}
         <div className="lg:col-span-5">
           <CompanyCard
             title=" جداول ما بعد شهر رمضان"
@@ -43,6 +31,18 @@ const DashboardRoute = async () => {
             veicle="هاي اس"
             availability="Now Available"
             topic=" توزيعة ما بعد رمضان"
+            src="/uber.png"
+          />
+        </div>
+        <div className="lg:col-span-5">
+          <CompanyCard
+            title="جداول شغل"
+            href="/dashboard/b2cramadan"
+            subTitle="رحلات فردية"
+            subHref="/dashboard/soloramdan"
+            veicle="هاي اس"
+            availability="Now Available"
+            topic="جداول شغل من فتره 16 الي 20"
             src="/uber.png"
           />
         </div>

@@ -58,9 +58,6 @@ const DeleteNormalTrips = () => {
           onDelete={handelDeleteAllPosts}
         />
       </div>
-      <div>
-        <RefreshButton />
-      </div>
     </div>
   );
 };

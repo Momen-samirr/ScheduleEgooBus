@@ -142,7 +142,65 @@ export async function getPostsAdminView() {
   }
 }
 
-export async function getRamdanPosts() {
+export async function getRamdanPostsDriverView() {
+  try {
+    const posts = await prisma.post.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      where: {
+        tripType: "SCHEDULED",
+        tripMode: "normal",
+        comments: {
+          none: {},
+        },
+      },
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+            username: true,
+          },
+        },
+        comments: {
+          orderBy: {
+            createdAt: "asc",
+          },
+          include: {
+            author: {
+              select: {
+                id: true,
+                username: true,
+                image: true,
+                name: true,
+                phone: true,
+              },
+            },
+          },
+        },
+        likes: {
+          select: {
+            userId: true,
+          },
+        },
+        _count: {
+          select: {
+            likes: true,
+            comments: true,
+          },
+        },
+      },
+    });
+
+    return posts;
+  } catch (error) {
+    console.log("Error in getPosts", error);
+    throw new Error("Failed to fetch posts");
+  }
+}
+export async function getRamdanPostsAdminView() {
   try {
     const posts = await prisma.post.findMany({
       orderBy: {
@@ -538,6 +596,7 @@ export const deleteAllPosts = async () => {
     await prisma.post.deleteMany({
       where: {
         tripType: "SCHEDULED",
+        tripMode: "ramdan",
       },
     });
     revalidatePath("/");
@@ -555,6 +614,7 @@ export async function deletePostsThatHaveNoComments() {
     await prisma.post.deleteMany({
       where: {
         tripType: "SCHEDULED",
+        tripMode: "ramdan",
         comments: {
           none: {},
         },

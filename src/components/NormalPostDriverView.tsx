@@ -5,6 +5,7 @@ import {
   deleteComment,
   deletePost,
   getPostsDriverView,
+  getRamdanPostsDriverView,
   toggleLike,
 } from "@/actions/post.action";
 import {
@@ -34,10 +35,10 @@ import {
 import { Textarea } from "./ui/textarea";
 import { LoginLink, useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
-type Posts = Awaited<ReturnType<typeof getPostsDriverView>>;
+type Posts = Awaited<ReturnType<typeof getRamdanPostsDriverView>>;
 type Post = Posts[number];
 
-function PostCard({
+function NormalPostDriverView({
   trip,
   dbUserId,
   dbUser,
@@ -163,10 +164,10 @@ function PostCard({
                       {formatDistanceToNow(new Date(trip?.createdAt))} ago
                     </span>
                     <span className="flex items-center justify-between gap-3">
-                      {trip?.tripMode === "ramdan" ? (
+                      {trip?.tripMode === "normal" ? (
                         <>
                           <Moon className="size-5 text-sky-500" />
-                          <span className="text-sky-500"> جدول بعد رمضان</span>
+                          <span className="text-sky-500">جدول شغل</span>
                         </>
                       ) : null}
                     </span>
@@ -408,4 +409,4 @@ function PostCard({
     </Card>
   );
 }
-export default PostCard;
+export default NormalPostDriverView;

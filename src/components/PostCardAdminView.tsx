@@ -163,12 +163,15 @@ function PostCardAdminView({
                       {formatDistanceToNow(new Date(trip?.createdAt))} ago
                     </span>
                     <span className="flex items-center justify-between gap-3">
-                      {trip?.tripMode && (
+                      {trip?.tripMode === "ramdan" ? (
                         <>
                           <Moon className="size-5 text-sky-500" />
-                          <span className="text-sky-500"> رمضان كريم</span>
+                          <span className="text-sky-500">
+                            {" "}
+                            جدول ما بعد رمضان
+                          </span>
                         </>
-                      )}
+                      ) : null}
                     </span>
                   </div>
                 </div>
