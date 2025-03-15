@@ -13,9 +13,8 @@ import React from "react";
 const UsersRoute = async () => {
   const user = await getDbUser();
 
-  if (user?.role === "user") return null;
+  if (user?.role === "driver") return redirect("/");
   const users = await getHunkelDrivers();
-  console.log("users:", users);
 
   return (
     <Card className="p-6">

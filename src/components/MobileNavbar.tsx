@@ -106,6 +106,16 @@ function MobileNavbar({ notifications }: any, { dbUser }: any) {
                   </Link>
                 </Button> */}
                 <Button
+                  variant={"ghost"}
+                  className="flex items-center gap-3 justify-start"
+                  asChild
+                >
+                  <Link href={`/usersplatform`}>
+                    <Users2 className="w-5 h-5" />
+                    Users
+                  </Link>
+                </Button>
+                <Button
                   variant="ghost"
                   className="flex items-center gap-3 justify-start"
                   asChild

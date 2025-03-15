@@ -62,11 +62,11 @@ const UsersTable = ({ users }: { users: User[] }) => {
       header: "Phone",
       cell: ({ row }) => <div>{row.getValue("phone") || "N/A"}</div>,
     },
-    {
-      accessorKey: "role",
-      header: "Role",
-      cell: ({ row }) => <div>{row.getValue("role")}</div>,
-    },
+    // {
+    //   accessorKey: "role",
+    //   header: "Role",
+    //   cell: ({ row }) => <div>{row.getValue("role")}</div>,
+    // },
     {
       accessorKey: "_count.trips",
       header: "Trips",
