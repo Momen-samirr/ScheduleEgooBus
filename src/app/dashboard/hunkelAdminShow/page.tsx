@@ -10,7 +10,7 @@ const HunkelAdminShow = async () => {
   const reservedRoutes = await getReservedRoutes();
   const dbUser = await getDbUser();
 
-  if (dbUser?.role === "driver") return redirect("/");
+  if (dbUser?.role !== "admin") return redirect("/");
   return (
     <>
       <Card>
