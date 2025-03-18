@@ -7,6 +7,7 @@ import {
   LogOutIcon,
   MenuIcon,
   MoonIcon,
+  OctagonAlert,
   SunIcon,
   UserIcon,
   Users2,
@@ -28,7 +29,10 @@ import {
   useKindeBrowserClient,
 } from "@kinde-oss/kinde-auth-nextjs";
 
-function MobileNavbar({ notifications }: any, { dbUser }: any) {
+function MobileNavbar(
+  { notifications, egooNotifications }: any,
+  { dbUser }: any
+) {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const { isAuthenticated } = useKindeBrowserClient();
   const { theme, setTheme } = useTheme();
@@ -78,10 +82,23 @@ function MobileNavbar({ notifications }: any, { dbUser }: any) {
                   asChild
                 >
                   <Link className="relative" href="/notifications">
-                    <BellIcon className="w-4 h-4" />
+                    <BellIcon className="w-5 h-5" />
                     Notifications{" "}
                     <span className="absolute top-0 left-8 font-semibold text-sky-500">
                       {notifications}
+                    </span>
+                  </Link>
+                </Button>
+                <Button
+                  variant={"ghost"}
+                  className="flex items-center gap-3 justify-start"
+                  asChild
+                >
+                  <Link href={`/egoonotification`} className="relative">
+                    <OctagonAlert className="size-5" />
+                    Egoo Notifications{" "}
+                    <span className="absolute top-0 left-8 font-semibold text-sky-500">
+                      {egooNotifications}
                     </span>
                   </Link>
                 </Button>

@@ -1,17 +1,15 @@
 "use client";
-
 import {
   getNotifications,
   markNotificationsAsRead,
-} from "@/actions/notification.action";
-import CommentComponent from "@/components/CommentComponent";
+} from "@/actions/tasknotfi.action";
 import { NotificationsSkeleton } from "@/components/NotificationSkeleton";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { formatDistanceToNow } from "date-fns";
-import { HeartIcon, MessageCircleIcon, UserPlusIcon } from "lucide-react";
+import { HeartIcon, MessageCircleIcon, Plus, UserPlusIcon } from "lucide-react";
 
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -21,8 +19,8 @@ type Notification = Notifications[number];
 
 const getNotificationIcon = (type: string) => {
   switch (type) {
-    case "LIKE":
-      return <HeartIcon className="size-5 text-red-500" />;
+    case "CREATE":
+      return <Plus className="size-5 text-green-500" />;
     case "COMMENT":
       return <MessageCircleIcon className="size-5 text-blue-500" />;
     case "FOLLOW":
@@ -99,7 +97,7 @@ function NotificationsPage() {
                         {notification.type === "FOLLOW"
                           ? "started following you"
                           : notification.type === "CREATE"
-                          ? "liked your post"
+                          ? "created a task"
                           : "commented on your post"}
                       </span>
                     </div>
@@ -107,22 +105,19 @@ function NotificationsPage() {
                       <span>{notification?.creator?.phone || "No phone"}</span>
                     </div>
 
-                    {notification.post &&
+                    {notification.task &&
                       (notification.type === "CREATE" ||
                         notification.type === "COMMENT") && (
                         <div className="pl-6 space-y-2">
                           <div className="text-sm text-muted-foreground rounded-md p-2 bg-muted/30 mt-2">
-                            <p>{notification.post.trips}</p>
-                            <p className="font-bold text-sky-500">
-                              {notification.post.tableCode}
-                            </p>
-                            <div className="flex items-center justify-end gap-3">
-                              <p className="font-bold text-sky-500">
-                                {notification?.post?.tripMode === "ramdan"
-                                  ? "After Radman"
-                                  : "Gadwl Sho8l"}
-                              </p>
-                            </div>
+                            <p>{notification?.task?.content}</p>
+                            {notification?.task?.image && (
+                              <img
+                                src={notification?.task?.image}
+                                alt={notification?.task?.content}
+                                className="mt-1.5 rounded-md w-full max-w-[300px] h-auto object-cover"
+                              />
+                            )}
                           </div>
 
                           {notification.type === "COMMENT" &&
@@ -140,9 +135,6 @@ function NotificationsPage() {
                       })}
                     </p>
                   </div>
-                  {user?.email === "egoobus5@gmail.com" && (
-                    <CommentComponent trip={notification?.post} />
-                  )}
                 </div>
               ))
             )}

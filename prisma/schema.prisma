@@ -30,8 +30,10 @@ model User {
   updatedAt DateTime @updatedAt
 
   // Relations:
-  posts Post[] 
-  comments Comment[] 
+  posts Post[]
+  task  Task[]
+  comments Comment[]
+  egooComments  EgooComment[]
   likes Like[] 
 
   followers Follows[] @relation("following") 
@@ -39,6 +41,8 @@ model User {
 
   notifications Notification[] @relation("userNotifications") 
   notificationsCreated Notification[] @relation("notificationCreator") 
+  egoonotifications EgooNotification[] @relation("egooUserNotifications") 
+  egoonotificationsCreated EgooNotification[] @relation("egooUserNotificationCreator") 
 
   trips Tripindividual[]
 
@@ -125,6 +129,21 @@ model Post {
   notifications   Notification[]
 }
 
+model Task {
+  id      String    @id   @default(cuid())
+  authorId         String
+  content     String
+  image       String
+
+
+  //Relations
+  author        User  @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comments        EgooComment[]
+  notifications   EgooNotification[]
+
+  createdAt     DateTime    @default(now())
+}
+
 model Tripindividual {
   id          String    @id   @default(cuid())
   driverId    String?
@@ -159,16 +178,31 @@ model Comment{
   @@index([authorId,postId]) // composite index for faster queries
 }
 
+model EgooComment {
+  id      String    @id   @default(cuid())
+  content String
+  authorId String
+  taskId    String
+  createdAt DateTime @default(now())
+
+//Relations
+author User @relation(fields: [authorId],references: [id],onDelete: Cascade)
+task Task   @relation(fields: [taskId], references: [id], onDelete: Cascade)
+notifications   EgooNotification[]
+  @@index([authorId,taskId]) // composite index for faster queries
+
+}
+
 model Like {
   id        String   @id @default(cuid())
-  postId    String                 
+  postId    String?                
   tripId    String?
   userId    String                 
   createdAt DateTime @default(now())
 
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  post      Post?     @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   @@index([userId,postId]) // composite index for faster queries
   @@unique([userId,postId]) // this prevents same user liking post twice
@@ -208,6 +242,23 @@ model Notification {
   @@index([userId, createdAt])
 }
 
+model EgooNotification {
+  id      String    @id   @default(cuid())
+  userId    String
+  creatorId   String
+  type      NotificationType
+  read      Boolean   @default(false)
+  taskId    String?
+  commentId   String?
+  createdAt   DateTime    @default(now())
+  //Relations
+  user      User     @relation("egooUserNotifications", fields: [userId], references: [id], onDelete: Cascade)
+  creator   User     @relation("egooUserNotificationCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  task      Task?    @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  comment   EgooComment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+}
+
 model Banner {
   id              String @id @default(uuid())
   title           String
@@ -235,7 +286,7 @@ enum TripMode {
 }
 
 enum NotificationType {
-  LIKE     
+  CREATE
   COMMENT 
   FOLLOW   
 }

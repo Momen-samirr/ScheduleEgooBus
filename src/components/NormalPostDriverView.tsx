@@ -6,7 +6,6 @@ import {
   deletePost,
   getPostsDriverView,
   getRamdanPostsDriverView,
-  toggleLike,
 } from "@/actions/post.action";
 import {
   AwaitedReactNode,
@@ -59,25 +58,6 @@ function NormalPostDriverView({
   );
   const [optimisticLikes, setOptmisticLikes] = useState(trip?._count.likes);
   const [showComments, setShowComments] = useState(false);
-
-  const handleLike = async () => {
-    if (isLiking) return;
-    try {
-      setIsLiking(true);
-      setHasLiked((prev: any) => !prev);
-      setOptmisticLikes((prev: number) => prev + (hasLiked ? -1 : 1));
-      await toggleLike(trip?.id);
-    } catch (error) {
-      setOptmisticLikes(trip?._count.likes);
-      setHasLiked(
-        trip?.likes?.some(
-          (like: { userId: string | null }) => like?.userId === dbUserId
-        )
-      );
-    } finally {
-      setIsLiking(false);
-    }
-  };
 
   const handleAddComment = async () => {
     if (!newComment.trim() || isCommenting) return;

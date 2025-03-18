@@ -5,6 +5,7 @@ import MobileNavbar from "./MobileNavbar";
 import { getDbUser, syncUser } from "@/actions/user.action";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { getUnReadNotifications } from "@/actions/notification.action";
+import { getUnReadEgooNotifications } from "@/actions/tasknotfi.action";
 
 async function Navbar() {
   // const user = await currentUser();
@@ -15,6 +16,7 @@ async function Navbar() {
 
   const notifications = await getUnReadNotifications();
 
+  const egooNotifications = await getUnReadEgooNotifications();
   const dbUser = await getDbUser();
 
   return (
@@ -31,7 +33,11 @@ async function Navbar() {
           </div>
 
           <DesktopNavbar />
-          <MobileNavbar notifications={notifications.length} dbUser={dbUser} />
+          <MobileNavbar
+            notifications={notifications?.length}
+            egooNotifications={egooNotifications?.length}
+            dbUser={dbUser}
+          />
         </div>
       </div>
     </nav>

@@ -1,5 +1,5 @@
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
-import { auth } from "@clerk/nextjs/server";
 
 const f = createUploadthing();
 
@@ -13,7 +13,8 @@ export const ourFileRouter = {
   })
     .middleware(async () => {
       // this code runs on your server before upload
-      const { userId } = await auth();
+      const { getUser } = getKindeServerSession();
+      const userId = getUser();
       if (!userId) throw new Error("Unauthorized");
 
       // whatever is returned here is accessible in onUploadComplete as `metadata`

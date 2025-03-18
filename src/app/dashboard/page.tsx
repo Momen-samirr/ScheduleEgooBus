@@ -76,6 +76,15 @@ const DashboardRoute = async () => {
             </div>
           </>
         ) : null}
+        <div className="lg:col-span-5">
+          <CompanyCard
+            title="New Raf3 Schedule"
+            href="/dashboard/upschedule"
+            availability="Now Available"
+            topic="رفع الجداول"
+            veicle="هاي اس"
+          />
+        </div>
       </div>
       <VoiceflowChat />
     </>

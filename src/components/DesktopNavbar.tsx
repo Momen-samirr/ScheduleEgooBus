@@ -3,6 +3,7 @@ import {
   DatabaseIcon,
   HomeIcon,
   LayoutDashboard,
+  OctagonAlert,
   UserIcon,
   Users2,
 } from "lucide-react";
@@ -16,11 +17,14 @@ import {
   LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import { getUnReadNotifications } from "@/actions/notification.action";
+import { getUnReadEgooNotifications } from "@/actions/tasknotfi.action";
 
 async function DesktopNavbar() {
   const { getUser } = getKindeServerSession();
 
   const notifications = getUnReadNotifications();
+
+  const eggoNotifications = getUnReadEgooNotifications();
 
   const user = await getUser();
 
@@ -44,6 +48,19 @@ async function DesktopNavbar() {
                 <span className="absolute top-0 right-1 text-sky-500 font-semibold">
                   {(await notifications).length}
                 </span>
+              </span>
+            </Link>
+          </Button>
+          <Button
+            variant={"ghost"}
+            className="flex items-center gap-1.5"
+            asChild
+          >
+            <Link href={`/egoonotification`} className="relative">
+              <OctagonAlert className="size-5" />
+              <span className="hidden lg:inline">Egoo Notifications</span>
+              <span className="absolute top-0 right-1 text-sky-500 font-semibold">
+                {(await eggoNotifications).length}
               </span>
             </Link>
           </Button>

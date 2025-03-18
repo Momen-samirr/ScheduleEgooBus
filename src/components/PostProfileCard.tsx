@@ -5,7 +5,6 @@ import {
   deleteComment,
   deletePost,
   getPostsAdminView,
-  toggleLike,
 } from "@/actions/post.action";
 import {
   AwaitedReactNode,
