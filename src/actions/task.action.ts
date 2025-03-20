@@ -9,6 +9,8 @@ export async function createTask(content: string, image: string) {
     const dbUser = await getDbUser();
     if (!dbUser) return;
 
+    if (!content || !image) return;
+
     await prisma.$transaction(async (tx) => {
       await tx.task.create({
         data: {
