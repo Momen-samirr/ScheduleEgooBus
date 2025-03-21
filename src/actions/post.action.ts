@@ -647,3 +647,40 @@ export async function deleteSoloPostsThatHaveNoComments() {
     return { success: false, error: "Failed to delete post" };
   }
 }
+
+export async function deleteNormalScheduledPostsThatHaveNoComments() {
+  try {
+    const dbUser = await getDbUser();
+    if (!dbUser) return;
+    await prisma.post.deleteMany({
+      where: {
+        tripType: "SCHEDULED",
+        tripMode: "normal",
+        comments: {
+          none: {},
+        },
+      },
+    });
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to delete post:", error);
+  }
+}
+
+export async function deleteAllNormalPosts() {
+  try {
+    const dbUser = await getDbUser();
+    if (!dbUser) return;
+    await prisma.post.deleteMany({
+      where: {
+        tripType: "SCHEDULED",
+        tripMode: "normal",
+      },
+    });
+    revalidatePath("/");
+    return { success: true };
+  } catch (error) {
+    console.error("Failed to delete post:", error);
+  }
+}

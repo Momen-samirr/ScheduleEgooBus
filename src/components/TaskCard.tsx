@@ -110,7 +110,7 @@ function TaskCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
               <img
                 src={post.image}
                 alt="Post content"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover lg:w-[50%]"
               />
             </div>
           )}

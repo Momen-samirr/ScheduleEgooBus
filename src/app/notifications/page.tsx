@@ -12,6 +12,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { formatDistanceToNow } from "date-fns";
 import { HeartIcon, MessageCircleIcon, UserPlusIcon } from "lucide-react";
+import Link from "next/link";
 
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -83,11 +84,13 @@ function NotificationsPage() {
                     !notification.read ? "bg-muted/50" : ""
                   }`}
                 >
-                  <Avatar className="mt-1">
-                    <AvatarImage
-                      src={notification.creator.image ?? "/avatar.png"}
-                    />
-                  </Avatar>
+                  <Link href={`/profile/${notification?.creator?.username}`}>
+                    <Avatar className="mt-1">
+                      <AvatarImage
+                        src={notification.creator.image ?? "/avatar.png"}
+                      />
+                    </Avatar>
+                  </Link>
                   <div className="flex-1 space-y-1">
                     <div className="flex items-center gap-2">
                       {getNotificationIcon(notification.type)}

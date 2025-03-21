@@ -4,6 +4,7 @@ import {
 } from "@/actions/post.action";
 import { getDbUser, getDbUserId } from "@/actions/user.action";
 import AdminVwPost from "@/components/AdminVwPost";
+import DeleteSholTrips from "@/components/DeleteSholTrips";
 import NormalPostDriverView from "@/components/NormalPostDriverView";
 import PostCard from "@/components/PostCard";
 import RefreshButton from "@/components/RefreshButtuon";
@@ -26,6 +27,11 @@ const UberRoute = async () => {
               No trips found for this time
             </p>
           )}
+          {dbUser?.role === "admin" ? (
+            <div>
+              <DeleteSholTrips />
+            </div>
+          ) : null}
           <div className="flex items-center justify-end">
             <RefreshButton />
           </div>
