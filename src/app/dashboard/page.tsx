@@ -22,18 +22,18 @@ const DashboardRoute = async () => {
   return (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-10 gap-10">
-        <div className="lg:col-span-5">
+        {/* <div className="lg:col-span-5">
           <CompanyCard
             title=" جداول ما بعد شهر رمضان"
             href="/dashboard/b2c"
             // subTitle="رحلات فردية"
             // subHref="/dashboard/solo"
             veicle="هاي اس"
-            availability="Now Available"
+            availability="Available Soon"
             topic=" توزيعة ما بعد رمضان"
             src="/uber.png"
           />
-        </div>
+        </div> */}
         <div className="lg:col-span-5">
           <CompanyCard
             title="جداول شغل"
