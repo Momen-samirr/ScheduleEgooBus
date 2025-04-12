@@ -17,7 +17,7 @@ import React from "react";
 const HunkelRoute = async () => {
   const trips = await getHunkelTrips();
   const dbUser = await getDbUser();
-  if (dbUser?.role === "user") return redirect("/");
+  if (dbUser?.role !== "admin") return redirect("/");
   return (
     <>
       <Button variant={"outline"} size={"sm"} className="mb-3" asChild>
