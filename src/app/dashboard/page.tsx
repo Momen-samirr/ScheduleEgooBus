@@ -42,7 +42,7 @@ const DashboardRoute = async () => {
             subHref="/dashboard/solo"
             veicle="هاي اس"
             availability="Now Available"
-            topic="جداول شغل من فتره 13 الي 17"
+            topic="جداول شغل من فتره 19 الي 24"
             src="/uber.png"
           />
         </div>

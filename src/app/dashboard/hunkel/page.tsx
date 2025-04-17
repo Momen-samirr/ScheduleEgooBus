@@ -8,7 +8,6 @@ import {
   CardDescription,
   CardTitle,
 } from "@/components/ui/card";
-import { Table } from "@/components/ui/table";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
