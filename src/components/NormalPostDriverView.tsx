@@ -172,6 +172,14 @@ function NormalPostDriverView({
               <p className="mt-2 text-sm text-foreground break-words">
                 {trip?.trips}
               </p>
+              {trip?.tripsNum && (
+                <>
+                  <div className="flex items-center gap-3">
+                    <span>{trip?.tripsNum}</span>
+                    <p>عدد رحلات الجدول</p>
+                  </div>
+                </>
+              )}
               {trip?.haiisPrice && trip?.tripType === "SCHEDULED" ? (
                 <div className="flex flex-col gap-3 mt-1.5 font-bold">
                   <p className="text-sky-500">سعر الرحلة للهايس/ الصيني</p>

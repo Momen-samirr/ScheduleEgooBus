@@ -172,7 +172,15 @@ function AdminVwPost({
               <p className="mt-2 text-sm text-foreground break-words">
                 {trip?.trips}
               </p>
-              {trip?.haiisPrice && trip?.tripType === "SCHEDULED" ? (
+              {trip?.tripsNum && (
+                <div className="flex items-center gap-3 mt-3">
+                  <p>{trip?.tripsNum}</p>
+                  <span className="text-sky-500 font-bold">
+                    :عدد رحلات الجدول
+                  </span>
+                </div>
+              )}
+              {/* {trip?.haiisPrice && trip?.tripType === "SCHEDULED" ? (
                 <div className="flex flex-col gap-3 mt-1.5 font-bold">
                   <p className="text-sky-500">سعر الرحلة للهايس/ الصيني</p>
                   <p>{trip?.haiisPrice}</p>
@@ -183,7 +191,7 @@ function AdminVwPost({
                   <p className="text-sky-500">سعر الرحلة للسيارات الكبيرة</p>
                   <p>{trip?.bigcarPrice}</p>
                 </div>
-              )}
+              )} */}
               <div className="mt-3 text-sm text-red-500">
                 <p>{trip?.tableCode}</p>
               </div>
