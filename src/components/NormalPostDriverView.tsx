@@ -180,7 +180,7 @@ function NormalPostDriverView({
                   </div>
                 </>
               )}
-              {trip?.haiisPrice && trip?.tripType === "SCHEDULED" ? (
+              {/* {trip?.haiisPrice && trip?.tripType === "SCHEDULED" ? (
                 <div className="flex flex-col gap-3 mt-1.5 font-bold">
                   <p className="text-sky-500">سعر الرحلة للهايس/ الصيني</p>
                   <p>{trip?.haiisPrice}</p>
@@ -191,7 +191,7 @@ function NormalPostDriverView({
                   <p className="text-sky-500">سعر الرحلة للسيارات الكبيرة</p>
                   <p>{trip?.bigcarPrice}</p>
                 </div>
-              )}
+              )} */}
               <div className="mt-3 text-sm text-red-500">
                 <p>{trip?.tableCode}</p>
               </div>
