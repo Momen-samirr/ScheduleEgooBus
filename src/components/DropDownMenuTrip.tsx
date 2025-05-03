@@ -86,9 +86,9 @@ const DropDownMenuTrip = ({ trip }: { trip: any }) => {
                 </>
               ) : (
                 <>
-                  <DropdownMenuItem onClick={() => handleCancleTrip(trip.id)}>
+                  {/* <DropdownMenuItem onClick={() => handleCancleTrip(trip.id)}>
                     Cancle
-                  </DropdownMenuItem>
+                  </DropdownMenuItem> */}
                   {trip?.reservedTripStatus === "notDone" && (
                     <DropdownMenuItem
                       onClick={() => handelMakeTripAsDone(trip?.id)}
