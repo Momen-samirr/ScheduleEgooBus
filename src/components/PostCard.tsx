@@ -154,7 +154,7 @@ function PostCard({
                 </div>
                 <div className="ml-5">
                   {trip.tripType === "SOLO" && (
-                    <span className="text-sky-500 text-sm">(مناقصة)</span>
+                    <span className="text-sky-500 text-sm">(رحلة فردية)</span>
                   )}
                 </div>
                 {/* Check if current user is the post author */}
@@ -177,12 +177,12 @@ function PostCard({
                   <p>{trip?.haiisPrice}</p>
                 </div>
               ) : null}
-              {trip?.bigcarPrice && (
+              {trip?.bigcarPrice && trip?.tripType === "SOLO" ? (
                 <div className="flex flex-col gap-3 mt-1.5 font-bold">
-                  <p className="text-sky-500">سعر الرحلة للسيارات الكبيرة</p>
+                  <p className="text-sky-500">سعر الرحلة </p>
                   <p>{trip?.bigcarPrice}</p>
                 </div>
-              )}
+              ) : null}
               <div className="mt-3 text-sm text-red-500">
                 <p>{trip?.tableCode}</p>
               </div>
