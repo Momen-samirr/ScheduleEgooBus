@@ -122,7 +122,7 @@ function MobileNavbar(
                     UsersInfo
                   </Link>
                 </Button> */}
-                <Button
+                {/* <Button
                   variant={"ghost"}
                   className="flex items-center gap-3 justify-start"
                   asChild
@@ -131,7 +131,7 @@ function MobileNavbar(
                     <Users2 className="w-5 h-5" />
                     Users
                   </Link>
-                </Button>
+                </Button> */}
                 <Button
                   variant="ghost"
                   className="flex items-center gap-3 justify-start"
