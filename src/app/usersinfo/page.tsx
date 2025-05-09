@@ -1,11 +1,15 @@
+import { getDbUser } from "@/actions/user.action";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import UsersWithComments from "@/components/UsersWithComments";
 import UsersWithoutComments from "@/components/UsersWithoutComments";
 import { CommandIcon } from "lucide-react";
+import { redirect } from "next/navigation";
 import React from "react";
 
-const UsersInfoRoute = () => {
+const UsersInfoRoute = async () => {
+  const user = await getDbUser();
+  if (user?.role !== "admin") return redirect("/");
   return (
     <div>
       <Tabs className="w-full" defaultValue="comments">

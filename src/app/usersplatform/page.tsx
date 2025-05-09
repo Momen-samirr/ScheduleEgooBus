@@ -13,7 +13,7 @@ import React from "react";
 const UsersRoute = async () => {
   const user = await getDbUser();
 
-  if (user?.role === "driver") return redirect("/");
+  if (user?.role !== "admin") return redirect("/");
   const users = await getHunkelDrivers();
 
   return (
