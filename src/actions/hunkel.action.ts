@@ -88,12 +88,22 @@ export async function reserveTrip(tripId: string) {
       userTripTime.setHours(userTripHour, userTripMinute, 0, 0);
 
       const timeDifference = differenceInMinutes(tripTime, userTripTime);
-      if (Math.abs(timeDifference) < 40) {
-        return {
-          success: false,
-          error:
-            "You cannot reserve two trips within 40 minutes of each other.",
-        };
+      if (dbUser?.id === "cm6ngc9f90004l103ll0dc5kt") {
+        if (Math.abs(timeDifference) < 30) {
+          return {
+            success: false,
+            error:
+              "You cannot reserve two trips within 30 minutes of each other.",
+          };
+        }
+      } else {
+        if (Math.abs(timeDifference) < 40) {
+          return {
+            success: false,
+            error:
+              "You cannot reserve two trips within 40 minutes of each other.",
+          };
+        }
       }
     }
 
