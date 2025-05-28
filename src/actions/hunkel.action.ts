@@ -74,7 +74,6 @@ export async function reserveTrip(tripId: string) {
       },
     });
 
-    // Convert the reserved trip's time into a full Date object
     const [tripHour, tripMinute] = tripToReserve.time.split(":").map(Number);
     const tripTime = new Date(tripDate);
     tripTime.setHours(tripHour, tripMinute, 0, 0);
@@ -107,7 +106,6 @@ export async function reserveTrip(tripId: string) {
       }
     }
 
-    // Ensure user can book a max of 3 trips per day
     if (userTripsOnSameDate.length >= 3) {
       throw new Error("You cannot reserve more than 3 trips on the same day.");
     }
