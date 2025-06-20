@@ -44,8 +44,8 @@ export async function POST(req: NextRequest) {
         const createdOutbound = await prisma.outbound.create({
           data: {
             trip: { connect: { id: createdTrip.id } },
-            startTime: outbound.start,
-            endTime: outbound.end,
+            startTime: outbound.start || undefined,
+            endTime: outbound.end || undefined,
           },
         });
 
@@ -53,8 +53,8 @@ export async function POST(req: NextRequest) {
         const createdReturnTrip = await prisma.returnTrip.create({
           data: {
             trip: { connect: { id: createdTrip.id } },
-            startTime: returnTrip.start,
-            endTime: returnTrip.end,
+            startTime: returnTrip.start || undefined,
+            endTime: returnTrip.end || undefined,
           },
         });
 

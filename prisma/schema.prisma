@@ -77,16 +77,16 @@ model Outbound {
   id        String @id @default(uuid()) 
   tripId    String @unique
   trip      HunkelTrip @relation(fields: [tripId], references: [id], onDelete: Cascade) // Only define @relation here
-  startTime String
-  endTime   String
+  startTime String?
+  endTime   String?
 }
 
 model ReturnTrip {
   id        String @id @default(uuid()) 
   tripId    String @unique
   trip      HunkelTrip @relation(fields: [tripId], references: [id], onDelete: Cascade) // Only define @relation here
-  startTime String
-  endTime   String
+  startTime String?
+  endTime   String?
 }
 
 
