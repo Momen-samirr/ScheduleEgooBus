@@ -36,27 +36,29 @@ export async function POST(req: NextRequest) {
         const createdTrip = await prisma.hunkelTrip.create({
           data: {
             date: new Date(date),
-            route: { connect: { id: newRoute.id } }, // Link to newly created route
+            route: { connect: { id: newRoute.id } },
           },
         });
 
-        // Create outbound trip
         const createdOutbound = await prisma.outbound.create({
           data: {
             trip: { connect: { id: createdTrip.id } },
-            startTime: outbound.start || undefined,
-            endTime: outbound.end || undefined,
+            startTime: outbound?.start || undefined,
+            endTime: outbound?.end || undefined,
           },
         });
 
-        // Create return trip
-        const createdReturnTrip = await prisma.returnTrip.create({
-          data: {
-            trip: { connect: { id: createdTrip.id } },
-            startTime: returnTrip.start || undefined,
-            endTime: returnTrip.end || undefined,
-          },
-        });
+        let createdReturnTrip = null;
+
+        if (returnTrip) {
+          createdReturnTrip = await prisma.returnTrip.create({
+            data: {
+              trip: { connect: { id: createdTrip.id } },
+              startTime: returnTrip.start || undefined,
+              endTime: returnTrip.end || undefined,
+            },
+          });
+        }
 
         createdTrips.push({
           route: newRoute,
