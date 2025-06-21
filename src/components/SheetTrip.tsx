@@ -124,22 +124,20 @@ const SheetTrip = ({ routeInfo, onClick, dbUser }: Props) => {
                   )}
                   {routeInfo?.status === "reserved" ? (
                     <>
-                      {user?.email === "egoobus5@gmail.com" && (
-                        <Button
-                          variant={"destructive"}
-                          size={"sm"}
-                          className="flex items-center gap-3"
-                          onClick={() =>
-                            handelCancleReserveRoute(routeInfo?.id)
-                          }
-                        >
-                          {isPending ? (
-                            <Loader2 className="size-5 animate-spin" />
-                          ) : (
-                            "Cancle"
-                          )}
-                        </Button>
-                      )}
+                      {/* {dbUser?.role === "admin" && ( */}
+                      <Button
+                        variant={"destructive"}
+                        size={"sm"}
+                        className="flex items-center gap-3"
+                        onClick={() => handelCancleReserveRoute(routeInfo?.id)}
+                      >
+                        {isPending ? (
+                          <Loader2 className="size-5 animate-spin" />
+                        ) : (
+                          "Cancle"
+                        )}
+                      </Button>
+                      {/* )} */}
                     </>
                   ) : (
                     <SheetClose asChild>

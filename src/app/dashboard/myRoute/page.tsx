@@ -1,4 +1,5 @@
 import { getMyRouteWithTrips } from "@/actions/hunkelroute";
+import { getDbUser } from "@/actions/user.action";
 import DialogComponet from "@/components/DialogComponet";
 import SheetTrip from "@/components/SheetTrip";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,6 +7,7 @@ import React from "react";
 
 const MyRouteRoute = async () => {
   const myRoute = await getMyRouteWithTrips();
+  const dbUser = await getDbUser();
   return (
     <>
       <Card>
