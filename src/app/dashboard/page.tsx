@@ -66,7 +66,7 @@ const DashboardRoute = async () => {
                 title="New Henkel schedule"
                 href="/dashboard/testCard"
                 veicle="ملاكي"
-                availability="Now Available"
+                availability="Available Soon"
                 topic="شركات"
                 subTitle="My Reserved Schedule"
                 subHref="/dashboard/myRoute"
