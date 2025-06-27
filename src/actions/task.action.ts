@@ -11,16 +11,16 @@ export async function createTask(content: string, image: string) {
 
     if (!content || !image) return;
 
-    const currentUserWithOutReservedTask = await prisma.user.findUnique({
-      where: {
-        id: dbUser?.id,
-        comments: {
-          none: {},
-        },
-      },
-    });
+    // const currentUserWithOutReservedTask = await prisma.user.findUnique({
+    //   where: {
+    //     id: dbUser?.id,
+    //     comments: {
+    //       none: {},
+    //     },
+    //   },
+    // });
 
-    if (!currentUserWithOutReservedTask) return;
+    // if (!currentUserWithOutReservedTask) return;
     await prisma.$transaction(async (tx) => {
       await tx.task.create({
         data: {
