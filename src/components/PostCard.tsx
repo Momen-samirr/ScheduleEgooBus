@@ -146,7 +146,10 @@ function PostCard({
                       {trip?.tripMode === "ramdan" ? (
                         <>
                           <Moon className="size-5 text-sky-500" />
-                          <span className="text-sky-500"> جدول بعد رمضان</span>
+                          <span className="text-sky-500">
+                            {" "}
+                            جداول قوة المكتب
+                          </span>
                         </>
                       ) : null}
                     </span>
@@ -171,7 +174,7 @@ function PostCard({
               <p className="mt-2 text-sm text-foreground break-words">
                 {trip?.trips}
               </p>
-              {trip?.haiisPrice && trip?.tripType === "SCHEDULED" ? (
+              {/* {trip?.haiisPrice && trip?.tripType === "SCHEDULED" ? (
                 <div className="flex flex-col gap-3 mt-1.5 font-bold">
                   <p className="text-sky-500">سعر الرحلة للهايس/ الصيني</p>
                   <p>{trip?.haiisPrice}</p>
@@ -182,7 +185,7 @@ function PostCard({
                   <p className="text-sky-500">سعر الرحلة </p>
                   <p>{trip?.bigcarPrice}</p>
                 </div>
-              ) : null}
+              ) : null} */}
               <div className="mt-3 text-sm text-red-500">
                 <p>{trip?.tableCode}</p>
               </div>

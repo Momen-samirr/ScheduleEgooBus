@@ -38,7 +38,7 @@ const UberRoute = async () => {
             تنويه هام: أي جدول تطلبه سيتم تنزيله تلقائيًا، ولا يمكن إلغاؤه إلا
             بعد إبلاغ مستر هاني كارم.
           </p>
-          <p className="text-xl text-sky-500"> جداول شغل ما بعد شهر رمضان</p>
+          <p className="text-xl text-sky-500">جداول قوة المكتب</p>
           {/* <p className="text-xl text-red-500">جداول شغل شهر رمضان</p> */}
           {dbUser?.role !== "admin" ? (
             <>
