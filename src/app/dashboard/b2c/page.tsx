@@ -13,7 +13,7 @@ const UberRoute = async () => {
   const tripsAdminView = await getPostsAdminView();
   const dbUser = await getDbUser();
 
-  if (dbUser?.role === "user") return redirect("/");
+  if (dbUser?.role !== "admin") return redirect("/");
   if (!dbUser) return redirect("/");
 
   if (!dbUserId) return redirect("/");
