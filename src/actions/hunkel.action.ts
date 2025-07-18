@@ -106,7 +106,7 @@ export async function reserveTrip(tripId: string) {
       }
     }
 
-    if (userTripsOnSameDate.length >= 3) {
+    if (userTripsOnSameDate.length >= 6) {
       throw new Error("You cannot reserve more than 3 trips on the same day.");
     }
 
