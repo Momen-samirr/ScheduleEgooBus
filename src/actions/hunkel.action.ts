@@ -87,7 +87,10 @@ export async function reserveTrip(tripId: string) {
       userTripTime.setHours(userTripHour, userTripMinute, 0, 0);
 
       const timeDifference = differenceInMinutes(tripTime, userTripTime);
-      if (dbUser?.id === "cm6ngc9f90004l103ll0dc5kt") {
+      if (
+        dbUser?.id === "cm6ngc9f90004l103ll0dc5kt" ||
+        dbUser?.id === "cm6qhhonz0000lc03v3d3uhxy"
+      ) {
         if (Math.abs(timeDifference) < 30) {
           return {
             success: false,
