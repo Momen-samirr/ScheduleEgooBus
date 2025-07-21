@@ -173,13 +173,19 @@ function PostCard({
               </div>
               <p className="mt-2 text-sm text-foreground break-words">
                 {trip?.trips}
-              </p>
+              </p>{" "}
               {trip?.haiisPrice && trip?.tripType === "SCHEDULED" ? (
                 <div className="flex flex-col gap-3 mt-1.5 font-bold">
                   <p className="text-sky-500">سعر الرحلة للهايس/ الصيني</p>
                   <p>{trip?.haiisPrice}</p>
                 </div>
               ) : null}
+              {trip?.bigcarPrice && (
+                <div className="flex flex-col gap-3 mt-1.5 font-bold">
+                  <p className="text-sky-500">سعر الرحلة للسيارات الكبيرة</p>
+                  <p>{trip?.bigcarPrice}</p>
+                </div>
+              )}
               {trip?.bigcarPrice && trip?.tripType === "SOLO" ? (
                 <div className="flex flex-col gap-3 mt-1.5 font-bold">
                   <p className="text-sky-500">سعر الرحلة </p>
