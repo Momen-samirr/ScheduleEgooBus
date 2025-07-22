@@ -343,18 +343,18 @@ function PostProfileCard({
                             {formatDistanceToNow(new Date(comment?.createdAt))}{" "}
                             ago
                           </span>
-                          {/* {user?.email === "egoobus5@gmail.com" && ( */}
-                          <div className="flex items-center justify-end gap-3">
-                            <DeleteAlertDialog
-                              isDeleting={isDeleting}
-                              onDelete={() =>
-                                handleDeleteComment(comment?.id as string)
-                              }
-                              title="Delete comment"
-                              description="This action cannot be undone."
-                            />
-                          </div>
-                          {/* )} */}
+                          {user?.email === "egoobus5@gmail.com" && (
+                            <div className="flex items-center justify-end gap-3">
+                              <DeleteAlertDialog
+                                isDeleting={isDeleting}
+                                onDelete={() =>
+                                  handleDeleteComment(comment?.id as string)
+                                }
+                                title="Delete comment"
+                                description="This action cannot be undone."
+                              />
+                            </div>
+                          )}
                         </div>
                         <p className="text-sm break-words">{comment.content}</p>
                       </div>
