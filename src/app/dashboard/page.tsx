@@ -29,7 +29,7 @@ const DashboardRoute = async () => {
             // subTitle="رحلات فردية"
             // subHref="/dashboard/solo"
             veicle="هاي اس"
-            availability="Now Available"
+            availability="Available Soon"
             topic=" جداول قوة المكتب"
             src="/uber.png"
           />
