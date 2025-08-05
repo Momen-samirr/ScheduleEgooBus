@@ -114,7 +114,7 @@ model Post {
   trips            String
   haiisPrice       String?   // Nullable for solo trips
   bigcarPrice      String?   // Nullable for solo trips
-  kelometr         Int?
+  kelometr         String?
   gapmetr          String?   // Nullable for solo trips
   prices           String?   // Nullable for solo trips
   currentCapacity  Int?
