@@ -186,6 +186,18 @@ function PostCardAdminView({
                   <p>{trip?.bigcarPrice}</p>
                 </div>
               )}
+              {trip?.kelometr && trip?.tripType === "SCHEDULED" ? (
+                <div className="flex flex-col gap-3 mt-1.5 font-bold">
+                  <p className="text-sky-500">إجمالي الكيلومترات</p>
+                  <p>{trip?.kelometr}</p>
+                </div>
+              ) : null}
+              {trip?.gapmetr && trip?.tripType === "SCHEDULED" ? (
+                <div className="flex flex-col gap-3 mt-1.5 font-bold">
+                  <p className="text-sky-500">الكيلومترات الفارغة</p>
+                  <p>{trip?.gapmetr}</p>
+                </div>
+              ) : null}
               <div className="mt-3 text-sm text-red-500">
                 <p>{trip?.tableCode}</p>
               </div>
