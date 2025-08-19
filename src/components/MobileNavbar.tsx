@@ -2,6 +2,7 @@
 
 import {
   BellIcon,
+  DollarSign,
   HomeIcon,
   LayoutDashboard,
   LogOutIcon,
@@ -110,6 +111,16 @@ function MobileNavbar(
                   <Link href="/dashboard">
                     <LayoutDashboard className="w-5 h-5" />
                     Dashboard
+                  </Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  className="flex items-center gap-3 justify-start"
+                  asChild
+                >
+                  <Link href="/payments">
+                    <DollarSign className="w-5 h-5" />
+                    Payments
                   </Link>
                 </Button>
                 {/* <Button

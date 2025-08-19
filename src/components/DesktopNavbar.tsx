@@ -1,6 +1,7 @@
 import {
   BellIcon,
   DatabaseIcon,
+  DollarSign,
   HomeIcon,
   LayoutDashboard,
   OctagonAlert,
@@ -106,6 +107,12 @@ async function DesktopNavbar() {
               </Link>
             </Button>
           )}
+          <Button variant="ghost" className="flex items-center gap-2" asChild>
+            <Link href={`/payments`}>
+              <DollarSign className="size-5" />
+              <span className="hidden lg:inline">Payments</span>
+            </Link>
+          </Button>
           <Button variant="ghost" className="flex items-center gap-2" asChild>
             <Link
               href={`/profile/${
