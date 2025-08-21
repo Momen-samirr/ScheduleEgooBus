@@ -18,7 +18,7 @@ const weeks = [
   },
   {
     id: "https://script.google.com/macros/s/AKfycbzJMuKpv0lZM4nu2KwqT90yKDb2RGezI-ajww60Jp93iY8qLvKRnOuTJe4D_LilIp96EQ/exec",
-    label: "تفاصيل حساب أسبوع 10 - 15",
+    label: "تفاصيل حساب أسبوع 10 - 8",
   },
 ];
 
