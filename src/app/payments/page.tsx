@@ -17,16 +17,8 @@ const weeks = [
     label: "تفاصيل حساب أسبوع 3 - 8",
   },
   {
-    id: "https://example.com/week-9-15",
-    label: "تفاصيل حساب أسبوع 9 - 15",
-  },
-  {
-    id: "https://example.com/week-16-22",
-    label: "تفاصيل حساب أسبوع 16 - 22",
-  },
-  {
-    id: "https://example.com/week-23-30",
-    label: "تفاصيل حساب أسبوع 23 - 30",
+    id: "https://script.google.com/macros/s/AKfycbyh9Uh4WtdDxerz6NNfyFl1KUQEz012pot3s9sm4JtKsOzKZAvdgFNLNSzo4oKqQt24lQ/exec",
+    label: "تفاصيل حساب أسبوع 10 - 15",
   },
 ];
 
