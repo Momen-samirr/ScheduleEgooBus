@@ -34,7 +34,7 @@ const DashboardRoute = async () => {
             src="/uber.png"
           />
         </div>
-        <div className="lg:col-span-5">
+        {/* <div className="lg:col-span-5">
           <CompanyCard
             title="جداول شغل"
             href="/dashboard/b2cramadan"
@@ -45,7 +45,7 @@ const DashboardRoute = async () => {
             topic="جداول شغل من فتره3 الي 7"
             src="/uber.png"
           />
-        </div>
+        </div> */}
         {user?.email !== "tareqmohamed604@gmail.com" ? (
           <>
             <div className="lg:col-span-5">
