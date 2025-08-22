@@ -13,11 +13,11 @@ import { CalendarDays, DollarSign, Banknote } from "lucide-react";
 
 const weeks = [
   {
-    id: "https://script.google.com/macros/s/AKfycbwHuLGri5cOnYMRXkSBAmiAIq4atS3U1KuJnt_xGBPQzMkICtcBR2h0j9dGn9rL1_TsaQ/exec",
+    id: "https://script.google.com/macros/s/AKfycbyy2Olho--5SEZ3b0uWz4xnhyCUCLCrKjjbTwShzzmrduMtg6LKzq-HXAQtJMgWNuf_mg/exec",
     label: "تفاصيل حساب أسبوع 3 - 8",
   },
   {
-    id: "https://script.google.com/macros/s/AKfycbzJMuKpv0lZM4nu2KwqT90yKDb2RGezI-ajww60Jp93iY8qLvKRnOuTJe4D_LilIp96EQ/exec",
+    id: "https://script.google.com/macros/s/AKfycbxEg9-AdDcM8D17vGkSvMDD6QxtmUOiGp88zv6i384-kTEiFIWPgDWxfUW0zQDYkFnK_g/exec",
     label: "تفاصيل حساب أسبوع 10 - 8",
   },
 ];
