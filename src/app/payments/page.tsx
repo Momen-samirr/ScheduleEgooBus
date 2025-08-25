@@ -22,6 +22,17 @@ const weeks = [
   },
 ];
 
+const btbWeeks = [
+  {
+    id: "https://script.google.com/macros/s/AKfycbylkkgraB-nIqIx9JA5Z48PsF9Z1qk5qD4ztivFDsgOEXjhOg7RuX9MW05KMZknTdSI/exec",
+    title: "تفاصيل حساب اسبوع 3 - 8",
+  },
+  {
+    id: "https://script.google.com/macros/s/AKfycbwMc5vR_tUJgrTiDT934CTvTbiQuQUfa7enwnPevdXp_Llt8pvcbR2iaBVeMxRC_zo/exec",
+    title: "تفاصيل حساب اسبوع 10 - 8",
+  },
+];
+
 const FloatingMoney = () => {
   const icons = [DollarSign, Banknote];
   return (
@@ -58,7 +69,7 @@ const Page = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center p-6 transition-colors ">
+    <div className="relative min-h-screen flex flex-col gap-10 lg:flex-row items-center lg:justify-between lg:gap-5 p-6 transition-colors">
       <FloatingMoney />
 
       <motion.div
@@ -71,7 +82,7 @@ const Page = () => {
           <CardHeader className="flex flex-col items-center gap-2">
             <CalendarDays className="w-10 h-10 text-blue-600 dark:text-blue-400" />
             <CardTitle className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              💰 اختر الأسبوع لمشاهدة التفاصيل
+              💰 اختر الأسبوع لمشاهدة تفاصيل الشارع
             </CardTitle>
           </CardHeader>
 
@@ -88,6 +99,40 @@ const Page = () => {
                     className="cursor-pointer text-lg"
                   >
                     {week.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </CardContent>
+        </Card>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="w-full max-w-lg relative z-10"
+      >
+        <Card className="rounded-3xl shadow-lg border border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/70 backdrop-blur-xl transition-colors">
+          <CardHeader className="flex flex-col items-center gap-2">
+            <CalendarDays className="w-10 h-10 text-blue-600 dark:text-blue-400" />
+            <CardTitle className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              اختر الأسبوع لمشاهدة تفاصيل الشركات
+            </CardTitle>
+          </CardHeader>
+
+          <CardContent className="mt-4">
+            <Select onValueChange={handleSelect}>
+              <SelectTrigger className="w-full rounded-xl h-12 text-lg dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700">
+                <SelectValue placeholder="اختر الأسبوع" />
+              </SelectTrigger>
+              <SelectContent className="rounded-xl shadow-lg dark:bg-gray-900 dark:text-gray-100">
+                {btbWeeks.map((btbweek) => (
+                  <SelectItem
+                    key={btbweek.id}
+                    value={btbweek.id}
+                    className="cursor-pointer text-lg"
+                  >
+                    {btbweek.title}
                   </SelectItem>
                 ))}
               </SelectContent>
