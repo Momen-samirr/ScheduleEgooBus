@@ -12,24 +12,32 @@ import {
 import { CalendarDays, DollarSign, Banknote } from "lucide-react";
 
 const weeks = [
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbyy2Olho--5SEZ3b0uWz4xnhyCUCLCrKjjbTwShzzmrduMtg6LKzq-HXAQtJMgWNuf_mg/exec",
+  //   label: "تفاصيل حساب أسبوع 3 - 8",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbxEg9-AdDcM8D17vGkSvMDD6QxtmUOiGp88zv6i384-kTEiFIWPgDWxfUW0zQDYkFnK_g/exec",
+  //   label: "تفاصيل حساب أسبوع 10 - 8",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbyy2Olho--5SEZ3b0uWz4xnhyCUCLCrKjjbTwShzzmrduMtg6LKzq-HXAQtJMgWNuf_mg/exec",
-    label: "تفاصيل حساب أسبوع 3 - 8",
-  },
-  {
-    id: "https://script.google.com/macros/s/AKfycbxEg9-AdDcM8D17vGkSvMDD6QxtmUOiGp88zv6i384-kTEiFIWPgDWxfUW0zQDYkFnK_g/exec",
-    label: "تفاصيل حساب أسبوع 10 - 8",
+    id: "https://script.google.com/macros/s/AKfycbz9YuHBFzIhqagU-3Vd9Nyd2tJ0kat7SWPVhUEqDitIb_2LsWFvtskwTPHrc4lBR_bL/exec",
+    label: "تفاصيل حساب اسبوع 17 - 8",
   },
 ];
 
 const btbWeeks = [
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbylkkgraB-nIqIx9JA5Z48PsF9Z1qk5qD4ztivFDsgOEXjhOg7RuX9MW05KMZknTdSI/exec",
+  //   title: "تفاصيل حساب اسبوع 3 - 8",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbwMc5vR_tUJgrTiDT934CTvTbiQuQUfa7enwnPevdXp_Llt8pvcbR2iaBVeMxRC_zo/exec",
+  //   title: "تفاصيل حساب اسبوع 10 - 8",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbylkkgraB-nIqIx9JA5Z48PsF9Z1qk5qD4ztivFDsgOEXjhOg7RuX9MW05KMZknTdSI/exec",
-    title: "تفاصيل حساب اسبوع 3 - 8",
-  },
-  {
-    id: "https://script.google.com/macros/s/AKfycbwMc5vR_tUJgrTiDT934CTvTbiQuQUfa7enwnPevdXp_Llt8pvcbR2iaBVeMxRC_zo/exec",
-    title: "تفاصيل حساب اسبوع 10 - 8",
+    id: "https://script.google.com/macros/s/AKfycbzOSa4GjHkMlxhhji6hkZNt_RwLp35lTklWjXH1xgI-MqOwo2bjhiqG-bLQWTPfbzLJ/exec",
+    title: "تفاصيل حساب اسبوع 17 - 8",
   },
 ];
 
