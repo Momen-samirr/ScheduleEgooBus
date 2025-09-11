@@ -48,6 +48,10 @@ const btbWeeks = [
     title: "تفاصيل حساب اسبوع 17 - 8",
   },
   {
+    id: "https://script.google.com/macros/s/AKfycbwtl8kRVR8ZUoz_AmafbR1Pxe_hHmeTmhiueoj9xuWeheVIPTDcZNwgkvl2pYx9DydReQ/exec",
+    title: "تفاصيل حساب اسبوع 24 - 8",
+  },
+  {
     id: "https://script.google.com/macros/s/AKfycbxCrcx9NJZ-mvcjsc7ESWdJHyBhybt5LyTTxSxLCU1Si7NUcruqt9dkzkD-ySFldVSe/exec",
     title: "تفاصيل حساب اسبوع 31 - 8",
   },
