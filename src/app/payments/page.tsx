@@ -36,10 +36,10 @@ const weeks = [
   //   id: "https://script.google.com/macros/s/AKfycbxNV0tCOCFw_0Gt91lSYa0v1dhm1ZAs5BugHup_mVqv24wdL7wK5RM3tqt9acyvHMgWcA/exec",
   //   label: "تفاصيل حساب اسبوع 7 - 9",
   // },
-  // {
-  //   id: "https://script.google.com/macros/s/AKfycbxequAZIhWWspfK4ftvSNpIfkU4i89Aey5EGp_473f4lbI7AjRs75IC-XZfFw1hb6L79g/exec",
-  //   label: "تفاصيل حساب اسبوع 14 - 9",
-  // },
+  {
+    id: "https://script.google.com/macros/s/AKfycbxequAZIhWWspfK4ftvSNpIfkU4i89Aey5EGp_473f4lbI7AjRs75IC-XZfFw1hb6L79g/exec",
+    label: "تفاصيل حساب اسبوع 14 - 9",
+  },
   {
     id: "https://script.google.com/macros/s/AKfycbz6T0NtjqCoSd9P0vU9hrPU1w2AniUkx80oNhq8Ab4kaamsEzeTL4IWQZoVIUX5meO0/exec",
     label: "تفاصيل حساب اسبوع 21 - 9",
@@ -71,10 +71,10 @@ const btbWeeks = [
   //   id: "https://script.google.com/macros/s/AKfycby3jbc81RdakJbm4fVjj9BMHH081Qy4kP2dBRZp8g16u-oJlYQm4cv9C-imRS_vHc2E/exec",
   //   title: "تفاصيل حساب اسبوع 7 - 9",
   // },
-  // {
-  //   id: "https://script.google.com/macros/s/AKfycbzgQbvv48EJkjAECB3TfuxQH5xBsD_gL7v7zj1JElYYffQ0CjThWnnQ12WMkouZYmf_/exec",
-  //   title: "تفاصيل حساب اسبوع 14 - 9",
-  // },
+  {
+    id: "https://script.google.com/macros/s/AKfycbzgQbvv48EJkjAECB3TfuxQH5xBsD_gL7v7zj1JElYYffQ0CjThWnnQ12WMkouZYmf_/exec",
+    title: "تفاصيل حساب اسبوع 14 - 9",
+  },
   {
     id: "https://script.google.com/macros/s/AKfycbxzBTWQ-YHLA3Ckq4eRlM3YiEmU6FhpDEk5rJcVdYnbDANMgFWA9yZit1I0G3u2zrKEiw/exec",
     title: "تفاصيل حساب اسبوع 21 - 9",
