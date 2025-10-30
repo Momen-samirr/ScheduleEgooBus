@@ -50,6 +50,18 @@ model User {
   route Route?
 }
 
+model Payment {
+  id  String  @id @default(uuid())
+  paymentText   String
+  paymentLabel  String
+  paymentType   PayType
+}
+
+enum PayType {
+  BTC
+  BTB 
+}
+
 model Route {
   id     String @id @default(uuid()) 
   name   String

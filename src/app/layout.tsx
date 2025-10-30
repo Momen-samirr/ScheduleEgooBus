@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "./AuthProvider";
+import TanStackProvider from "@/components/providers/TanStackProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,36 +31,38 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <AuthProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
+    <TanStackProvider>
+      <AuthProvider>
+        <html lang="en" suppressHydrationWarning>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
           >
-            <div className="min-h-screen">
-              <Navbar />
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <div className="min-h-screen">
+                <Navbar />
 
-              <main className="py-8">
-                {/* container to center the content */}
-                <div className="max-w-7xl mx-auto px-4">
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                    {/* <div className="hidden lg:block lg:col-span-3">
+                <main className="py-8">
+                  {/* container to center the content */}
+                  <div className="max-w-7xl mx-auto px-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                      {/* <div className="hidden lg:block lg:col-span-3">
                       <Sidebar />
-                    </div> */}
-                    <div className="lg:col-span-12">{children}</div>
+                      </div> */}
+                      <div className="lg:col-span-12">{children}</div>
+                    </div>
                   </div>
-                </div>
-              </main>
-            </div>
-            <Toaster />
-          </ThemeProvider>
-        </body>
-      </html>
-    </AuthProvider>
+                </main>
+              </div>
+              <Toaster />
+            </ThemeProvider>
+          </body>
+        </html>
+      </AuthProvider>
+    </TanStackProvider>
   );
 }
