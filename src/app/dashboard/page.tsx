@@ -82,7 +82,7 @@ const DashboardRoute = async () => {
             href="/dashboard/upschedule"
             availability="Now Available"
             topic="رفع الجداول"
-            veicle="هاي اس"
+            veicle="ها اس"
           />
         </div>
       </div>
