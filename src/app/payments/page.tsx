@@ -69,7 +69,7 @@ const weeks = [
   //   label: "تفاصيل حساب اسبوع 2 - 11",
   // },
   {
-    id: "https://script.google.com/macros/s/AKfycbzK-ZOW_YpRh-EsWWKSvPCcx3pwnrxlyCzq1V3KP385j9QO3nfkEgAmkyA_LH1hH96f6A/exec",
+    id: "https://script.google.com/macros/s/AKfycbzW-nNMymxQwXJjHo4nKyn3BEQJgM3WMS5FnM6VRMQq671UXckTyNOT3L0HIrJ9zXpS/exec",
     label: "تفاصيل حساب اسبوع 9 - 11",
   },
 ];
