@@ -156,7 +156,7 @@ const btbWeeks = [
     title: "تفاصيل حساب اسبوع 23 - 11",
   },
   {
-    id: "https://script.google.com/macros/s/AKfycby4oYR5E8gDBgGIOuE-SsY6FJmN0IztHUIjOe8_Bdn1n9MnxpxQAj_6XeUsDQ_8flB9/exec",
+    id: "https://script.google.com/macros/s/AKfycbxv7rBh2AEk-1XcZXHyqYA7Ni5awdHh-PE2OrbCNvbWUH0eGd6m_JxcnZaz1cmEu8Rj/exec",
     title: "تفاصيل حساب اسبوع 30 - 11",
   },
 ];
