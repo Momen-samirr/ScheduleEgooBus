@@ -16,10 +16,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { PayType } from "@prisma/client";
 import { Button } from "../ui/button";
 import { useCreatePayment } from "@/hooks/use-payment";
 import { Loader } from "lucide-react";
+import toast from "react-hot-toast";
+
+type PaymentType = "BTC" | "BTB";
 
 interface AddPaymentDialogProps {
   isOpen: boolean;
@@ -30,16 +32,46 @@ const AddPaymentDialog = ({ isOpen, onClose }: AddPaymentDialogProps) => {
   const [newPayment, setNewPayment] = useState({
     paymentText: "",
     paymentLabel: "",
-    paymentType: "BTC" as PayType,
+    paymentType: "BTC" as PaymentType,
   });
 
   const createPaymentsMutuation = useCreatePayment();
 
   const handelSave = () => {
-    createPaymentsMutuation.mutate(
-      { ...newPayment },
-      { onSuccess: handelClose }
-    );
+    // Validate form fields
+    if (!newPayment.paymentText.trim()) {
+      toast.error("Payment text is required");
+      return;
+    }
+    if (!newPayment.paymentLabel.trim()) {
+      toast.error("Payment label is required");
+      return;
+    }
+    if (!newPayment.paymentType) {
+      toast.error("Payment type is required");
+      return;
+    }
+
+    // Ensure we're passing a plain object with only serializable values
+    const paymentData = {
+      paymentText: newPayment.paymentText.trim(),
+      paymentLabel: newPayment.paymentLabel.trim(),
+      paymentType: newPayment.paymentType,
+    };
+
+    createPaymentsMutuation.mutate(paymentData, {
+      onSuccess: (result) => {
+        if (result?.success) {
+          toast.success("Payment added successfully");
+          handelClose();
+        } else {
+          toast.error(result?.error || "Failed to create payment");
+        }
+      },
+      onError: () => {
+        toast.error("Failed to create payment. Please try again.");
+      },
+    });
   };
   const handelClose = () => {
     onClose();
@@ -50,7 +82,14 @@ const AddPaymentDialog = ({ isOpen, onClose }: AddPaymentDialogProps) => {
     });
   };
   return (
-    <Dialog open={isOpen} onOpenChange={handelClose}>
+    <Dialog
+      open={isOpen}
+      onOpenChange={(open) => {
+        if (!open && !createPaymentsMutuation.isPending) {
+          handelClose();
+        }
+      }}
+    >
       <DialogContent className="max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Add New Payment</DialogTitle>
@@ -88,7 +127,7 @@ const AddPaymentDialog = ({ isOpen, onClose }: AddPaymentDialogProps) => {
                 onValueChange={(value) =>
                   setNewPayment({
                     ...newPayment,
-                    paymentType: value as PayType,
+                    paymentType: value as PaymentType,
                   })
                 }
               >
@@ -111,6 +150,7 @@ const AddPaymentDialog = ({ isOpen, onClose }: AddPaymentDialogProps) => {
             variant={"default"}
             className="cursor-pointer"
             onClick={handelSave}
+            disabled={createPaymentsMutuation.isPending}
           >
             {createPaymentsMutuation.isPending ? (
               <Loader className="size-5 animate-spin" />

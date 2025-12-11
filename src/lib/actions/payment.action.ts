@@ -21,20 +21,42 @@ interface createPaymentInputs {
 
 export const createPayment = async (input: createPaymentInputs) => {
   try {
-    if (!input.paymentText || !input.paymentLabel || !input.paymentType)
-      throw new Error("Payments Info Are All Required");
+    if (!input.paymentText || !input.paymentLabel || !input.paymentType) {
+      return {
+        success: false,
+        error: "Payments Info Are All Required",
+      };
+    }
 
     const paymentCard = await prisma.payment.create({
       data: {
-        ...input,
+        paymentText: input.paymentText,
+        paymentLabel: input.paymentLabel,
+        paymentType: input.paymentType,
       },
     });
     revalidatePath("/admin");
-    return paymentCard;
+    // Return only serializable data
+    return {
+      success: true,
+      data: {
+        id: paymentCard.id,
+        paymentText: paymentCard.paymentText,
+        paymentLabel: paymentCard.paymentLabel,
+        paymentType: paymentCard.paymentType,
+      },
+    };
   } catch (error: any) {
-    if (error?.code === "P2002") {
-      throw new Error("A doctor with this email already exists");
-    }
-    throw new Error("Failed to create doctor");
+    // Extract only the error message string and return as plain object
+    const errorMessage =
+      error?.code === "P2002"
+        ? "A payment with this information already exists"
+        : typeof error?.message === "string"
+        ? error.message
+        : "Failed to create payment";
+    return {
+      success: false,
+      error: errorMessage,
+    };
   }
 };
