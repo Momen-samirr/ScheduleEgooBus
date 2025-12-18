@@ -84,10 +84,6 @@ const weeks = [
     id: "https://script.google.com/macros/s/AKfycbz-REVMBJQlnad-q90xHD0R6cB07YnilPItwPSmRbaRzwFZjGBusR9JCNCML5iiptE/exec",
     label: "تفاصيل حساب اسبوع 30 - 11",
   },
-  {
-    id: "https://script.google.com/macros/s/AKfycbz-REVMBJQlnad-q90xHD0R6cB07YnilPItwPSmRbaRzwFZjGBusR9JCNCML5iiptE/exec",
-    label: "تفاصيل حساب اسبوع 7 - 12",
-  },
 ];
 
 const btbWeeks = [
