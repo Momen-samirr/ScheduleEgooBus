@@ -76,13 +76,17 @@ const weeks = [
   //   id: "https://script.google.com/macros/s/AKfycbyFvxMb_q4Nx7vVFI-5j_3efrsroQWWEhAQEV2jXgimunFLYDZVBJzZgfYFLAgkcguQ/exec",
   //   label: "تفاصيل حساب اسبوع 16 - 11",
   // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbzfU1NHDdhjv0nBnPW1d52yOAvUSrzR_N1Y-9S6HmjN4hFYxVVTUbucP6SYdQL5UvW6/exec",
+  //   label: "تفاصيل حساب اسبوع 23 - 11",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbz-REVMBJQlnad-q90xHD0R6cB07YnilPItwPSmRbaRzwFZjGBusR9JCNCML5iiptE/exec",
+  //   label: "تفاصيل حساب اسبوع 30 - 11",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbzfU1NHDdhjv0nBnPW1d52yOAvUSrzR_N1Y-9S6HmjN4hFYxVVTUbucP6SYdQL5UvW6/exec",
-    label: "تفاصيل حساب اسبوع 23 - 11",
-  },
-  {
-    id: "https://script.google.com/macros/s/AKfycbz-REVMBJQlnad-q90xHD0R6cB07YnilPItwPSmRbaRzwFZjGBusR9JCNCML5iiptE/exec",
-    label: "تفاصيل حساب اسبوع 30 - 11",
+    id: "https://script.google.com/macros/s/AKfycbxG1J5Ne4y9FhWnYHNlayfZuAm_wnQndkfGWROy7uqOLLwtrFilML3ImnOUWg3VMFF0ng/exec",
+    label: "تفاصيل حساب اسبوع 7 - 12",
   },
 ];
 
@@ -151,13 +155,17 @@ const btbWeeks = [
   //   id: "https://script.google.com/macros/s/AKfycbzt2J7DmGOh3aMPpXjtfAE1c46bXMwhRvfyUGzs2-L4gw-mcIwz0t8R5wxqVUMfA4_3HQ/exec",
   //   title: "تفاصيل حساب اسبوع 16 - 11",
   // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbzDi8-oBYMrPtQshoFPJOZpXCNoKaMOCTLAeXfFBjpj2xPBhEEu5vw3EtOarjreSTprzg/exec",
+  //   title: "تفاصيل حساب اسبوع 23 - 11",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbxv7rBh2AEk-1XcZXHyqYA7Ni5awdHh-PE2OrbCNvbWUH0eGd6m_JxcnZaz1cmEu8Rj/exec",
+  //   title: "تفاصيل حساب اسبوع 30 - 11",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbzDi8-oBYMrPtQshoFPJOZpXCNoKaMOCTLAeXfFBjpj2xPBhEEu5vw3EtOarjreSTprzg/exec",
-    title: "تفاصيل حساب اسبوع 23 - 11",
-  },
-  {
-    id: "https://script.google.com/macros/s/AKfycbxv7rBh2AEk-1XcZXHyqYA7Ni5awdHh-PE2OrbCNvbWUH0eGd6m_JxcnZaz1cmEu8Rj/exec",
-    title: "تفاصيل حساب اسبوع 30 - 11",
+    id: "https://script.google.com/macros/s/AKfycby8E3ygJ5G48Q1_7T_rSUpeIbwzw3UKUGpTqTRdVvoQYIWBTrsT5pT6D38ZGLxHwwNtgQ/exec",
+    title: "تفاصيل حساب اسبوع 7 - 12",
   },
 ];
 
