@@ -84,13 +84,17 @@ const weeks = [
   //   id: "https://script.google.com/macros/s/AKfycbz-REVMBJQlnad-q90xHD0R6cB07YnilPItwPSmRbaRzwFZjGBusR9JCNCML5iiptE/exec",
   //   label: "تفاصيل حساب اسبوع 30 - 11",
   // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbxG1J5Ne4y9FhWnYHNlayfZuAm_wnQndkfGWROy7uqOLLwtrFilML3ImnOUWg3VMFF0ng/exec",
+  //   label: "تفاصيل حساب اسبوع 7 - 12",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbylEHcJxU6u-_f4EtCxJTunVzYe_8ZgXGipJMkmAfrzOmx84vfnUnLtF2HKi44PxQSV/exec",
+  //   label: "تفاصيل حساب اسبوع 14 - 12",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbxG1J5Ne4y9FhWnYHNlayfZuAm_wnQndkfGWROy7uqOLLwtrFilML3ImnOUWg3VMFF0ng/exec",
-    label: "تفاصيل حساب اسبوع 7 - 12",
-  },
-  {
-    id: "https://script.google.com/macros/s/AKfycbylEHcJxU6u-_f4EtCxJTunVzYe_8ZgXGipJMkmAfrzOmx84vfnUnLtF2HKi44PxQSV/exec",
-    label: "تفاصيل حساب اسبوع 14 - 12",
+    id: "https://script.google.com/macros/s/AKfycbw6MKdsG0c2s33_CCwp7kTcRqf67U7BuASFisktpTn90ur2iKtnafAhGHSg9_hkO2E0/exec",
+    label: "تفاصيل حساب اسبوع 21 - 12",
   },
 ];
 
@@ -167,13 +171,17 @@ const btbWeeks = [
   //   id: "https://script.google.com/macros/s/AKfycbxv7rBh2AEk-1XcZXHyqYA7Ni5awdHh-PE2OrbCNvbWUH0eGd6m_JxcnZaz1cmEu8Rj/exec",
   //   title: "تفاصيل حساب اسبوع 30 - 11",
   // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycby8E3ygJ5G48Q1_7T_rSUpeIbwzw3UKUGpTqTRdVvoQYIWBTrsT5pT6D38ZGLxHwwNtgQ/exec",
+  //   title: "تفاصيل حساب اسبوع 7 - 12",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbyNKEqCn82oUjnfeD9a8xUZvC1yOLIodqVwTsxHrQHsP-aTFbCPe8IZyUFEOnVo2Uwr/exec",
+  //   title: "تفاصيل حساب اسبوع 14 - 12",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycby8E3ygJ5G48Q1_7T_rSUpeIbwzw3UKUGpTqTRdVvoQYIWBTrsT5pT6D38ZGLxHwwNtgQ/exec",
-    title: "تفاصيل حساب اسبوع 7 - 12",
-  },
-  {
-    id: "https://script.google.com/macros/s/AKfycbyNKEqCn82oUjnfeD9a8xUZvC1yOLIodqVwTsxHrQHsP-aTFbCPe8IZyUFEOnVo2Uwr/exec",
-    title: "تفاصيل حساب اسبوع 14 - 12",
+    id: "https://script.google.com/macros/s/AKfycbyyOjI9y8Ys222yXgvrIIVHjzNCtooOhFK7txle9juv88rEz6OAm11ERi4XQsBQX6t8/exec",
+    title: "تفاصيل حساب اسبوع 21 - 12",
   },
 ];
 
