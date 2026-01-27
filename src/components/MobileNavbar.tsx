@@ -123,6 +123,16 @@ function MobileNavbar(
                     Payments
                   </Link>
                 </Button>
+                <Button
+                  variant="ghost"
+                  className="flex items-center gap-3 justify-start"
+                  asChild
+                >
+                  <Link href="/ramdanSearch">
+                    < MoonIcon className="w-5 h-5" />
+                    Ramdan
+                  </Link>
+                </Button>
                 {/* <Button
                   variant="ghost"
                   className="flex items-center gap-3 justify-start"
