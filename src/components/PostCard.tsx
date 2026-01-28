@@ -148,7 +148,7 @@ function PostCard({
                           <Moon className="size-5 text-sky-500" />
                           <span className="text-sky-500">
                             {" "}
-                            جداول قوة المكتب
+                            جدول شهر رمضان
                           </span>
                         </>
                       ) : null}
@@ -168,9 +168,9 @@ function PostCard({
                   />
                 )}
               </div>
-              <div className="mt-1 text-sky-500 font-bold">
+              {/* <div className="mt-1 text-sky-500 font-bold">
                 <p>{trip?.prices}</p>
-              </div>
+              </div> */}
               <p className="mt-2 text-sm text-foreground break-words">
                 {trip?.trips}
               </p>{" "}
