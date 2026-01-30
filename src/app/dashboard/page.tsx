@@ -24,36 +24,36 @@ const DashboardRoute = async () => {
       <div className="grid grid-cols-1 lg:grid-cols-10 gap-10">
         <div className="lg:col-span-5">
           <CompanyCard
-            title="جداول"
+            title="جداول رمضان"
             href="/dashboard/b2c"
-            subTitle="رحلات فردية"
-            subHref="/dashboard/solo"
-            veicle="هاي اس"
-            availability="Now Available"
-            topic="جداول شهر رمضان"
-            src="/uber.png"
-          />
-        </div>
-        {/* <div className="lg:col-span-5">
-          <CompanyCard
-            title="جداول شغل"
-            href="/dashboard/b2cramadan"
             // subTitle="رحلات فردية"
             // subHref="/dashboard/solo"
             veicle="هاي اس"
             availability="Now Available"
-            topic="جداول شغل من فتره3 الي 7"
+            topic="جداول شهر رمضان"
+            src="/ramdan.png"
+          />
+        </div>
+        <div className="lg:col-span-5">
+          <CompanyCard
+            title="جداول شغل"
+            href="/dashboard/b2cramadan"
+            subTitle="رحلات فردية"
+            subHref="/dashboard/solo"
+            veicle="هاي اس"
+            availability="Now Available"
+            topic="جداول شغل من فتره1 الي 5"
             src="/uber.png"
           />
-        </div> */}
-        {user?.email !== "tareqmohamed604@gmail.com" ? (
+        </div>
+        {/* {user?.email !== "tareqmohamed604@gmail.com" ? (
           <>
             <div className="lg:col-span-5">
               <CompanyCard
                 title="Hunkel"
                 href="/dashboard/hunkel"
                 veicle="ملاكي"
-                availability="Now Available"
+                availability="Available Soon"
                 topic="شركات"
                 subTitle="Reserved Trips"
                 subHref="/dashboard/reservedTrips"
@@ -75,7 +75,7 @@ const DashboardRoute = async () => {
               />
             </div>
           </>
-        ) : null}
+        ) : null} */}
         <div className="lg:col-span-5">
           <CompanyCard
             title="New Raf3 Schedule"
