@@ -34,10 +34,6 @@ const RamdanTripsRoute = async () => {
             </div>
           )}
           <div className="flex items-center justify-center gap-3">
-            <div className="flex items-center font-semibold">
-              <Moon />
-              <span>توزيعة رمضان، كل عام وحضراتكم بخير</span>
-            </div>
           </div>
           {trips.map((trip) => (
             <PostCard key={trip.id} trip={trip} dbUserId={dbUserId} />
