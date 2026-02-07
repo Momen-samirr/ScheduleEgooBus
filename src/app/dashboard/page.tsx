@@ -39,7 +39,7 @@ const DashboardRoute = async () => {
             title="جداول شغل"
             href="/dashboard/b2cramadan"
             subTitle=" رحلات فردية قبل رمضان"
-            subHref="/dashboard/b2cramadan"
+            subHref="/dashboard/soloramdan"
             veicle="هاي اس"
             availability="Now Available"
             topic="جداول شغل من فتره1 الي 5"
