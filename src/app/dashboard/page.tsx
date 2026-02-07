@@ -38,8 +38,8 @@ const DashboardRoute = async () => {
           <CompanyCard
             title="جداول شغل"
             href="/dashboard/b2cramadan"
-            // subTitle="رحلات فردية"
-            // subHref="/dashboard/solo"
+            subTitle=" رحلات فردية قبل رمضان"
+            subHref="/dashboard/b2cramadan"
             veicle="هاي اس"
             availability="Now Available"
             topic="جداول شغل من فتره1 الي 5"
