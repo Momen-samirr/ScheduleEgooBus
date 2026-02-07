@@ -318,7 +318,7 @@ export async function getSoloRamdanTrips() {
       },
       where: {
         tripType: "SOLO",
-        tripMode: "normal",
+        tripMode: "ramdan",
       },
       include: {
         author: {
