@@ -112,9 +112,13 @@ const weeks = [
     id: "https://script.google.com/macros/s/AKfycbyEWt9CQdW-XAMDCWLvqpO9CND1JWDw7RlkwGUrdHN9R5bH2x8zy-LSFZAgqAz_uO-5CQ/exec",
     label: "تفاصيل حساب اسبوع 18 - 1",
   },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbxLxrqJV7gyVxw6wBlttU7jPFf1Hy5oNTJ3s5nrd-dSWCUznTbcNY9p__xnJ6kNvnzhcg/exec",
+  //   label: "تفاصيل حساب اسبوع 25 - 1",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbxLxrqJV7gyVxw6wBlttU7jPFf1Hy5oNTJ3s5nrd-dSWCUznTbcNY9p__xnJ6kNvnzhcg/exec",
-    label: "تفاصيل حساب اسبوع 25 - 1",
+    id: "https://script.google.com/macros/s/AKfycbxuQjGMRwIhA8xXserPGLwVwVGBQyIP2dJL8XkocFBzc22oW8CuOJeqe1q1szrWKvUX/exec",
+    label: "تفاصيل حساب اسبوع 1 - 2",
   },
 ];
 
@@ -215,13 +219,17 @@ const btbWeeks = [
   //   id: "https://script.google.com/macros/s/AKfycbwHD6CUTA7LMq2Pb3u7DJ5mbcy1RRTz4f0SyITdb4x8TshHm9qB0xfcqzpd-W14ePSLtA/exec",
   //   title: "تفاصيل حساب اسبوع 11 - 1",
   // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbw92ud3d63DHD7brGo-ZDs3IPeK-0wu-VUtuivBt3nW_2l3eQfBZOCtEEddx9rscVPB/exec",
+  //   title: "تفاصيل حساب اسبوع 18 - 1",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbxzyPOYWKB5cW0W2vE6FmB4LRd-facazwAtpWTGliyA_4Sn0npdlUu5h0nPCm1E-9814g/exec",
+  //   title: "تفاصيل حساب اسبوع 25 - 1",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbw92ud3d63DHD7brGo-ZDs3IPeK-0wu-VUtuivBt3nW_2l3eQfBZOCtEEddx9rscVPB/exec",
-    title: "تفاصيل حساب اسبوع 18 - 1",
-  },
-  {
-    id: "https://script.google.com/macros/s/AKfycbxzyPOYWKB5cW0W2vE6FmB4LRd-facazwAtpWTGliyA_4Sn0npdlUu5h0nPCm1E-9814g/exec",
-    title: "تفاصيل حساب اسبوع 25 - 1",
+    id: "https://script.google.com/macros/s/AKfycbwBkpxaRqPyucOrHoFHyJnLjTV3ECT-ZDBoEiCiUnqnrjl-cJtzGCG-IGJVbukqafHQ/exec",
+    title: "تفاصيل حساب اسبوع 1 - 2",
   },
 ];
 
