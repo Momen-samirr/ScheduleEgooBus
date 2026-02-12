@@ -108,10 +108,10 @@ const weeks = [
   //   id: "https://script.google.com/macros/s/AKfycbzgLBXP5zFGnypzTUXjYJviZaMsHLnm8vevtzzFTErri-ey42B3l7r7I0GVBU94S0Ob/exec",
   //   label: "تفاصيل حساب اسبوع 11 - 1",
   // },
-  {
-    id: "https://script.google.com/macros/s/AKfycbyEWt9CQdW-XAMDCWLvqpO9CND1JWDw7RlkwGUrdHN9R5bH2x8zy-LSFZAgqAz_uO-5CQ/exec",
-    label: "تفاصيل حساب اسبوع 18 - 1",
-  },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbyEWt9CQdW-XAMDCWLvqpO9CND1JWDw7RlkwGUrdHN9R5bH2x8zy-LSFZAgqAz_uO-5CQ/exec",
+  //   label: "تفاصيل حساب اسبوع 18 - 1",
+  // },
   // {
   //   id: "https://script.google.com/macros/s/AKfycbxLxrqJV7gyVxw6wBlttU7jPFf1Hy5oNTJ3s5nrd-dSWCUznTbcNY9p__xnJ6kNvnzhcg/exec",
   //   label: "تفاصيل حساب اسبوع 25 - 1",
