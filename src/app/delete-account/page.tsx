@@ -1,4 +1,5 @@
 // app/delete-account/page.tsx (or pages/delete-account.tsx for Pages Router)
+// app/delete-account/page.tsx (or pages/delete-account.tsx for Pages Router)
 import React from "react";
 
 export default function DeleteAccountPage() {
