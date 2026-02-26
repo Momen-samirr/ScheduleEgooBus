@@ -116,13 +116,17 @@ const weeks = [
   //   id: "https://script.google.com/macros/s/AKfycbxLxrqJV7gyVxw6wBlttU7jPFf1Hy5oNTJ3s5nrd-dSWCUznTbcNY9p__xnJ6kNvnzhcg/exec",
   //   label: "تفاصيل حساب اسبوع 25 - 1",
   // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbxuQjGMRwIhA8xXserPGLwVwVGBQyIP2dJL8XkocFBzc22oW8CuOJeqe1q1szrWKvUX/exec",
+  //   label: "تفاصيل حساب اسبوع 1 - 2",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbwIBf6aL0WjSrWSyIpXGZEnKEHSuNhpWdFK_ZMgxWFrs50UmF5VJMeC_JvYHcOwdyODQg/exec",
+  //   label: "تفاصيل حساب اسبوع 8 - 2",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbxuQjGMRwIhA8xXserPGLwVwVGBQyIP2dJL8XkocFBzc22oW8CuOJeqe1q1szrWKvUX/exec",
-    label: "تفاصيل حساب اسبوع 1 - 2",
-  },
-  {
-    id: "https://script.google.com/macros/s/AKfycbwIBf6aL0WjSrWSyIpXGZEnKEHSuNhpWdFK_ZMgxWFrs50UmF5VJMeC_JvYHcOwdyODQg/exec",
-    label: "تفاصيل حساب اسبوع 8 - 2",
+    id: "https://script.google.com/macros/s/AKfycbwi97-6ERc8Koua7lqB_WnBY_coj0amRa1XPmKjX3-qOdWzJRarZ94pEjEttamG6858/exec",
+    label: "تفاصيل حساب اسبوع 15 - 2",
   },
 ];
 
@@ -231,13 +235,17 @@ const btbWeeks = [
   //   id: "https://script.google.com/macros/s/AKfycbxzyPOYWKB5cW0W2vE6FmB4LRd-facazwAtpWTGliyA_4Sn0npdlUu5h0nPCm1E-9814g/exec",
   //   title: "تفاصيل حساب اسبوع 25 - 1",
   // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbwBkpxaRqPyucOrHoFHyJnLjTV3ECT-ZDBoEiCiUnqnrjl-cJtzGCG-IGJVbukqafHQ/exec",
+  //   title: "تفاصيل حساب اسبوع 1 - 2",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbw1vjrH3gqiTV-QhLba8TCAUBVNIWaBihrO7Vsq_1zbQexK_wsHhDmY8r9YJVU6Do5X/exec",
+  //   title: "تفاصيل حساب اسبوع 8 - 2",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbwBkpxaRqPyucOrHoFHyJnLjTV3ECT-ZDBoEiCiUnqnrjl-cJtzGCG-IGJVbukqafHQ/exec",
-    title: "تفاصيل حساب اسبوع 1 - 2",
-  },
-  {
-    id: "https://script.google.com/macros/s/AKfycbw1vjrH3gqiTV-QhLba8TCAUBVNIWaBihrO7Vsq_1zbQexK_wsHhDmY8r9YJVU6Do5X/exec",
-    title: "تفاصيل حساب اسبوع 8 - 2",
+    id: "https://script.google.com/macros/s/AKfycbzeq-t8sU-tDPjSHiY-Y1oxk6PecK3yAlNivJNwmv2OAJwu_zC09MKUHezFZKk6jSPI/exec",
+    title: "تفاصيل حساب اسبوع 15 - 2",
   },
 ];
 
