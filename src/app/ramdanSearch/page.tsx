@@ -13,8 +13,8 @@ import { CalendarDays, DollarSign, Banknote } from "lucide-react";
 
 const weeks = [
   {
-    id: "https://script.google.com/macros/s/AKfycbx3piKWppVvmzwSj28xMIYZNdzbLbduhB2yneBtk2EaOIJaHTZmCGl95SVtbUEf9kJD/exec",
-    label: "استعلام عن جدولي في رمضان ",
+    id: "https://script.google.com/macros/s/AKfycbxL6mtlyslLqPqxj72ps9UfdifKH1KiKvyQMocfK777gBM47-L-k_OMIXXV2T80dEGi/exec",
+    label: "استعلام عن جدولي بعد رمضان ",
   },
 ];
 
@@ -67,7 +67,7 @@ const Page = () => {
           <CardHeader className="flex flex-col items-center gap-2">
             <CalendarDays className="w-10 h-10 text-blue-600 dark:text-blue-400" />
             <CardTitle className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              استعلم عن الجدول من هنا
+              استعلم عن جدولك بعد رمضان من هنا
             </CardTitle>
           </CardHeader>
 
@@ -96,8 +96,7 @@ const Page = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="w-full max-w-lg relative z-10"
-      >
-      </motion.div>
+      ></motion.div>
     </div>
   );
 };
