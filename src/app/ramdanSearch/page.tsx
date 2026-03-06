@@ -13,7 +13,7 @@ import { CalendarDays, DollarSign, Banknote } from "lucide-react";
 
 const weeks = [
   {
-    id: "https://script.google.com/macros/s/AKfycbxL6mtlyslLqPqxj72ps9UfdifKH1KiKvyQMocfK777gBM47-L-k_OMIXXV2T80dEGi/exec",
+    id: "https://script.google.com/macros/s/AKfycbyd2qySxqhUH3s5gCrr0_4l1m2idEAStFXwiCN7SKtczYq4e0Udsm3OkvvHcfm_aPyM/exec",
     label: "استعلام عن جدولي بعد رمضان ",
   },
 ];
