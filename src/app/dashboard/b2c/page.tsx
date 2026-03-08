@@ -34,7 +34,7 @@ const UberRoute = async () => {
           <div className="flex items-center justify-end">
             <RefreshButton />
           </div>
-          <p className="text-xl text-sky-500">جداول شهر رمضان</p>
+          <p className="text-xl text-sky-500">جداول بعد رمضان</p>
           {dbUser?.role !== "admin" ? (
             <>
               {trips.map((trip) => (
