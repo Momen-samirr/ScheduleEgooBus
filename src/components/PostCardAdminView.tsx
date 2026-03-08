@@ -52,8 +52,8 @@ function PostCardAdminView({
   const [isDeleting, setIsDeleting] = useState(false);
   const [hasLiked, setHasLiked] = useState(
     trip?.likes?.some(
-      (like: { userId: string | null }) => like.userId === dbUserId
-    )
+      (like: { userId: string | null }) => like.userId === dbUserId,
+    ),
   );
   const [optimisticLikes, setOptmisticLikes] = useState(trip?._count.likes);
   const [showComments, setShowComments] = useState(false);
@@ -103,10 +103,10 @@ function PostCardAdminView({
   };
 
   const haveAcomment = trip?.comments?.some(
-    (comment: { authorId: string | null }) => comment?.authorId !== dbUserId
+    (comment: { authorId: string | null }) => comment?.authorId !== dbUserId,
   );
   const haveAcommentme = trip?.comments?.some(
-    (comment: { authorId: string | null }) => comment?.authorId === dbUserId
+    (comment: { authorId: string | null }) => comment?.authorId === dbUserId,
   );
   return (
     <Card className={`${haveAcomment ? "border-2 border-sky-500" : ""}`}>
@@ -146,10 +146,7 @@ function PostCardAdminView({
                       {trip?.tripMode === "ramdan" ? (
                         <>
                           <Moon className="size-5 text-sky-500" />
-                          <span className="text-sky-500">
-                            {" "}
-                              جدول شهر رمضان
-                          </span>
+                          <span className="text-sky-500"> جدول بعد رمضان</span>
                         </>
                       ) : null}
                     </span>
@@ -345,7 +342,7 @@ function PostCardAdminView({
                         <p className="text-sm break-words">{comment.content}</p>
                       </div>
                     </div>
-                  )
+                  ),
                 )}
               </div>
               <div className="flex space-x-3">
