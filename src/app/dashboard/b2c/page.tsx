@@ -18,9 +18,9 @@ const UberRoute = async () => {
 
   if (!dbUserId) return redirect("/");
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
-      <div className="lg:col-span-7">
-        <div className="space-y-6">
+    <div className="max-w-7xl mx-auto px-4 w-full">
+      <div className="w-full">
+        <div className="space-y-6 w-full">
           {trips.length === 0 && (
             <p className="text-center text-sm text-gray-500">
               No trips found for this time
@@ -35,29 +35,39 @@ const UberRoute = async () => {
             <RefreshButton />
           </div>
           <p className="text-xl text-sky-500">جداول بعد رمضان</p>
-          {dbUser?.role !== "admin" ? (
-            <>
-              {trips.map((trip) => (
-                <PostCard
-                  key={trip.id}
-                  trip={trip}
-                  dbUserId={dbUserId}
-                  dbUser={dbUser}
-                />
-              ))}
-            </>
-          ) : (
-            <>
-              {tripsAdminView.map((trip) => (
-                <PostCardAdminView
-                  key={trip.id}
-                  trip={trip}
-                  dbUserId={dbUserId}
-                  dbUser={dbUser}
-                />
-              ))}
-            </>
-          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            {dbUser?.role !== "admin" ? (
+              <>
+                {trips.map((trip) => (
+                  <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 w-full">
+                      <PostCard
+                        key={trip.id}
+                        trip={trip}
+                        dbUserId={dbUserId}
+                        dbUser={dbUser}
+                      />
+                    </div>
+                  </>
+                ))}
+              </>
+            ) : (
+              <>
+                {tripsAdminView.map((trip) => (
+                  <>
+                    <div className="w-full">
+                      <PostCardAdminView
+                        key={trip.id}
+                        trip={trip}
+                        dbUserId={dbUserId}
+                        dbUser={dbUser}
+                      />
+                    </div>
+                  </>
+                ))}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

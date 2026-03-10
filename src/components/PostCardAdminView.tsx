@@ -109,7 +109,9 @@ function PostCardAdminView({
     (comment: { authorId: string | null }) => comment?.authorId === dbUserId,
   );
   return (
-    <Card className={`${haveAcomment ? "border-2 border-sky-500" : ""}`}>
+    <Card
+      className={`${haveAcomment ? "border-2 border-sky-500" : ""} rounded-xl w-full`}
+    >
       <CardHeader>
         <CardTitle className="text-xs text-muted-foreground">
           بعد 10 دقائق من طلبك برجاء التحقق من قائمه الاشعارات لمراجعة حاله طلبك
