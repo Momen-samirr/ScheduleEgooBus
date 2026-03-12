@@ -124,13 +124,17 @@ const weeks = [
   //   id: "https://script.google.com/macros/s/AKfycbwIBf6aL0WjSrWSyIpXGZEnKEHSuNhpWdFK_ZMgxWFrs50UmF5VJMeC_JvYHcOwdyODQg/exec",
   //   label: "تفاصيل حساب اسبوع 8 - 2",
   // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbwi97-6ERc8Koua7lqB_WnBY_coj0amRa1XPmKjX3-qOdWzJRarZ94pEjEttamG6858/exec",
+  //   label: "تفاصيل حساب اسبوع 15 - 2",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbyOtxDi9714eo8PsE7M_nGvnOh711XYf5VuebVoM4rSHV4gh0tCPT8chNUm0eKCaiX7/exec",
+  //   label: "تفاصيل حساب اسبوع 22 - 2",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbwi97-6ERc8Koua7lqB_WnBY_coj0amRa1XPmKjX3-qOdWzJRarZ94pEjEttamG6858/exec",
-    label: "تفاصيل حساب اسبوع 15 - 2",
-  },
-  {
-    id: "https://script.google.com/macros/s/AKfycbyOtxDi9714eo8PsE7M_nGvnOh711XYf5VuebVoM4rSHV4gh0tCPT8chNUm0eKCaiX7/exec",
-    label: "تفاصيل حساب اسبوع 22 - 2",
+    id: "https://script.google.com/macros/s/AKfycbwRxRQ5sjpJ_pAJNVLyObhslxj5kwjwrHPvN7VHSNy08s3phTEbYYWU_0q0kgsn0naW/exec",
+    label: "تفاصيل حساب اسبوع 3 - 1",
   },
 ];
 
@@ -247,13 +251,17 @@ const btbWeeks = [
   //   id: "https://script.google.com/macros/s/AKfycbw1vjrH3gqiTV-QhLba8TCAUBVNIWaBihrO7Vsq_1zbQexK_wsHhDmY8r9YJVU6Do5X/exec",
   //   title: "تفاصيل حساب اسبوع 8 - 2",
   // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbzeq-t8sU-tDPjSHiY-Y1oxk6PecK3yAlNivJNwmv2OAJwu_zC09MKUHezFZKk6jSPI/exec",
+  //   title: "تفاصيل حساب اسبوع 15 - 2",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbx4zj1sHoTwKYqjTuKle6DCL-E7dCkwh3wuQqSrtuyTtLhzyid7dr9ka8peaT964DvHYg/exec",
+  //   title: "تفاصيل حساب اسبوع 22 - 2",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbzeq-t8sU-tDPjSHiY-Y1oxk6PecK3yAlNivJNwmv2OAJwu_zC09MKUHezFZKk6jSPI/exec",
-    title: "تفاصيل حساب اسبوع 15 - 2",
-  },
-  {
-    id: "https://script.google.com/macros/s/AKfycbx4zj1sHoTwKYqjTuKle6DCL-E7dCkwh3wuQqSrtuyTtLhzyid7dr9ka8peaT964DvHYg/exec",
-    title: "تفاصيل حساب اسبوع 22 - 2",
+    id: "https://script.google.com/macros/s/AKfycby_msPdLgy5JfVbHYiBr8QDc2QvghJcNyEhplyMqxAeisTyLls-TdOuuKut37FbUWpMUw/exec",
+    title: "تفاصيل حساب اسبوع 3 - 1",
   },
 ];
 
