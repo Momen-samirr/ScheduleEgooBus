@@ -146,7 +146,13 @@ function PostCard({
                       {trip?.tripMode === "ramdan" ? (
                         <>
                           <Moon className="size-5 text-sky-500" />
-                          <span className="text-sky-500"> جدول بعد رمضان</span>
+                          <span className="text-sky-500">
+                            {trip?.tripType === "SOLO"
+                              ? trip?.tripMode === "ramdan"
+                                ? "رحله فردية رمضان"
+                                : "رحله فردية بعد رمضان"
+                              : null}
+                          </span>
                         </>
                       ) : null}
                     </span>

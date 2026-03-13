@@ -264,7 +264,7 @@ export async function getSoloPosts() {
       },
       where: {
         tripType: "SOLO",
-        tripMode: "ramdan",
+        tripMode: "normal",
       },
       include: {
         author: {
@@ -318,7 +318,7 @@ export async function getSoloRamdanTrips() {
       },
       where: {
         tripType: "SOLO",
-        tripMode: "normal",
+        tripMode: "ramdan",
       },
       include: {
         author: {

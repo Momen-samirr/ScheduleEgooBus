@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 const SoloTripRoute = async () => {
-  const trips = await getSoloRamdanTrips();
+  const trips = await getSoloPosts();
   const dbUserId = await getDbUserId();
   const dbUser = await getDbUser();
 
