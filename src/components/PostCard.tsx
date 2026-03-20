@@ -149,7 +149,7 @@ function PostCard({
                           <span className="text-sky-500">
                             {trip?.tripType === "SOLO"
                               ? trip?.tripMode === "ramdan"
-                                ? "رحله فردية رمضان"
+                                ? "رحله فردية شغل"
                                 : "رحله فردية بعد رمضان"
                               : null}
                           </span>
