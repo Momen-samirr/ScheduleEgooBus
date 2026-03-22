@@ -53,8 +53,8 @@ function NormalPostDriverView({
   const [isDeleting, setIsDeleting] = useState(false);
   const [hasLiked, setHasLiked] = useState(
     trip?.likes?.some(
-      (like: { userId: string | null }) => like.userId === dbUserId
-    )
+      (like: { userId: string | null }) => like.userId === dbUserId,
+    ),
   );
   const [optimisticLikes, setOptmisticLikes] = useState(trip?._count.likes);
   const [showComments, setShowComments] = useState(false);
@@ -104,10 +104,10 @@ function NormalPostDriverView({
   };
 
   const haveAcomment = trip?.comments?.some(
-    (comment: { authorId: string | null }) => comment?.authorId !== dbUserId
+    (comment: { authorId: string | null }) => comment?.authorId !== dbUserId,
   );
   const haveAcommentme = trip?.comments?.some(
-    (comment: { authorId: string | null }) => comment?.authorId === dbUserId
+    (comment: { authorId: string | null }) => comment?.authorId === dbUserId,
   );
   return (
     <Card className={`${haveAcomment ? "border-2 border-sky-500" : ""}`}>
@@ -180,6 +180,18 @@ function NormalPostDriverView({
                   </div>
                 </>
               )}
+              {trip?.kelometr && trip?.tripType === "SCHEDULED" ? (
+                <div className="flex flex-col gap-3 mt-1.5 font-bold">
+                  <p className="text-sky-500">إجمالي الكيلومترات</p>
+                  <p>{trip?.kelometr}</p>
+                </div>
+              ) : null}
+              {trip?.gapmetr && trip?.tripType === "SCHEDULED" ? (
+                <div className="flex flex-col gap-3 mt-1.5 font-bold">
+                  <p className="text-sky-500">الكيلومترات الفارغة</p>
+                  <p>{trip?.gapmetr}</p>
+                </div>
+              ) : null}
               {/* {trip?.haiisPrice && trip?.tripType === "SCHEDULED" ? (
                 <div className="flex flex-col gap-3 mt-1.5 font-bold">
                   <p className="text-sky-500">سعر الرحلة للهايس/ الصيني</p>
@@ -339,7 +351,7 @@ function NormalPostDriverView({
                         <p className="text-sm break-words">{comment.content}</p>
                       </div>
                     </div>
-                  )
+                  ),
                 )}
               </div>
               <div className="flex space-x-3">
