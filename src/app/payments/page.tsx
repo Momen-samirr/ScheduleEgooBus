@@ -152,6 +152,10 @@ const weeks = [
     id: "https://script.google.com/macros/s/AKfycbzx1bIwqPOAa1pqPJogLmNcTvXLQqtKEI6IiTFyQ450yNlrXcQTX-pCY5rlXaX56X6vFg/exec",
     label: "تفاصيل حساب اسبوع 3 - 29",
   },
+  {
+    id: "https://script.google.com/macros/s/AKfycbwyThDHHO8SPQnVi8Lp3l5yVrxExDYdyVY3FjYa8_vrR2gfiNb1HJWYz95ZFkQJsucKUA/exec",
+    label: "تفاصيل حساب اسبوع 4 - 5",
+  },
 ];
 
 const btbWeeks = [
@@ -294,6 +298,10 @@ const btbWeeks = [
   {
     id: "https://script.google.com/macros/s/AKfycbwxh06268JKijxQL2LGSGQP3tb8UGapp09CNc_HDM9iLLd0FhCyn3HwqSZAANau7Yd9Iw/exec",
     title: "تفاصيل حساب اسبوع 3 - 29",
+  },
+  {
+    id: "https://script.google.com/macros/s/AKfycbw_FNWXPoITNjIGmKLXKkOYGy_OFZCruI8ndH8U2E8PLr6K3f3Ek1FP3cFfrMEqW03u/exec",
+    title: "تفاصيل حساب اسبوع 4 - 5",
   },
 ];
 
