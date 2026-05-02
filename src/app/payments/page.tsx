@@ -303,10 +303,10 @@ const btbWeeks = [
   //   id: "https://script.google.com/macros/s/AKfycbw_FNWXPoITNjIGmKLXKkOYGy_OFZCruI8ndH8U2E8PLr6K3f3Ek1FP3cFfrMEqW03u/exec",
   //   title: "تفاصيل حساب اسبوع 4 - 5",
   // },
-  // {
-  //   id: "https://script.google.com/macros/s/AKfycbxTUby_TIGe-BrdeeuoFyAzR3FkEWAS2_aSKBPYTM-EzBm5g9H-ARMoPn9Yq3N6nAFN/exec",
-  //   title: "تفاصيل حساب اسبوع 4 - 12",
-  // },
+  {
+    id: "https://script.google.com/macros/s/AKfycbxTUby_TIGe-BrdeeuoFyAzR3FkEWAS2_aSKBPYTM-EzBm5g9H-ARMoPn9Yq3N6nAFN/exec",
+    title: "تفاصيل حساب اسبوع 4 - 12",
+  },
   {
     id: "https://script.google.com/macros/s/AKfycbzsXTArgrBJ0ZFVMr5M1QghCCXV2XV6ckyZbkAMWzL-frjBdVfDAFufJC6nuOKmOVa5/exec",
     title: "تفاصيل حساب اسبوع 4 - 19",
