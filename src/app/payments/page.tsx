@@ -308,7 +308,7 @@ const btbWeeks = [
     title: "تفاصيل حساب اسبوع 4 - 12",
   },
   {
-    id: "https://script.google.com/macros/s/AKfycbzsXTArgrBJ0ZFVMr5M1QghCCXV2XV6ckyZbkAMWzL-frjBdVfDAFufJC6nuOKmOVa5/exec",
+    id: "https://script.google.com/macros/s/AKfycbySMWrL02NGnKoy4Ni06Rye_6mrkuN6nHD6CDhj1UHjfHBF2R6nyFAq1EFI_04fcJKl/exec",
     title: "تفاصيل حساب اسبوع 4 - 19",
   },
 ];
