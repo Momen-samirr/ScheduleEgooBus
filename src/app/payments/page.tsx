@@ -148,14 +148,14 @@ const weeks = [
   //   id: "https://script.google.com/macros/s/AKfycbzzTtplNJYgaGVF9YxQu3ntxC60_XubnePoDtGMx2R6HtDs7hfAcGBT5dKcjWDEoX7C/exec",
   //   label: "تفاصيل حساب اسبوع 3 - 22",
   // },
-  {
-    id: "https://script.google.com/macros/s/AKfycbzx1bIwqPOAa1pqPJogLmNcTvXLQqtKEI6IiTFyQ450yNlrXcQTX-pCY5rlXaX56X6vFg/exec",
-    label: "تفاصيل حساب اسبوع 3 - 29",
-  },
-  {
-    id: "https://script.google.com/macros/s/AKfycbwyThDHHO8SPQnVi8Lp3l5yVrxExDYdyVY3FjYa8_vrR2gfiNb1HJWYz95ZFkQJsucKUA/exec",
-    label: "تفاصيل حساب اسبوع 4 - 5",
-  },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbzx1bIwqPOAa1pqPJogLmNcTvXLQqtKEI6IiTFyQ450yNlrXcQTX-pCY5rlXaX56X6vFg/exec",
+  //   label: "تفاصيل حساب اسبوع 3 - 29",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbwyThDHHO8SPQnVi8Lp3l5yVrxExDYdyVY3FjYa8_vrR2gfiNb1HJWYz95ZFkQJsucKUA/exec",
+  //   label: "تفاصيل حساب اسبوع 4 - 5",
+  // },
 ];
 
 const btbWeeks = [
@@ -303,9 +303,13 @@ const btbWeeks = [
   //   id: "https://script.google.com/macros/s/AKfycbw_FNWXPoITNjIGmKLXKkOYGy_OFZCruI8ndH8U2E8PLr6K3f3Ek1FP3cFfrMEqW03u/exec",
   //   title: "تفاصيل حساب اسبوع 4 - 5",
   // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbxTUby_TIGe-BrdeeuoFyAzR3FkEWAS2_aSKBPYTM-EzBm5g9H-ARMoPn9Yq3N6nAFN/exec",
+  //   title: "تفاصيل حساب اسبوع 4 - 12",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbxTUby_TIGe-BrdeeuoFyAzR3FkEWAS2_aSKBPYTM-EzBm5g9H-ARMoPn9Yq3N6nAFN/exec",
-    title: "تفاصيل حساب اسبوع 4 - 12",
+    id: "https://script.google.com/macros/s/AKfycbzsXTArgrBJ0ZFVMr5M1QghCCXV2XV6ckyZbkAMWzL-frjBdVfDAFufJC6nuOKmOVa5/exec",
+    title: "تفاصيل حساب اسبوع 4 - 19",
   },
 ];
 
@@ -348,7 +352,7 @@ const Page = () => {
     <div className="relative min-h-screen flex flex-col gap-10 lg:flex-row items-center lg:justify-between lg:gap-5 p-6 transition-colors">
       <FloatingMoney />
 
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -381,7 +385,7 @@ const Page = () => {
             </Select>
           </CardContent>
         </Card>
-      </motion.div>
+      </motion.div> */}
       <motion.div
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
