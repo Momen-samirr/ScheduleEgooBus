@@ -303,13 +303,21 @@ const btbWeeks = [
   //   id: "https://script.google.com/macros/s/AKfycbw_FNWXPoITNjIGmKLXKkOYGy_OFZCruI8ndH8U2E8PLr6K3f3Ek1FP3cFfrMEqW03u/exec",
   //   title: "تفاصيل حساب اسبوع 4 - 5",
   // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbxTUby_TIGe-BrdeeuoFyAzR3FkEWAS2_aSKBPYTM-EzBm5g9H-ARMoPn9Yq3N6nAFN/exec",
+  //   title: "تفاصيل حساب اسبوع 4 - 12",
+  // },
+  // {
+  //   id: "https://script.google.com/macros/s/AKfycbySMWrL02NGnKoy4Ni06Rye_6mrkuN6nHD6CDhj1UHjfHBF2R6nyFAq1EFI_04fcJKl/exec",
+  //   title: "تفاصيل حساب اسبوع 4 - 19",
+  // },
   {
-    id: "https://script.google.com/macros/s/AKfycbxTUby_TIGe-BrdeeuoFyAzR3FkEWAS2_aSKBPYTM-EzBm5g9H-ARMoPn9Yq3N6nAFN/exec",
-    title: "تفاصيل حساب اسبوع 4 - 12",
+    id: "https://script.google.com/macros/s/AKfycbzn8EZBveD_qCXF8rJCbS1mcGoqdFGutxPZVqKL52mCnFWnyizX-sLLkqahdlpCP51zkw/exec",
+    title: "تفاصيل حساب اسبوع 4 - 26",
   },
   {
-    id: "https://script.google.com/macros/s/AKfycbySMWrL02NGnKoy4Ni06Rye_6mrkuN6nHD6CDhj1UHjfHBF2R6nyFAq1EFI_04fcJKl/exec",
-    title: "تفاصيل حساب اسبوع 4 - 19",
+    id: "https://script.google.com/macros/s/AKfycbxgTuVz_2YFEyKFFKo9NSVMaHj8rdevss1ZFBTGpsuwvGAs3baebFkl7iUEnloOH22B/exec",
+    title: "تفاصيل حساب اسبوع 5 - 3",
   },
 ];
 
